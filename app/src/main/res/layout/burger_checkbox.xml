@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <CheckBox
+        android:id="@+id/bigfootBaconCheckBox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/extraCheeseCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Bacon (3 strips)" />
+
+    <CheckBox
+        android:id="@+id/footBunCheckBox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/extraCheeseCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/bigfootBaconCheckBox"
+        android:layout_toRightOf="@+id/bigfootBaconCheckBox"
+        android:text="Foot-Shaped Bun" />
+
+    <CheckBox
+        android:id="@+id/veggiePattyCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bigfootBaconCheckBox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Veggie Patty" />
+
+    <CheckBox
+        android:id="@+id/extraCheeseCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tomatoCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/extraPattyCheckbox"
+        android:layout_toRightOf="@+id/extraPattyCheckbox"
+        android:text="Cheese #2" />
+
+    <CheckBox
+        android:id="@+id/extraPattyCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pickleCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/onionCheckbox"
+        android:layout_toRightOf="@+id/onionCheckbox"
+        android:text="Patty #2" />
+
+    <TextView
+        android:id="@+id/defaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default Ingredients:"
+        />
+
+    <CheckBox
+        android:id="@+id/bunCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="25dp"
+        android:text="Bun" />
+
+    <CheckBox
+        android:id="@+id/pattyCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/bunCheckbox"
+        android:layout_toRightOf="@+id/bunCheckbox"
+        android:text="Patty" />
+
+    <CheckBox
+        android:id="@+id/cheeseCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Cheese"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/pattyCheckbox"
+        android:layout_toRightOf="@+id/pattyCheckbox" />
+
+    <CheckBox
+        android:id="@+id/baconCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/cheeseCheckbox"
+        android:layout_toRightOf="@+id/cheeseCheckbox"
+        android:text="Bacon" />
+
+    <CheckBox
+        android:id="@+id/ketchupCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bunCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Ketchup" />
+
+    <CheckBox
+        android:id="@+id/mustardCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cheeseCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ketchupCheckbox"
+        android:layout_toRightOf="@+id/ketchupCheckbox"
+        android:text="Mustard" />
+
+    <CheckBox
+        android:id="@+id/mayoCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cheeseCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/mustardCheckbox"
+        android:layout_toRightOf="@+id/mustardCheckbox"
+        android:text="Mayo"/>
+
+    <CheckBox
+        android:id="@+id/lettuceCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ketchupCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Lettuce" />
+
+    <CheckBox
+        android:id="@+id/pickleCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ketchupCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/lettuceCheckbox"
+        android:layout_toRightOf="@+id/lettuceCheckbox"
+        android:text="Pickle"/>
+
+    <CheckBox
+        android:id="@+id/tomatoCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mustardCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/pickleCheckbox"
+        android:layout_toRightOf="@+id/pickleCheckbox"
+        android:text="Tomato"/>
+
+    <CheckBox
+        android:id="@+id/onionCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lettuceCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="Onion"/>
+
+    <TextView
+        android:id="@+id/optionalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/veggiePattyCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Optional Ingredients:" />
+
+    <CheckBox
+        android:id="@+id/jalapenosCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/optionalTextView"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="Jalapenos"/>
+
+    <CheckBox
+        android:id="@+id/mushroomCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/optionalTextView"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/jalapenosCheckbox"
+        android:layout_toRightOf="@+id/jalapenosCheckbox"
+        android:text="Mushrooms"/>
+
+    <CheckBox
+        android:id="@+id/grilledOnionsCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jalapenosCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Grilled Onions" />
+
+    <CheckBox
+        android:id="@+id/frySauceCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mushroomCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/grilledOnionsCheckbox"
+        android:layout_toRightOf="@+id/grilledOnionsCheckbox"
+        android:text="Fry Sauce" />
+
+    <CheckBox
+        android:id="@+id/swissCheeseCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/grilledOnionsCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="Swiss Cheese" />
+
+    <CheckBox
+        android:id="@+id/pepperJackCheeseCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frySauceCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/swissCheeseCheckbox"
+        android:layout_toRightOf="@+id/swissCheeseCheckbox"
+        android:text="Pepper Jack" />
+
+    <CheckBox
+        android:id="@+id/pizzaCheeseCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/swissCheeseCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="Pizza Cheese" />
+
+
+</RelativeLayout>

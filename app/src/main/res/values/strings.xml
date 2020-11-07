@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">SylvanCombinedUI</string>
+    <string name="home_item_title">Home</string>
+    <string name="create_item_title">Create</string>
+    <string name="edit_item_title">Edit</string>
+    <string name="history_item_title">History</string>
+    <string name="inventory_item_title">Inventory</string>
+    <string name="user_item_title">User</string>
+    <string name="user_profile_item_title">User Profile</string>
+    <string name="logout_item_title">Logout</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="hamburger_name">Hamburger</string>
+    <string name = "cheeseburger_name">Cheeseburger</string>
+    <string name = "bacon_cheese_burger_name">Bacon Cheese Burger</string>
+    <string name = "double_hamburger_name">Double Hamburger</string>
+    <string name = "double_cheeseburger_name">Double Cheeseburger</string>
+    <string name = "double_bacon_cheese_burger_name">Double Bac/Cheese Burger</string>
+    <string name = "bigfoot_burger_name">Bigfoot Burger</string>
+    <string name = "bbq_bacon_cheese_burger_name">BBQ Bacon Cheese Burger</string>
+    <string name = "chicken_burger_name">Chicken Burger</string>
+    <string name = "fish_burger_name">Fish Burger</string>
+    <string name = "veggie_burger_name">Veggie Burger</string>
+    <string name = "kids_meal_name">Kids Meal</string>
+</resources>

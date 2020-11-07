@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/burgerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Burgers:"
+                android:textSize="12pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <Button
+                android:id="@+id/hamburgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hamburger_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/burgerTextView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/bigfootBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bigfoot_burger_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/doubleCheeseburgerButton" />
+
+            <Button
+                android:id="@+id/cheeseburgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cheeseburger_name"
+                app:layout_constraintStart_toEndOf="@+id/hamburgerButton"
+                app:layout_constraintTop_toBottomOf="@+id/burgerTextView" />
+
+            <Button
+                android:id="@+id/baconCheeseBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bacon_cheese_burger_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hamburgerButton" />
+
+            <Button
+                android:id="@+id/doubleHamburgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/double_hamburger_name"
+                app:layout_constraintStart_toEndOf="@+id/baconCheeseBurgerButton"
+                app:layout_constraintTop_toBottomOf="@+id/cheeseburgerButton" />
+
+            <TextView
+                android:id="@+id/fryerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fryer:"
+                android:textSize="12pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chiliBowlButton" />
+
+            <Button
+                android:id="@+id/chickenStripBasketButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chicken Strip Basket"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fryerTextView" />
+
+            <Button
+                android:id="@+id/fishBasketButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fish Basket"
+                app:layout_constraintStart_toEndOf="@+id/chickenStripBasketButton"
+                app:layout_constraintTop_toTopOf="@+id/chickenStripBasketButton" />
+
+            <Button
+                android:id="@+id/shrimpBasketButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shrimp Basket"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chickenStripBasketButton" />
+
+            <Button
+                android:id="@+id/clamBasketButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clam Basket"
+                app:layout_constraintStart_toEndOf="@+id/shrimpBasketButton"
+                app:layout_constraintTop_toBottomOf="@+id/chickenStripBasketButton" />
+
+            <TextView
+                android:id="@+id/sandwichTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sandwiches"
+                android:textSize="12pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shrimpBasketButton" />
+
+            <Button
+                android:id="@+id/pattyMeltButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patty Melt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sandwichTextView" />
+
+            <Button
+                android:id="@+id/grilledCheeseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grilled Cheese"
+                app:layout_constraintStart_toEndOf="@+id/pattyMeltButton"
+                app:layout_constraintTop_toBottomOf="@+id/sandwichTextView" />
+
+            <Button
+                android:id="@+id/grilledHamCheeseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grilled Ham/Cheese"
+                app:layout_constraintStart_toEndOf="@+id/grilledCheeseButton"
+                app:layout_constraintTop_toBottomOf="@+id/sandwichTextView" />
+
+            <Button
+                android:id="@+id/BLTButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B.L.T."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pattyMeltButton" />
+
+            <Button
+                android:id="@+id/frenchDipButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:text="French Dip"
+                app:layout_constraintStart_toEndOf="@+id/BLTButton"
+                app:layout_constraintTop_toBottomOf="@+id/grilledCheeseButton" />
+
+            <Button
+                android:id="@+id/phillyBeefButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Philly Beef"
+                app:layout_constraintStart_toEndOf="@+id/frenchDipButton"
+                app:layout_constraintTop_toBottomOf="@+id/grilledHamCheeseButton" />
+
+            <Button
+                android:id="@+id/doubleCheeseburgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/double_cheeseburger_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/baconCheeseBurgerButton" />
+
+            <Button
+                android:id="@+id/doubleBaconCheeseBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/double_bacon_cheese_burger_name"
+                app:layout_constraintStart_toEndOf="@+id/doubleCheeseburgerButton"
+                app:layout_constraintTop_toBottomOf="@+id/doubleHamburgerButton" />
+
+            <Button
+                android:id="@+id/bbqBaconCheeseBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bbq_bacon_cheese_burger_name"
+                app:layout_constraintStart_toEndOf="@+id/bigfootBurgerButton"
+                app:layout_constraintTop_toBottomOf="@+id/doubleCheeseburgerButton" />
+
+            <Button
+                android:id="@+id/chickenBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chicken_burger_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bigfootBurgerButton" />
+
+            <Button
+                android:id="@+id/fishBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_burger_name"
+                app:layout_constraintStart_toEndOf="@+id/chickenBurgerButton"
+                app:layout_constraintTop_toBottomOf="@+id/bbqBaconCheeseBurgerButton" />
+
+            <Button
+                android:id="@+id/veggieBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/veggie_burger_name"
+                app:layout_constraintStart_toEndOf="@+id/fishBurgerButton"
+                app:layout_constraintTop_toBottomOf="@+id/bbqBaconCheeseBurgerButton" />
+
+            <Button
+                android:id="@+id/kidsMealButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kids_meal_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chickenBurgerButton" />
+
+            <TextView
+                android:id="@+id/hotDogTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hot Dogs:"
+                android:textSize="12pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/kidsMealButton" />
+
+            <Button
+                android:id="@+id/allBeefDogButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Beef Dog"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hotDogTextView" />
+
+            <Button
+                android:id="@+id/polishDogButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Polish Dog"
+                app:layout_constraintStart_toEndOf="@+id/allBeefDogButton"
+                app:layout_constraintTop_toBottomOf="@+id/hotDogTextView" />
+
+            <TextView
+                android:id="@+id/chiliTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chili:"
+                android:textSize="12pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/allBeefDogButton" />
+
+            <Button
+                android:id="@+id/chiliBowlButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chili Bowl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chiliTextView" />
+
+            <Button
+                android:id="@+id/chiliFryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chili Fry"
+                app:layout_constraintStart_toEndOf="@+id/chiliBowlButton"
+                app:layout_constraintTop_toTopOf="@+id/chiliBowlButton" />
+
+            <Button
+                android:id="@+id/chiliDogButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chili Dog"
+                app:layout_constraintStart_toEndOf="@+id/chiliFryButton"
+                app:layout_constraintTop_toTopOf="@+id/chiliFryButton" />
+
+            <Button
+                android:id="@+id/chiliBurgerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chili Burger"
+                app:layout_constraintStart_toEndOf="@+id/chiliDogButton"
+                app:layout_constraintTop_toTopOf="@+id/chiliDogButton" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
