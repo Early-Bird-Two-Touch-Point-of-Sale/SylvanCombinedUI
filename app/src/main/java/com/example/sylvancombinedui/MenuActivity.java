@@ -154,7 +154,13 @@ public class MenuActivity extends AppCompatActivity {
             onionCheckBox.setChecked(true);
 
             //set invalid ingredients to false
+            baconCheckBox.setEnabled(false);
+            cheeseCheckBox.setEnabled(false);
             extraCheeseCheckBox.setEnabled(false);
+            extraPattyCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.cheeseburger_name)){
@@ -168,6 +174,14 @@ public class MenuActivity extends AppCompatActivity {
             pickleCheckBox.setChecked(true);
             tomatoCheckBox.setChecked(true);
             onionCheckBox.setChecked(true);
+
+            //set invalid ingredients to false
+            baconCheckBox.setEnabled(false);
+            extraCheeseCheckBox.setEnabled(false);
+            extraPattyCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bacon_cheese_burger_name)) {
@@ -182,6 +196,76 @@ public class MenuActivity extends AppCompatActivity {
             pickleCheckBox.setChecked(true);
             tomatoCheckBox.setChecked(true);
             onionCheckBox.setChecked(true);
+
+            //set invalid ingredients to false
+            extraCheeseCheckBox.setEnabled(false);
+            extraPattyCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
+        }
+
+        if (buttonTitle.toString() == getResources().getString(R.string.double_hamburger_name)){
+            bunCheckBox.setChecked(true);
+            pattyCheckBox.setChecked(true);
+            ketchupCheckBox.setChecked(true);
+            mustardCheckBox.setChecked(true);
+            mayoCheckBox.setChecked(true);
+            lettuceCheckBox.setChecked(true);
+            pickleCheckBox.setChecked(true);
+            tomatoCheckBox.setChecked(true);
+            onionCheckBox.setChecked(true);
+            extraPattyCheckBox.setChecked(true);
+
+            //set invalid ingredients to false
+            baconCheckBox.setEnabled(false);
+            cheeseCheckBox.setEnabled(false);
+            extraCheeseCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
+        }
+
+        if (buttonTitle.toString() == getResources().getString(R.string.double_cheeseburger_name)){
+            bunCheckBox.setChecked(true);
+            pattyCheckBox.setChecked(true);
+            ketchupCheckBox.setChecked(true);
+            mustardCheckBox.setChecked(true);
+            mayoCheckBox.setChecked(true);
+            lettuceCheckBox.setChecked(true);
+            pickleCheckBox.setChecked(true);
+            tomatoCheckBox.setChecked(true);
+            onionCheckBox.setChecked(true);
+            extraPattyCheckBox.setChecked(true);
+            cheeseCheckBox.setChecked(true);
+            extraCheeseCheckBox.setChecked(true);
+
+            //set invalid ingredients to false
+            baconCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
+        }
+
+        if (buttonTitle.toString() == getResources().getString(R.string.double_bacon_cheese_burger_name)) {
+            bunCheckBox.setChecked(true);
+            pattyCheckBox.setChecked(true);
+            cheeseCheckBox.setChecked(true);
+            baconCheckBox.setChecked(true);
+            ketchupCheckBox.setChecked(true);
+            mustardCheckBox.setChecked(true);
+            mayoCheckBox.setChecked(true);
+            lettuceCheckBox.setChecked(true);
+            pickleCheckBox.setChecked(true);
+            tomatoCheckBox.setChecked(true);
+            onionCheckBox.setChecked(true);
+            extraCheeseCheckBox.setChecked(true);
+            extraPattyCheckBox.setChecked(true);
+
+            //set invalid ingredients to false
+            veggiePattyCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bigfoot_burger_name)){
@@ -198,8 +282,14 @@ public class MenuActivity extends AppCompatActivity {
             pickleCheckBox.setChecked(true);
             tomatoCheckBox.setChecked(true);
             onionCheckBox.setChecked(true);
+
+            //set invalid ingredients to false
+            bunCheckBox.setEnabled(false);
+            baconCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
         }
 
+        //region SET_DEFAULT_CHECKBOXES
         //set default ingredients so as to set holds correctly
         setDefaultCheckBoxListener(bunCheckBox, "Bun", holds);
         setDefaultCheckBoxListener(pattyCheckBox, "Patty", holds);
@@ -217,7 +307,9 @@ public class MenuActivity extends AppCompatActivity {
         setDefaultCheckBoxListener(veggiePattyCheckBox, "Veggie Patty", holds);
         setDefaultCheckBoxListener(footBunCheckBox, "Foot Bun", holds);
         setDefaultCheckBoxListener(bigfootBaconCheckBox, "Bacon (3 slices)", holds);
+        //endregion
 
+        //region SET_OPTIONAL_CHECKBOXES
         // set optional ingredients with checkbox listeners
         setOptionalCheckBoxListener(jalapenosCheckBox, "Jalapenos", optionalToppings);
         setOptionalCheckBoxListener(mushroomsCheckBox, "Mushrooms", optionalToppings);
@@ -226,6 +318,7 @@ public class MenuActivity extends AppCompatActivity {
         setOptionalCheckBoxListener(swissCheeseCheckBox, "Swiss Cheese", optionalToppings);
         setOptionalCheckBoxListener(pepperJackCheeseCheckBox, "Pepper Jack", optionalToppings);
         setOptionalCheckBoxListener(pizzaCheeseCheckBox, "Pizza Cheese", optionalToppings);
+        //endregion
 
         AlertDialog.Builder burgerDialog = new AlertDialog.Builder(this);
         burgerDialog.setTitle(buttonTitle);
