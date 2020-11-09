@@ -27,6 +27,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        //region BURGER_BUTTONS
         final Button hamburgerButton = findViewById(R.id.hamburgerButton);
         final Button cheeseburgerButton = findViewById(R.id.cheeseburgerButton);
         final Button bigfootBurgerButton = findViewById(R.id.bigfootBurgerButton);
@@ -38,6 +39,12 @@ public class MenuActivity extends AppCompatActivity {
         final Button chickenBurgerButton = findViewById(R.id.chickenBurgerButton);
         final Button fishBurgerButton = findViewById(R.id.fishBurgerButton);
         final Button veggieBurgerButton = findViewById(R.id.veggieBurgerButton);
+        //endregion
+
+        //region HOT_DOG_BUTTONS
+        final Button beefDogButton = findViewById(R.id.allBeefDogButton);
+        final Button polishDogButton = findViewById(R.id.polishDogButton);
+        //endregion
 
 
         hamburgerButton.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +110,20 @@ public class MenuActivity extends AppCompatActivity {
         veggieBurgerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openBurgerDialog(veggieBurgerButton.getText());
+            }
+        });
+
+        beefDogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openHotDogDialog(beefDogButton.getText());
+            }
+        });
+
+        polishDogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openHotDogDialog(polishDogButton.getText());
             }
         });
     }
@@ -357,6 +378,68 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
         burgerDialog.show();
+    }
+
+    public void openHotDogDialog(final CharSequence buttonTitle) {
+        final ArrayList<String> holds = new ArrayList<String>();
+        //final ArrayList<String> optionalToppings = new ArrayList<String>();
+        View hotDogCheckBoxView = View.inflate(this, R.layout.hotdog_checkbox, null);
+
+        CheckBox mustardDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.mustardHotDogBox);
+        CheckBox mayoDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.mayoHotDogBox);
+        CheckBox ketchupDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.ketchupHotDogBox);
+        CheckBox relishDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.relishHotDogBox);
+        CheckBox onionDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.onionHotDogBox);
+
+        if (buttonTitle == getResources().getString(R.string.beef_dog_name) ||
+                buttonTitle == getResources().getString(R.string.polish_dog_name)){
+            mustardDogBox.setChecked(true);
+            mayoDogBox.setChecked(true);
+            ketchupDogBox.setChecked(true);
+            relishDogBox.setChecked(true);
+            onionDogBox.setChecked(true);
+        }
+
+        setDefaultCheckBoxListener(mustardDogBox, "Mustard", holds);
+        setDefaultCheckBoxListener(mayoDogBox, "Mayo", holds);
+        setDefaultCheckBoxListener(ketchupDogBox, "Ketchup", holds);
+        setDefaultCheckBoxListener(relishDogBox, "Relish", holds);
+        setDefaultCheckBoxListener(onionDogBox, "Onion", holds);
+
+        AlertDialog.Builder hotDogDialog = new AlertDialog.Builder(this);
+        hotDogDialog.setTitle(buttonTitle);
+        hotDogDialog.setView(hotDogCheckBoxView);
+        hotDogDialog.setCancelable(false);
+        hotDogDialog.setMessage("Please choose your ingredients:")
+                .setPositiveButton("Order", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (holds.isEmpty()) {
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("Food Item", buttonTitle);
+                            resultIntent.putExtra("Toppings", "N/A");
+                            resultIntent.putExtra("Holds", "None");
+                            setResult(MENU_RESULT, resultIntent);
+                            finish();
+                        }
+                        else
+                        {
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("Food Item", buttonTitle);
+                            resultIntent.putExtra("Toppings", "N/A");
+                            resultIntent.putExtra("Holds", holds.toString());
+                            setResult(MENU_RESULT, resultIntent);
+                            finish();
+                        }
+                    }
+                });
+        hotDogDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MenuActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+            }
+        });
+        hotDogDialog.show();
     }
 
     void setDefaultCheckBoxListener(CheckBox checkbox, final String ingredient, final ArrayList<String> arrayList){

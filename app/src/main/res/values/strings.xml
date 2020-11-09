@@ -22,4 +22,6 @@
     <string name = "fish_burger_name">Fish Burger</string>
     <string name = "veggie_burger_name">Veggie Burger</string>
     <string name = "kids_meal_name">Kids Meal</string>
+    <string name = "beef_dog_name">All Beef Dog</string>
+    <string name = "polish_dog_name">Polish Dog</string>
 </resources>
