@@ -52,7 +52,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void addItem(int position) {
-        dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, "New Item at Position " + position, "Line 2"));
+        dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, "New Item at Position " + position, "Line 2", "Line 3"));
         mAdapter.notifyItemInserted(dummyOrderList.size());
     }
 
@@ -135,7 +135,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         String userCode = userAnswer.getText().toString();
                         if (userCode.length() == 14 || userCode.length() == 13 || userCode.length() == 12 || userCode.length() == 8) {
                             if (itemMap.containsKey(userCode)) {
-                                dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(userCode), userCode));
+                                dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(userCode), userCode, "Price"));
                                 mAdapter.notifyItemInserted(dummyOrderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
@@ -199,7 +199,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 
                 dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
-                        "Toppings: " + optToppings + ", Holds: " + holds));
+                        "Toppings: " + optToppings + ", Holds: " + holds, "Other"));
                 mAdapter.notifyItemInserted(dummyOrderList.size());
             }
         }
@@ -225,7 +225,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     if (result.getContents().length() == 14 || result.getContents().length() == 13 || result.getContents().length() == 12 ||
                             result.getContents().length() == 8) {
                         if (itemMap.containsKey(result.getContents())) {
-                            dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()), result.getContents()));
+                            dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()),
+                                    result.getContents(), "Price"));
                             mAdapter.notifyItemInserted(dummyOrderList.size());
                             Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                         } else {
@@ -234,22 +235,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     } else {
                         Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
                     }
-               /* AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(result.getContents());
-                builder.setTitle("Scanning Result");
-                builder.setPositiveButton("Scan Again", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        scanCode();
-                    }
-                }).setNegativeButton("Finish", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show(); */
                 } else {
                     Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
                 }
