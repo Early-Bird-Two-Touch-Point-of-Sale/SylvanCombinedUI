@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -162,6 +163,8 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox pepperJackCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.pepperJackCheeseCheckbox);
         CheckBox pizzaCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.pizzaCheeseCheckbox);
         //endregion
+
+        final EditText burgerOther = (EditText) findViewById(R.id.burgerEditText);
 
         if (buttonTitle.toString() == getResources().getString(R.string.hamburger_name)){
             bunCheckBox.setChecked(true);
@@ -349,12 +352,13 @@ public class MenuActivity extends AppCompatActivity {
                 .setPositiveButton("Order", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (optionalToppings.isEmpty() && holds.isEmpty()) {
+                        if (optionalToppings.isEmpty() && holds.isEmpty()){ // && burgerOther.toString().isEmpty()) {
                             //Toast.makeText(MenuActivity.this, "Ordered a " + buttonTitle, Toast.LENGTH_SHORT).show();
                             Intent resultIntent = new Intent();
                             resultIntent.putExtra("Food Item", buttonTitle);
                             resultIntent.putExtra("Optional Toppings", "None");
                             resultIntent.putExtra("Holds", "None");
+                            resultIntent.putExtra("EditText", "None");
                             setResult(MENU_RESULT, resultIntent);
                             finish();
                         }
@@ -366,6 +370,7 @@ public class MenuActivity extends AppCompatActivity {
                             resultIntent.putExtra("Food Item", buttonTitle);
                             resultIntent.putExtra("Optional Toppings", optionalToppings.toString());
                             resultIntent.putExtra("Holds", holds.toString());
+                            resultIntent.putExtra("EditText", "Other" ); //burgerOther.toString());
                             setResult(MENU_RESULT, resultIntent);
                             finish();
                         }
@@ -391,6 +396,8 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox relishDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.relishHotDogBox);
         CheckBox onionDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.onionHotDogBox);
 
+        final EditText hotDogOther = (EditText) findViewById(R.id.hotDogEditText);
+
        if (buttonTitle == getResources().getString(R.string.beef_dog_name) ||
                buttonTitle == getResources().getString(R.string.polish_dog_name)){
             mustardDogBox.setChecked(true);
@@ -414,11 +421,12 @@ public class MenuActivity extends AppCompatActivity {
                 .setPositiveButton("Order", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (holds.isEmpty()) {
+                        if (holds.isEmpty() ){//&& hotDogOther.toString().isEmpty()) {
                             Intent resultIntent = new Intent();
                             resultIntent.putExtra("Food Item", buttonTitle);
                             resultIntent.putExtra("Optional Toppings", "N/A");
                             resultIntent.putExtra("Holds", "None");
+                            resultIntent.putExtra("EditText", "None");
                             setResult(MENU_RESULT, resultIntent);
                             finish();
                         }
@@ -428,6 +436,7 @@ public class MenuActivity extends AppCompatActivity {
                             resultIntent.putExtra("Food Item", buttonTitle);
                             resultIntent.putExtra("Optional Toppings", "N/A");
                             resultIntent.putExtra("Holds", holds.toString());
+                            resultIntent.putExtra("EditText", "Other");//);
                             setResult(MENU_RESULT, resultIntent);
                             finish();
                         }

@@ -51,6 +51,18 @@
             android:text="Line 3"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemOther"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@id/itemImage"
+            android:layout_toRightOf="@id/itemImage"
+            android:text="Line 4"
+            android:textSize="15sp" />
+
         <ImageView
             android:id="@+id/imageDelete"
             android:layout_width="50dp"

@@ -28,6 +28,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         public TextView mTextView1;
         public TextView mTextView2;
         public TextView mTextView3;
+        public TextView mTextView4;
         public ImageView mDeleteImage;
 
         public OrderViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
@@ -36,6 +37,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             mTextView1 = itemView.findViewById(R.id.itemTitle);
             mTextView2 = itemView.findViewById(R.id.itemBarcode);
             mTextView3 = itemView.findViewById(R.id.itemOther);
+            mTextView4 = itemView.findViewById(R.id.itemPrice);
+
             mDeleteImage = itemView.findViewById(R.id.imageDelete);
 
             mDeleteImage.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +75,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.mTextView1.setText(currentItem.getText1());
         holder.mTextView2.setText(currentItem.getText2());
         holder.mTextView3.setText(currentItem.getText3());
+        holder.mTextView4.setText(currentItem.getText4());
     }
 
     @Override

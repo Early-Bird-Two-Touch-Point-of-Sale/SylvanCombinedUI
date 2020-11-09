@@ -52,7 +52,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void addItem(int position) {
-        dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, "New Item at Position " + position, "Line 2", "Line 3"));
+        dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android,
+                "New Item at Position " + position, "Line 2", "Line 3", "Line 4"));
         mAdapter.notifyItemInserted(dummyOrderList.size());
     }
 
@@ -135,7 +136,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         String userCode = userAnswer.getText().toString();
                         if (userCode.length() == 14 || userCode.length() == 13 || userCode.length() == 12 || userCode.length() == 8) {
                             if (itemMap.containsKey(userCode)) {
-                                dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(userCode), userCode, "Price"));
+                                dummyOrderList.add(dummyOrderList.size(),
+                                        new OrderItem(R.drawable.ic_android, itemMap.get(userCode),
+                                                userCode, "Other", "Price"));
                                 mAdapter.notifyItemInserted(dummyOrderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
@@ -195,11 +198,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 String foodItem = data.getStringExtra("Food Item");
                 String optToppings = data.getStringExtra("Optional Toppings");
                 String holds = data.getStringExtra("Holds");
+                String other = data.getStringExtra("EditText");
                 //Toast.makeText(context, foodItem +
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 
                 dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
-                        "Toppings: " + optToppings + ", Holds: " + holds, "Other"));
+                        "Toppings: " + optToppings + ", Holds: " + holds, "Other", "Price"));
                 mAdapter.notifyItemInserted(dummyOrderList.size());
             }
         }
@@ -226,7 +230,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             result.getContents().length() == 8) {
                         if (itemMap.containsKey(result.getContents())) {
                             dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()),
-                                    result.getContents(), "Price"));
+                                    result.getContents(), "Other", "Price"));
                             mAdapter.notifyItemInserted(dummyOrderList.size());
                             Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                         } else {
