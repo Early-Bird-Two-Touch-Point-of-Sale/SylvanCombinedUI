@@ -391,14 +391,14 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox relishDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.relishHotDogBox);
         CheckBox onionDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.onionHotDogBox);
 
-       // if (buttonTitle == getResources().getString(R.string.beef_dog_name) ||
-         //       buttonTitle == getResources().getString(R.string.polish_dog_name)){
+       if (buttonTitle == getResources().getString(R.string.beef_dog_name) ||
+               buttonTitle == getResources().getString(R.string.polish_dog_name)){
             mustardDogBox.setChecked(true);
             mayoDogBox.setChecked(true);
             ketchupDogBox.setChecked(true);
             relishDogBox.setChecked(true);
             onionDogBox.setChecked(true);
-        //}
+        }
 
         setDefaultCheckBoxListener(mustardDogBox, "Mustard", holds);
         setDefaultCheckBoxListener(mayoDogBox, "Mayo", holds);

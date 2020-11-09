@@ -236,7 +236,7 @@
                 android:id="@+id/allBeefDogButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All Beef Dog"
+                android:text="@string/beef_dog_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hotDogTextView" />
 
@@ -244,7 +244,7 @@
                 android:id="@+id/polishDogButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Polish Dog"
+                android:text="@string/polish_dog_name"
                 app:layout_constraintStart_toEndOf="@+id/allBeefDogButton"
                 app:layout_constraintTop_toBottomOf="@+id/hotDogTextView" />
 
