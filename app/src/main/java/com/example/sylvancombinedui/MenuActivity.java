@@ -1,12 +1,10 @@
 package com.example.sylvancombinedui;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +13,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
@@ -152,6 +149,9 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox veggiePattyCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.veggiePattyCheckbox);
         CheckBox footBunCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.footBunCheckBox);
         CheckBox bigfootBaconCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.bigfootBaconCheckBox);
+        CheckBox chickenPattyCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.chickenPattyCheckbox);
+        CheckBox tartarSauceCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.tartarSauceCheckbox);
+        CheckBox alaskanPollockCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.AlaskanPollockCheckBox);
         //endregion
 
         //region OPTIONAL_CHECKBOXES
@@ -290,6 +290,7 @@ public class MenuActivity extends AppCompatActivity {
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
+            baconCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bigfoot_burger_name)){
@@ -311,6 +312,77 @@ public class MenuActivity extends AppCompatActivity {
             bunCheckBox.setEnabled(false);
             baconCheckBox.setEnabled(false);
             veggiePattyCheckBox.setEnabled(false);
+        }
+
+        if(buttonTitle.toString() == getResources().getString(R.string.chicken_burger_name)){
+            bunCheckBox.setChecked(true);
+            chickenPattyCheckBox.setChecked(true);
+            mayoCheckBox.setChecked(true);
+            lettuceCheckBox.setChecked(true);
+            tomatoCheckBox.setChecked(true);
+
+            //invalid ingredients
+            footBunCheckBox.setEnabled(false);
+            onionCheckBox.setChecked(true);
+            baconCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            extraCheeseCheckBox.setEnabled(false);
+            extraPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            pattyCheckBox.setEnabled(false);
+            cheeseCheckBox.setEnabled(false);
+            mustardCheckBox.setEnabled(false);
+            ketchupCheckBox.setEnabled(false);
+            pickleCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
+        }
+
+        if(buttonTitle.toString() == getResources().getString(R.string.fish_burger_name)){
+            bunCheckBox.setChecked(true);
+            alaskanPollockCheckBox.setChecked(true);
+            tartarSauceCheckBox.setChecked(true);
+            lettuceCheckBox.setChecked(true);
+            tomatoCheckBox.setChecked(true);
+
+            //invalid
+            mayoCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            onionCheckBox.setChecked(true);
+            baconCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            extraCheeseCheckBox.setEnabled(false);
+            extraPattyCheckBox.setEnabled(false);
+            pattyCheckBox.setEnabled(false);
+            cheeseCheckBox.setEnabled(false);
+            mustardCheckBox.setEnabled(false);
+            ketchupCheckBox.setEnabled(false);
+            pickleCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+        }
+
+        if(buttonTitle.toString() == getResources().getString(R.string.veggie_burger_name)){
+            bunCheckBox.setChecked(true);
+            veggiePattyCheckBox.setChecked(true);
+            cheeseCheckBox.setChecked(true);
+            ketchupCheckBox.setChecked(true);
+            mustardCheckBox.setChecked(true);
+            mayoCheckBox.setChecked(true);
+            lettuceCheckBox.setChecked(true);
+            pickleCheckBox.setChecked(true);
+            tomatoCheckBox.setChecked(true);
+            onionCheckBox.setChecked(true);
+
+            //invalid
+            pattyCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            baconCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
+            extraCheeseCheckBox.setEnabled(false);
+            extraPattyCheckBox.setEnabled(false);
+            pattyCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
         }
 
         //region SET_DEFAULT_CHECKBOXES

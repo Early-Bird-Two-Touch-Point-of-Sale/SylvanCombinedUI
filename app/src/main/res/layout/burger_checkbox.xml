@@ -3,6 +3,46 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <CheckBox
+        android:id="@+id/tartarSauceCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chickenPattyCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Tartar Sauce" />
+
+
+    <CheckBox
+        android:id="@+id/AlaskanPollockCheckBox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/veggiePattyCheckbox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/tartarSauceCheckbox"
+        android:layout_toRightOf="@+id/tartarSauceCheckbox"
+        android:text="Alaskan Pollock" />
+
+    <CheckBox
+        android:id="@+id/chickenPattyCheckbox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/footBunCheckBox"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/veggiePattyCheckbox"
+        android:layout_toRightOf="@+id/veggiePattyCheckbox"
+        android:text="Chicken Patty" />
+
+    <CheckBox
         android:id="@+id/bigfootBaconCheckBox"
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
@@ -221,7 +261,7 @@
         android:id="@+id/optionalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/veggiePattyCheckbox"
+        android:layout_below="@+id/tartarSauceCheckbox"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
