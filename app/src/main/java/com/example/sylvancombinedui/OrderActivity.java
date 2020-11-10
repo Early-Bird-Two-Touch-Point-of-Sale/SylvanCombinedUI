@@ -203,7 +203,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 
                 dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
-                        "Toppings: " + optToppings + ", Holds: " + holds, "Other", "Price"));
+                        "Toppings: " + optToppings + ", Holds: " + holds, other, "Price"));
                 mAdapter.notifyItemInserted(dummyOrderList.size());
             }
         }

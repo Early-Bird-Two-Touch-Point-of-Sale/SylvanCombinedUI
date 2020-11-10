@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +20,7 @@ public class MenuActivity extends AppCompatActivity {
 
     //String Toppings;
     final int MENU_RESULT = 77;
+    final String TAG = "MenuActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +154,7 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox chickenPattyCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.chickenPattyCheckbox);
         CheckBox tartarSauceCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.tartarSauceCheckbox);
         CheckBox alaskanPollockCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.AlaskanPollockCheckBox);
+        CheckBox BBQSauceCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.bbqSauceCheckBox);
         //endregion
 
         //region OPTIONAL_CHECKBOXES
@@ -164,7 +167,7 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox pizzaCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.pizzaCheeseCheckbox);
         //endregion
 
-        final EditText burgerOther = (EditText) findViewById(R.id.burgerEditText);
+        final EditText burgerOther = (EditText) burgerCheckBoxView.findViewById(R.id.burgerEditText);
 
         if (buttonTitle.toString() == getResources().getString(R.string.hamburger_name)){
             bunCheckBox.setChecked(true);
@@ -178,6 +181,7 @@ public class MenuActivity extends AppCompatActivity {
             onionCheckBox.setChecked(true);
 
             //set invalid ingredients to false
+            BBQSauceCheckBox.setEnabled(false);
             baconCheckBox.setEnabled(false);
             cheeseCheckBox.setEnabled(false);
             extraCheeseCheckBox.setEnabled(false);
@@ -206,6 +210,7 @@ public class MenuActivity extends AppCompatActivity {
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
+            BBQSauceCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bacon_cheese_burger_name)) {
@@ -222,6 +227,7 @@ public class MenuActivity extends AppCompatActivity {
             onionCheckBox.setChecked(true);
 
             //set invalid ingredients to false
+            BBQSauceCheckBox.setEnabled(false);
             extraCheeseCheckBox.setEnabled(false);
             extraPattyCheckBox.setEnabled(false);
             veggiePattyCheckBox.setEnabled(false);
@@ -242,6 +248,7 @@ public class MenuActivity extends AppCompatActivity {
             extraPattyCheckBox.setChecked(true);
 
             //set invalid ingredients to false
+            BBQSauceCheckBox.setEnabled(false);
             baconCheckBox.setEnabled(false);
             cheeseCheckBox.setEnabled(false);
             extraCheeseCheckBox.setEnabled(false);
@@ -265,6 +272,7 @@ public class MenuActivity extends AppCompatActivity {
             extraCheeseCheckBox.setChecked(true);
 
             //set invalid ingredients to false
+            BBQSauceCheckBox.setEnabled(false);
             baconCheckBox.setEnabled(false);
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
@@ -287,6 +295,7 @@ public class MenuActivity extends AppCompatActivity {
             extraPattyCheckBox.setChecked(true);
 
             //set invalid ingredients to false
+            BBQSauceCheckBox.setEnabled(false);
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
@@ -309,9 +318,35 @@ public class MenuActivity extends AppCompatActivity {
             onionCheckBox.setChecked(true);
 
             //set invalid ingredients to false
+            BBQSauceCheckBox.setEnabled(false);
             bunCheckBox.setEnabled(false);
             baconCheckBox.setEnabled(false);
             veggiePattyCheckBox.setEnabled(false);
+        }
+
+        if (buttonTitle.toString() == getResources().getString(R.string.bbq_bacon_cheese_burger_name)){
+            bunCheckBox.setChecked(true);
+            pattyCheckBox.setChecked(true);
+            cheeseCheckBox.setChecked(true);
+            baconCheckBox.setChecked(true);
+            BBQSauceCheckBox.setChecked(true);
+
+            //invalid
+            mayoCheckBox.setEnabled(false);
+            footBunCheckBox.setEnabled(false);
+            onionCheckBox.setChecked(true);
+            lettuceCheckBox.setEnabled(false);
+            tomatoCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            bigfootBaconCheckBox.setEnabled(false);
+            veggiePattyCheckBox.setEnabled(false);
+            extraCheeseCheckBox.setEnabled(false);
+            extraPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            mustardCheckBox.setEnabled(false);
+            ketchupCheckBox.setEnabled(false);
+            pickleCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if(buttonTitle.toString() == getResources().getString(R.string.chicken_burger_name)){
@@ -322,6 +357,7 @@ public class MenuActivity extends AppCompatActivity {
             tomatoCheckBox.setChecked(true);
 
             //invalid ingredients
+            BBQSauceCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             onionCheckBox.setChecked(true);
             baconCheckBox.setEnabled(false);
@@ -346,6 +382,7 @@ public class MenuActivity extends AppCompatActivity {
             tomatoCheckBox.setChecked(true);
 
             //invalid
+            BBQSauceCheckBox.setEnabled(false);
             mayoCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             onionCheckBox.setChecked(true);
@@ -375,6 +412,7 @@ public class MenuActivity extends AppCompatActivity {
             onionCheckBox.setChecked(true);
 
             //invalid
+            BBQSauceCheckBox.setEnabled(false);
             pattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             baconCheckBox.setEnabled(false);
@@ -424,27 +462,37 @@ public class MenuActivity extends AppCompatActivity {
                 .setPositiveButton("Order", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (optionalToppings.isEmpty() && holds.isEmpty()){ // && burgerOther.toString().isEmpty()) {
+                        if (optionalToppings.isEmpty() && holds.isEmpty() && burgerOther.getText().toString().isEmpty()) {
                             //Toast.makeText(MenuActivity.this, "Ordered a " + buttonTitle, Toast.LENGTH_SHORT).show();
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("Food Item", buttonTitle);
-                            resultIntent.putExtra("Optional Toppings", "None");
-                            resultIntent.putExtra("Holds", "None");
-                            resultIntent.putExtra("EditText", "None");
-                            setResult(MENU_RESULT, resultIntent);
-                            finish();
+                            try {
+                                Intent resultIntent = new Intent();
+                                resultIntent.putExtra("Food Item", buttonTitle);
+                                resultIntent.putExtra("Optional Toppings", "None");
+                                resultIntent.putExtra("Holds", "None");
+                                resultIntent.putExtra("EditText", "None");
+                                setResult(MENU_RESULT, resultIntent);
+                                finish();
+                            }
+                            catch(Exception e){
+                                Log.e(TAG + " Error", e.getMessage(), e);
+                            }
                         }
                         else
                         {
                             //Toast.makeText(MenuActivity.this, "Ordered a " + buttonTitle + " with: " + optionalToppings.toString()
                             //        + "\n" + "Holds: " + holds.toString(), Toast.LENGTH_SHORT).show();
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("Food Item", buttonTitle);
-                            resultIntent.putExtra("Optional Toppings", optionalToppings.toString());
-                            resultIntent.putExtra("Holds", holds.toString());
-                            resultIntent.putExtra("EditText", "Other" ); //burgerOther.toString());
-                            setResult(MENU_RESULT, resultIntent);
-                            finish();
+                            try {
+                                Intent resultIntent = new Intent();
+                                resultIntent.putExtra("Food Item", buttonTitle);
+                                resultIntent.putExtra("Optional Toppings", optionalToppings.toString());
+                                resultIntent.putExtra("Holds", holds.toString());
+                                resultIntent.putExtra("EditText", burgerOther.getText().toString()); //burgerOther.toString());
+                                setResult(MENU_RESULT, resultIntent);
+                                finish();
+                            }
+                            catch (Exception e){
+                                Log.e(TAG + " Error", e.getMessage(), e);
+                            }
                         }
                     }
                 });
@@ -468,7 +516,7 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox relishDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.relishHotDogBox);
         CheckBox onionDogBox = (CheckBox) hotDogCheckBoxView.findViewById(R.id.onionHotDogBox);
 
-        final EditText hotDogOther = (EditText) findViewById(R.id.hotDogEditText);
+        final EditText hotDogOther = (EditText) hotDogCheckBoxView.findViewById(R.id.hotDogEditText);
 
        if (buttonTitle == getResources().getString(R.string.beef_dog_name) ||
                buttonTitle == getResources().getString(R.string.polish_dog_name)){
@@ -493,24 +541,34 @@ public class MenuActivity extends AppCompatActivity {
                 .setPositiveButton("Order", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (holds.isEmpty() ){//&& hotDogOther.toString().isEmpty()) {
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("Food Item", buttonTitle);
-                            resultIntent.putExtra("Optional Toppings", "N/A");
-                            resultIntent.putExtra("Holds", "None");
-                            resultIntent.putExtra("EditText", "None");
-                            setResult(MENU_RESULT, resultIntent);
-                            finish();
+                        if (holds.isEmpty() && hotDogOther.getText().toString().isEmpty()) {
+                            try{
+                                Intent resultIntent = new Intent();
+                                resultIntent.putExtra("Food Item", buttonTitle);
+                                resultIntent.putExtra("Optional Toppings", "N/A");
+                                resultIntent.putExtra("Holds", "None");
+                                resultIntent.putExtra("EditText", "None");
+                                setResult(MENU_RESULT, resultIntent);
+                                finish();
+                            }
+                            catch (Exception e){
+                                Log.e(TAG + " Error", e.getMessage(), e);
+                            }
                         }
                         else
                         {
+                            try {
                             Intent resultIntent = new Intent();
                             resultIntent.putExtra("Food Item", buttonTitle);
                             resultIntent.putExtra("Optional Toppings", "N/A");
                             resultIntent.putExtra("Holds", holds.toString());
-                            resultIntent.putExtra("EditText", "Other");//);
+                            resultIntent.putExtra("EditText", hotDogOther.getText().toString());//);
                             setResult(MENU_RESULT, resultIntent);
                             finish();
+                            }
+                            catch (Exception e){
+                                Log.e(TAG + " Error", e.getMessage(), e);
+                            }
                         }
                     }
                 });

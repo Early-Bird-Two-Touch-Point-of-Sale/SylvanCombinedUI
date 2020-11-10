@@ -3,6 +3,19 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <CheckBox
+        android:id="@+id/bbqSauceCheckBox"
+        style="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tartarSauceCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="BBQ Sauce" />
+
+    <CheckBox
         android:id="@+id/tartarSauceCheckbox"
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
@@ -261,7 +274,7 @@
         android:id="@+id/optionalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tartarSauceCheckbox"
+        android:layout_below="@id/bbqSauceCheckBox"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
