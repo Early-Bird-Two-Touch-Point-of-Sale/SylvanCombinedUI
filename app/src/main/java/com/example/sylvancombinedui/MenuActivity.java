@@ -189,6 +189,9 @@ public class MenuActivity extends AppCompatActivity {
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.cheeseburger_name)){
@@ -211,6 +214,9 @@ public class MenuActivity extends AppCompatActivity {
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
             BBQSauceCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bacon_cheese_burger_name)) {
@@ -233,6 +239,9 @@ public class MenuActivity extends AppCompatActivity {
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.double_hamburger_name)){
@@ -255,6 +264,9 @@ public class MenuActivity extends AppCompatActivity {
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.double_cheeseburger_name)){
@@ -277,6 +289,9 @@ public class MenuActivity extends AppCompatActivity {
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.double_bacon_cheese_burger_name)) {
@@ -299,7 +314,9 @@ public class MenuActivity extends AppCompatActivity {
             veggiePattyCheckBox.setEnabled(false);
             footBunCheckBox.setEnabled(false);
             bigfootBaconCheckBox.setEnabled(false);
-            baconCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bigfoot_burger_name)){
@@ -322,6 +339,9 @@ public class MenuActivity extends AppCompatActivity {
             bunCheckBox.setEnabled(false);
             baconCheckBox.setEnabled(false);
             veggiePattyCheckBox.setEnabled(false);
+            chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bbq_bacon_cheese_burger_name)){
@@ -421,6 +441,8 @@ public class MenuActivity extends AppCompatActivity {
             extraPattyCheckBox.setEnabled(false);
             pattyCheckBox.setEnabled(false);
             chickenPattyCheckBox.setEnabled(false);
+            tartarSauceCheckBox.setEnabled(false);
+            alaskanPollockCheckBox.setEnabled(false);
         }
 
         //region SET_DEFAULT_CHECKBOXES
