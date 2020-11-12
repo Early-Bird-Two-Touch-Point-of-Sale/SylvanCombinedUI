@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     final Context context = this;
     final int MENU_REQUEST = 55;
     final int MENU_RESULT = 77;
+    final String TAG = "2";
 
     private Button ScanBtn;
     private Button AddBtn;
@@ -229,10 +231,14 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     if (result.getContents().length() == 14 || result.getContents().length() == 13 || result.getContents().length() == 12 ||
                             result.getContents().length() == 8) {
                         if (itemMap.containsKey(result.getContents())) {
-                            dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()),
-                                    result.getContents(), "Other", "Price"));
-                            mAdapter.notifyItemInserted(dummyOrderList.size());
-                            Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
+                            try {
+                                dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()),
+                                        result.getContents(), "Other", "Price"));
+                                mAdapter.notifyItemInserted(dummyOrderList.size());
+                                Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
+                            } catch(Exception e){
+                                Log.e(TAG, e.getMessage(), e);
+                            }
                         } else {
                             Toast.makeText(this, "Item not found", Toast.LENGTH_SHORT).show();
                         }
