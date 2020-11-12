@@ -13,6 +13,12 @@
             android:parentActivityName=".OrderActivity"></activity>
         <activity android:name=".OrderActivity"
             android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".CaptureAct"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+        </activity>
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
