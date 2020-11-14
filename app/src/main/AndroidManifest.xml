@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UIActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuActivity"
             android:parentActivityName=".OrderActivity"></activity>
         <activity android:name=".OrderActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".UIActivity"></activity>
         <activity android:name=".CaptureAct"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
