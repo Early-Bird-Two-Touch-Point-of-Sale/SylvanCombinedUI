@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView eAttemptsInfo;
 
-    private String correctUsername = "Admin";
-    private String correctPassword = "Admin";
+    private String correctUsername = "Cashier";
+    private String correctPassword = "Password";
     boolean isValid = false;
     private int counter = 5;
 
