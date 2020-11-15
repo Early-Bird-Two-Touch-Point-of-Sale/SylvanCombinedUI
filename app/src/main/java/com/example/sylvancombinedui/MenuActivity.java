@@ -643,7 +643,8 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    if (ingredient == "Swiss Cheese" || ingredient == "Pepper Jack"){
+                    if (ingredient == "Swiss Cheese" || ingredient == "Pepper Jack" ||
+                    ingredient == "Pizza Cheese"){
                         arrayList.add(ingredient);
                         foodPrice += .75;
                     } else {
@@ -652,8 +653,14 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 }
                 else if (!isChecked){
-                    arrayList.remove(ingredient);
-                    foodPrice -= .5;
+                    if (ingredient == "Swiss Cheese" || ingredient == "Pepper Jack" ||
+                            ingredient == "Pizza Cheese"){
+                        arrayList.remove(ingredient);
+                        foodPrice -= .75;
+                    } else{
+                        arrayList.remove(ingredient);
+                        foodPrice -= .5;
+                    }
                 }
             }
         });
