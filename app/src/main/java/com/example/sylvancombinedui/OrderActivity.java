@@ -36,7 +36,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private RecyclerView mRecyclerView;
     private OrderAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<OrderItem> dummyOrderList;
+    private ArrayList<OrderItem> orderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,29 +54,29 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void addItem(int position) {
-        dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android,
+        orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android,
                 "New Item at Position " + position, "Line 2", "Line 3", "Line 4"));
-        mAdapter.notifyItemInserted(dummyOrderList.size());
+        mAdapter.notifyItemInserted(orderList.size());
     }
 
     public void delItem (int position) {
-        dummyOrderList.remove(position);
+        orderList.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
 
     public void createOrderList() {
-        dummyOrderList = new ArrayList<>();
+        orderList = new ArrayList<>();
 
-        /*dummyOrderList.add(new OrderItem(R.drawable.ic_android, "Dummy Item #1", "5555555555555"));
-        dummyOrderList.add(new OrderItem(R.drawable.ic_car, "Dummy Item #2", "5555555555556"));
-        dummyOrderList.add(new OrderItem(R.drawable.ic_sun, "Dummy Item #3", "5555555555557"));*/
+        /*orderList.add(new OrderItem(R.drawable.ic_android, "Dummy Item #1", "5555555555555"));
+        orderList.add(new OrderItem(R.drawable.ic_car, "Dummy Item #2", "5555555555556"));
+        orderList.add(new OrderItem(R.drawable.ic_sun, "Dummy Item #3", "5555555555557"));*/
     }
 
     public void buildRecyclerView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.orderRecycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new OrderAdapter(dummyOrderList);
+        mAdapter = new OrderAdapter(orderList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -138,10 +138,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         String userCode = userAnswer.getText().toString();
                         if (userCode.length() == 14 || userCode.length() == 13 || userCode.length() == 12 || userCode.length() == 8) {
                             if (itemMap.containsKey(userCode)) {
-                                dummyOrderList.add(dummyOrderList.size(),
+                                orderList.add(orderList.size(),
                                         new OrderItem(R.drawable.ic_android, itemMap.get(userCode),
                                                 userCode, "Other", "Price"));
-                                mAdapter.notifyItemInserted(dummyOrderList.size());
+                                mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
                             else
@@ -165,7 +165,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         OrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(OrderActivity.this, "Ordered", Toast.LENGTH_SHORT).show();
+                takeOrder();
             }
         });
     }
@@ -204,9 +204,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 //Toast.makeText(context, foodItem +
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 
-                dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
+                orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
                         "Toppings: " + optToppings + ", Holds: " + holds, other, "Price"));
-                mAdapter.notifyItemInserted(dummyOrderList.size());
+                mAdapter.notifyItemInserted(orderList.size());
             }
         }
         else {//else it's coming from the Scanner
@@ -232,9 +232,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             result.getContents().length() == 8) {
                         if (itemMap.containsKey(result.getContents())) {
                             try {
-                                dummyOrderList.add(dummyOrderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()),
+                                orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()),
                                         result.getContents(), "Other", "Price"));
-                                mAdapter.notifyItemInserted(dummyOrderList.size());
+                                mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                             } catch(Exception e){
                                 Log.e(TAG, e.getMessage(), e);
@@ -252,5 +252,40 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 super.onActivityResult(requestCode, resultCode, data);
             }
         }
+    }
+
+    public void takeOrder(){
+        StringBuffer orderMessage = new StringBuffer("");
+        AlertDialog.Builder orderDialog = new AlertDialog.Builder(this);
+        orderDialog.setTitle("Your Order");
+        orderDialog.setCancelable(false);
+        for (int counter = 0; counter < orderList.size(); counter++) {
+            orderMessage.append("Item " + counter + ": " + "\n");
+            orderMessage.append(orderList.get(counter).getText1() + "\n");
+            orderMessage.append(orderList.get(counter).getText2() + "\n");
+            orderMessage.append(orderList.get(counter).getText3() + "\n");
+            orderMessage.append(orderList.get(counter).getText4() + "\n" + "\n");
+        }
+        orderDialog.setMessage(orderMessage);
+        orderDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(OrderActivity.this, "Ordered", Toast.LENGTH_SHORT).show();
+                int size = orderList.size();
+                if (size > 0) {
+                    for (int j = 0; j < size; j++) {
+                        orderList.remove(0); //have to use 0, because the orderItems will
+                    }                              // migrate to that position, and you'll delete
+                    mAdapter.notifyItemRangeRemoved(0, size); //every other item with j
+                }
+            }
+        });
+        orderDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(OrderActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+            }
+        });
+        orderDialog.show();
     }
 }
