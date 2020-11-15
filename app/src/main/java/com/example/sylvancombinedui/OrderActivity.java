@@ -201,11 +201,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 String optToppings = data.getStringExtra("Optional Toppings");
                 String holds = data.getStringExtra("Holds");
                 String other = data.getStringExtra("EditText");
+                String foodPrice = data.getStringExtra("Price");
                 //Toast.makeText(context, foodItem +
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 
                 orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
-                        "Toppings: " + optToppings + ", Holds: " + holds, other, "Price"));
+                        "Toppings: " + optToppings + ", Holds: " + holds, other, foodPrice));
                 mAdapter.notifyItemInserted(orderList.size());
             }
         }

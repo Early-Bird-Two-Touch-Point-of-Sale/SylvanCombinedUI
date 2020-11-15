@@ -21,6 +21,7 @@ public class MenuActivity extends AppCompatActivity {
     //String Toppings;
     final int MENU_RESULT = 77;
     final String TAG = "MenuActivity";
+    double foodPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,6 +171,8 @@ public class MenuActivity extends AppCompatActivity {
         final EditText burgerOther = (EditText) burgerCheckBoxView.findViewById(R.id.burgerEditText);
 
         if (buttonTitle.toString() == getResources().getString(R.string.hamburger_name)){
+            foodPrice = 5.99;
+
             bunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             ketchupCheckBox.setChecked(true);
@@ -195,6 +198,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.cheeseburger_name)){
+            foodPrice = 6.29;
             bunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             cheeseCheckBox.setChecked(true);
@@ -220,6 +224,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bacon_cheese_burger_name)) {
+            foodPrice = 7.09;
             bunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             cheeseCheckBox.setChecked(true);
@@ -245,6 +250,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.double_hamburger_name)){
+            foodPrice = 8.29;
             bunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             ketchupCheckBox.setChecked(true);
@@ -270,6 +276,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.double_cheeseburger_name)){
+            foodPrice = 8.99;
             bunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             ketchupCheckBox.setChecked(true);
@@ -295,6 +302,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.double_bacon_cheese_burger_name)) {
+            foodPrice = 9.79;
             bunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             cheeseCheckBox.setChecked(true);
@@ -320,6 +328,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bigfoot_burger_name)){
+            foodPrice = 10.99;
             footBunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             extraPattyCheckBox.setChecked(true);
@@ -345,6 +354,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if (buttonTitle.toString() == getResources().getString(R.string.bbq_bacon_cheese_burger_name)){
+            foodPrice = 7.09;
             bunCheckBox.setChecked(true);
             pattyCheckBox.setChecked(true);
             cheeseCheckBox.setChecked(true);
@@ -370,6 +380,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if(buttonTitle.toString() == getResources().getString(R.string.chicken_burger_name)){
+            foodPrice = 5.99;
             bunCheckBox.setChecked(true);
             chickenPattyCheckBox.setChecked(true);
             mayoCheckBox.setChecked(true);
@@ -395,6 +406,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if(buttonTitle.toString() == getResources().getString(R.string.fish_burger_name)){
+            foodPrice = 6.49;
             bunCheckBox.setChecked(true);
             alaskanPollockCheckBox.setChecked(true);
             tartarSauceCheckBox.setChecked(true);
@@ -420,6 +432,7 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if(buttonTitle.toString() == getResources().getString(R.string.veggie_burger_name)){
+            foodPrice = 6.49;
             bunCheckBox.setChecked(true);
             veggiePattyCheckBox.setChecked(true);
             cheeseCheckBox.setChecked(true);
@@ -477,7 +490,7 @@ public class MenuActivity extends AppCompatActivity {
         //endregion
 
         AlertDialog.Builder burgerDialog = new AlertDialog.Builder(this);
-        burgerDialog.setTitle(buttonTitle);
+        burgerDialog.setTitle(buttonTitle + " ($" + foodPrice + ")");
         burgerDialog.setView(burgerCheckBoxView);
         burgerDialog.setCancelable(false);
         burgerDialog.setMessage("Please choose your ingredients:")
@@ -492,6 +505,7 @@ public class MenuActivity extends AppCompatActivity {
                                 resultIntent.putExtra("Optional Toppings", "None");
                                 resultIntent.putExtra("Holds", "None");
                                 resultIntent.putExtra("EditText", "None");
+                                resultIntent.putExtra("Price", "$" + foodPrice);
                                 setResult(MENU_RESULT, resultIntent);
                                 finish();
                             }
@@ -509,6 +523,7 @@ public class MenuActivity extends AppCompatActivity {
                                 resultIntent.putExtra("Optional Toppings", optionalToppings.toString());
                                 resultIntent.putExtra("Holds", holds.toString());
                                 resultIntent.putExtra("EditText", burgerOther.getText().toString()); //burgerOther.toString());
+                                resultIntent.putExtra("Price", "$" + foodPrice);
                                 setResult(MENU_RESULT, resultIntent);
                                 finish();
                             }
@@ -522,6 +537,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(MenuActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+                foodPrice = 0;
             }
         });
         burgerDialog.show();
@@ -542,6 +558,7 @@ public class MenuActivity extends AppCompatActivity {
 
        if (buttonTitle == getResources().getString(R.string.beef_dog_name) ||
                buttonTitle == getResources().getString(R.string.polish_dog_name)){
+           foodPrice = 4.69;
             mustardDogBox.setChecked(true);
             mayoDogBox.setChecked(true);
             ketchupDogBox.setChecked(true);
@@ -556,7 +573,7 @@ public class MenuActivity extends AppCompatActivity {
         setDefaultCheckBoxListener(onionDogBox, "Onion", holds);
 
         AlertDialog.Builder hotDogDialog = new AlertDialog.Builder(this);
-        hotDogDialog.setTitle(buttonTitle);
+        hotDogDialog.setTitle(buttonTitle + " ($" + foodPrice + ")");
         hotDogDialog.setView(hotDogCheckBoxView);
         hotDogDialog.setCancelable(false);
         hotDogDialog.setMessage("Please choose your ingredients:")
@@ -570,6 +587,7 @@ public class MenuActivity extends AppCompatActivity {
                                 resultIntent.putExtra("Optional Toppings", "N/A");
                                 resultIntent.putExtra("Holds", "None");
                                 resultIntent.putExtra("EditText", "None");
+                                resultIntent.putExtra("Price", "$" + foodPrice);
                                 setResult(MENU_RESULT, resultIntent);
                                 finish();
                             }
@@ -585,6 +603,7 @@ public class MenuActivity extends AppCompatActivity {
                             resultIntent.putExtra("Optional Toppings", "N/A");
                             resultIntent.putExtra("Holds", holds.toString());
                             resultIntent.putExtra("EditText", hotDogOther.getText().toString());//);
+                                resultIntent.putExtra("Price", "$" + foodPrice);
                             setResult(MENU_RESULT, resultIntent);
                             finish();
                             }
@@ -625,9 +644,11 @@ public class MenuActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     arrayList.add(ingredient);
+                    foodPrice += .5;
                 }
                 else if (!isChecked){
                     arrayList.remove(ingredient);
+                    foodPrice -= .5;
                 }
             }
         });
