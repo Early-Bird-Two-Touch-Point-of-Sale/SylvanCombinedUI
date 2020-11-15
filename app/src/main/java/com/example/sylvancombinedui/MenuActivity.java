@@ -643,8 +643,13 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    arrayList.add(ingredient);
-                    foodPrice += .5;
+                    if (ingredient == "Swiss Cheese" || ingredient == "Pepper Jack"){
+                        arrayList.add(ingredient);
+                        foodPrice += .75;
+                    } else {
+                        arrayList.add(ingredient);
+                        foodPrice += .5;
+                    }
                 }
                 else if (!isChecked){
                     arrayList.remove(ingredient);
