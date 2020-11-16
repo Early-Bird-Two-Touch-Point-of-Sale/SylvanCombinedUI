@@ -47,6 +47,12 @@ public class MenuActivity extends AppCompatActivity {
         final Button polishDogButton = findViewById(R.id.polishDogButton);
         //endregion
 
+        //region CHILI_BUTTONS
+        final Button chiliBowlButton = findViewById(R.id.chiliBowlButton);
+        final Button chiliFryButton = findViewById(R.id.chiliFryButton);
+        final Button chiliDogButton = findViewById(R.id.chiliDogButton);
+        final Button chiliBurgerButton = findViewById(R.id.chiliBurgerButton);
+        //endregion
 
         hamburgerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -114,6 +120,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        //region HOT_DOG_CLICKLISTENERS
         beefDogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +134,11 @@ public class MenuActivity extends AppCompatActivity {
                 openHotDogDialog(polishDogButton.getText());
             }
         });
+        //endregion
+
+        //region CHILI_CLICKLISTENERS
+
+        //endregion
     }
 
     public void openBurgerDialog(final CharSequence buttonTitle) {
