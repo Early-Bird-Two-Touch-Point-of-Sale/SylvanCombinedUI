@@ -261,7 +261,7 @@
                 android:id="@+id/chiliBowlButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chili Bowl"
+                android:text="@string/chili_bowl_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chiliTextView" />
 
@@ -269,7 +269,7 @@
                 android:id="@+id/chiliFryButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chili Fry"
+                android:text="@string/chili_fry_name"
                 app:layout_constraintStart_toEndOf="@+id/chiliBowlButton"
                 app:layout_constraintTop_toTopOf="@+id/chiliBowlButton" />
 
@@ -277,7 +277,7 @@
                 android:id="@+id/chiliDogButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chili Dog"
+                android:text="@string/chili_dog_name"
                 app:layout_constraintStart_toEndOf="@+id/chiliFryButton"
                 app:layout_constraintTop_toTopOf="@+id/chiliFryButton" />
 
@@ -285,7 +285,7 @@
                 android:id="@+id/chiliBurgerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chili Burger"
+                android:text="@string/chili_burger_name"
                 app:layout_constraintStart_toEndOf="@+id/chiliDogButton"
                 app:layout_constraintTop_toTopOf="@+id/chiliDogButton" />
 

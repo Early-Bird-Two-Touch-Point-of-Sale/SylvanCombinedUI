@@ -340,7 +340,7 @@
         android:text="Fry Sauce" />
 
     <CheckBox
-        android:id="@+id/swissCheeseCheckbox"
+        android:id="@+id/swissCheeseChiliCheckbox"
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -353,7 +353,7 @@
         android:text="Swiss Cheese" />
 
     <CheckBox
-        android:id="@+id/pepperJackCheeseCheckbox"
+        android:id="@+id/pepperJackCheeseChiliCheckbox"
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -361,8 +361,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/swissCheeseCheckbox"
-        android:layout_toRightOf="@+id/swissCheeseCheckbox"
+        android:layout_toEndOf="@+id/swissCheeseChiliCheckbox"
+        android:layout_toRightOf="@+id/swissCheeseChiliCheckbox"
         android:text="Pepper Jack" />
 
     <CheckBox
@@ -370,7 +370,7 @@
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/swissCheeseCheckbox"
+        android:layout_below="@+id/swissCheeseChiliCheckbox"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"

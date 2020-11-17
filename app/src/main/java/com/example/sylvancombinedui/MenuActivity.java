@@ -177,8 +177,8 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox mushroomsCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.mushroomCheckbox);
         CheckBox grilledOnionsCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.grilledOnionsCheckbox);
         CheckBox frySauceCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.frySauceCheckbox);
-        CheckBox swissCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.swissCheeseCheckbox);
-        CheckBox pepperJackCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.pepperJackCheeseCheckbox);
+        CheckBox swissCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.swissCheeseChiliCheckbox);
+        CheckBox pepperJackCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.pepperJackCheeseChiliCheckbox);
         CheckBox pizzaCheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.pizzaCheeseCheckbox);
         //endregion
 
@@ -610,6 +610,47 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
         hotDogDialog.show();
+    }
+
+    public void openChiliDialog(final CharSequence buttonTitle) {
+        final ArrayList<String> holds = new ArrayList<String>();
+        //final ArrayList<String> optionalToppings = new ArrayList<String>();
+        View chiliCheckBoxView = View.inflate(this, R.layout.hotdog_checkbox, null);
+
+
+        if (buttonTitle.toString() == getResources().getString(R.string.chili_bowl_name)){
+            foodPrice = 3.39;
+        }
+        else if (buttonTitle.toString() == getResources().getString(R.string.chili_fry_name)){
+            foodPrice = 4.99;
+        }
+        else if (buttonTitle.toString() == getResources().getString(R.string.chili_dog_name)){
+            foodPrice = 5.99;
+        }
+        else if (buttonTitle.toString() == getResources().getString(R.string.chili_burger_name)){
+            foodPrice = 6.29;
+        }
+        else {
+            foodPrice = 0.0;
+        }
+
+        //defaults
+        CheckBox shreddedCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.shreddedCheeseCheckbox);
+        CheckBox shreddedOnionCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.shreddedOnionCheckbox);
+
+        shreddedCheeseCheckBox.setChecked(true);
+        shreddedOnionCheckBox.setChecked(true);
+
+        //optional
+        CheckBox jalapenosCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.jalapenoChiliCheckbox);
+        CheckBox mushroomCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.mushroomCheckbox);
+        CheckBox americanCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.americanCheeseCheckbox);
+        CheckBox baconCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.baconChiliCheckbox);
+        CheckBox swissCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.swissCheeseChiliCheckbox);
+        CheckBox pepperJackCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.pepperJackCheeseChiliCheckbox);
+
+        final EditText chiliEditText = (EditText) chiliCheckBoxView.findViewById(R.id.chiliEditText);
+        //TODO: finish openChiliDialog
     }
 
     void setDefaultCheckBoxListener(CheckBox checkbox, final String ingredient, final ArrayList<String> arrayList){
