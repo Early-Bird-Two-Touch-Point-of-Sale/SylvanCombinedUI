@@ -54,6 +54,7 @@ public class MenuActivity extends AppCompatActivity {
         final Button chiliBurgerButton = findViewById(R.id.chiliBurgerButton);
         //endregion
 
+        //region BURGER_CLICKLISTENERS
         hamburgerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openBurgerDialog(hamburgerButton.getText());
@@ -119,6 +120,7 @@ public class MenuActivity extends AppCompatActivity {
                 openBurgerDialog(veggieBurgerButton.getText());
             }
         });
+        //endregion
 
         //region HOT_DOG_CLICKLISTENERS
         beefDogButton.setOnClickListener(new View.OnClickListener() {
@@ -512,14 +514,8 @@ public class MenuActivity extends AppCompatActivity {
                         if (optionalToppings.isEmpty() && holds.isEmpty() && burgerOther.getText().toString().isEmpty()) {
                             //Toast.makeText(MenuActivity.this, "Ordered a " + buttonTitle, Toast.LENGTH_SHORT).show();
                             try {
-                                Intent resultIntent = new Intent();
-                                resultIntent.putExtra("Food Item", buttonTitle);
-                                resultIntent.putExtra("Optional Toppings", "None");
-                                resultIntent.putExtra("Holds", "None");
-                                resultIntent.putExtra("EditText", "None");
-                                resultIntent.putExtra("Price", "$" + foodPrice);
-                                setResult(MENU_RESULT, resultIntent);
-                                finish();
+                                menuResult(buttonTitle.toString(), "None", "None",
+                                        "None", foodPrice);
                             }
                             catch(Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -530,14 +526,8 @@ public class MenuActivity extends AppCompatActivity {
                             //Toast.makeText(MenuActivity.this, "Ordered a " + buttonTitle + " with: " + optionalToppings.toString()
                             //        + "\n" + "Holds: " + holds.toString(), Toast.LENGTH_SHORT).show();
                             try {
-                                Intent resultIntent = new Intent();
-                                resultIntent.putExtra("Food Item", buttonTitle);
-                                resultIntent.putExtra("Optional Toppings", optionalToppings.toString());
-                                resultIntent.putExtra("Holds", holds.toString());
-                                resultIntent.putExtra("EditText", burgerOther.getText().toString()); //burgerOther.toString());
-                                resultIntent.putExtra("Price", "$" + foodPrice);
-                                setResult(MENU_RESULT, resultIntent);
-                                finish();
+                                menuResult(buttonTitle.toString(), optionalToppings.toString(), holds.toString(),
+                                        burgerOther.getText().toString(), foodPrice);
                             }
                             catch (Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -594,14 +584,8 @@ public class MenuActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (holds.isEmpty() && hotDogOther.getText().toString().isEmpty()) {
                             try{
-                                Intent resultIntent = new Intent();
-                                resultIntent.putExtra("Food Item", buttonTitle);
-                                resultIntent.putExtra("Optional Toppings", "N/A");
-                                resultIntent.putExtra("Holds", "None");
-                                resultIntent.putExtra("EditText", "None");
-                                resultIntent.putExtra("Price", "$" + foodPrice);
-                                setResult(MENU_RESULT, resultIntent);
-                                finish();
+                                menuResult(buttonTitle.toString(), "N/A", "None",
+                                        "None", foodPrice);
                             }
                             catch (Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -610,14 +594,8 @@ public class MenuActivity extends AppCompatActivity {
                         else
                         {
                             try {
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("Food Item", buttonTitle);
-                            resultIntent.putExtra("Optional Toppings", "N/A");
-                            resultIntent.putExtra("Holds", holds.toString());
-                            resultIntent.putExtra("EditText", hotDogOther.getText().toString());//);
-                                resultIntent.putExtra("Price", "$" + foodPrice);
-                            setResult(MENU_RESULT, resultIntent);
-                            finish();
+                                menuResult(buttonTitle.toString(), "N/A", holds.toString(),
+                                        hotDogOther.getText().toString(), foodPrice);
                             }
                             catch (Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -678,4 +656,15 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    public void menuResult(String foodTitle, String optToppings, String holds,
+                           String editNotes, Double price){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("Food Item", foodTitle);
+        resultIntent.putExtra("Optional Toppings", optToppings);
+        resultIntent.putExtra("Holds", holds);
+        resultIntent.putExtra("EditText", editNotes);//);
+        resultIntent.putExtra("Price", "$" + price);
+        setResult(MENU_RESULT, resultIntent);
+        finish();
+    }
 }
