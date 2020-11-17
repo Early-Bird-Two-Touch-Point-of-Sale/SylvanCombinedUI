@@ -150,7 +150,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
         //region DEFAULT_CHECKBOXES
-        CheckBox bunCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.bunCheckbox);
+        CheckBox bunCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.shreddedCheeseCheckbox);
         CheckBox pattyCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.pattyCheckbox);
         CheckBox cheeseCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.cheeseCheckbox);
         CheckBox baconCheckBox = (CheckBox) burgerCheckBoxView.findViewById(R.id.baconCheckbox);

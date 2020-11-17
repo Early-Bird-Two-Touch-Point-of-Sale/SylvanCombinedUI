@@ -124,11 +124,16 @@
         android:id="@+id/defaultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Default Ingredients:"
-        />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Default Ingredients:" />
 
     <CheckBox
-        android:id="@+id/bunCheckbox"
+        android:id="@+id/shreddedCheeseCheckbox"
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -149,8 +154,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="25dp"
-        android:layout_toEndOf="@+id/bunCheckbox"
-        android:layout_toRightOf="@+id/bunCheckbox"
+        android:layout_toEndOf="@+id/shreddedCheeseCheckbox"
+        android:layout_toRightOf="@+id/shreddedCheeseCheckbox"
         android:text="Patty" />
 
     <CheckBox
@@ -184,7 +189,7 @@
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bunCheckbox"
+        android:layout_below="@+id/shreddedCheeseCheckbox"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
@@ -339,12 +344,12 @@
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/grilledOnionsCheckbox"
+        android:layout_below="@+id/optionalTextView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:text="Swiss Cheese" />
 
     <CheckBox
@@ -352,7 +357,7 @@
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frySauceCheckbox"
+        android:layout_below="@+id/optionalTextView2"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
@@ -383,5 +388,17 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/optionalTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/grilledOnionsCheckbox"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Optional Ingredients ($0.75 each)" />
 
 </RelativeLayout>
