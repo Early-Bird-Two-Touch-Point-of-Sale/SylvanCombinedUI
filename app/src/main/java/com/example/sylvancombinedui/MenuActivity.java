@@ -672,21 +672,9 @@ public class MenuActivity extends AppCompatActivity {
         setDefaultCheckBoxListener(shreddedCheeseCheckBox, shreddedCheeseCheckBox.getText().toString(), holds);
         setDefaultCheckBoxListener(shreddedOnionCheckBox, shreddedOnionCheckBox.getText().toString(), holds);
 
-        //region OPTIONAL_CHECKBOXES
         CheckBox jalapenosCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.jalapenoChiliCheckbox);
-        CheckBox mushroomCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.mushroomCheckbox);
-        CheckBox americanCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.americanCheeseCheckbox);
-        CheckBox baconCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.baconChiliCheckbox);
-        CheckBox swissCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.swissCheeseChiliCheckbox);
-        CheckBox pepperJackCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.pepperJackCheeseChiliCheckbox);
-
         setOptionalCheckBoxListener(jalapenosCheckBox, jalapenosCheckBox.getText().toString(), optionalToppings);
-        setOptionalCheckBoxListener(mushroomCheckBox, mushroomCheckBox.getText().toString(), optionalToppings);
-        setOptionalCheckBoxListener(americanCheeseCheckBox, americanCheeseCheckBox.getText().toString(), optionalToppings);
-        setOptionalCheckBoxListener(baconCheckBox, baconCheckBox.getText().toString(), optionalToppings);
-        setOptionalCheckBoxListener(swissCheeseCheckBox, "Swiss Cheese", optionalToppings);
-            setOptionalCheckBoxListener(pepperJackCheckBox, "Pepper Jack", optionalToppings);
-        //endregion
+
 
         final EditText chiliEditText = (EditText) chiliCheckBoxView.findViewById(R.id.chiliEditText);
         AlertDialog.Builder chiliDialog = new AlertDialog.Builder(this);

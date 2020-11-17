@@ -2,56 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/optionalChiliText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/americanCheeseCheckbox"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:text="Optional Ingredients ($0.75 each):" />
-
-    <CheckBox
-        android:id="@+id/americanCheeseCheckbox"
-        style="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/jalapenoChiliCheckbox"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:text="American Cheese" />
-
-    <CheckBox
-        android:id="@+id/baconChiliCheckbox"
-        style="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mushroomCheckbox"
-        android:layout_toEndOf="@+id/americanCheeseCheckbox"
-        android:layout_toRightOf="@+id/americanCheeseCheckbox"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:text="Bacon" />
-
-    <CheckBox
-        android:id="@+id/mushroomCheckbox"
-        style="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/optionalChiliText"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/jalapenoChiliCheckbox"
-        android:layout_toRightOf="@+id/jalapenoChiliCheckbox"
-        android:text="Mushrooms" />
 
     <TextView
         android:id="@+id/defaultText"
@@ -116,37 +66,11 @@
         android:layout_marginTop="0dp"
         android:text="Jalapenos" />
 
-    <CheckBox
-        android:id="@+id/swissCheeseChiliCheckbox"
-        style="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/optionalChiliText2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:text="Swiss Cheese" />
-
-    <CheckBox
-        android:id="@+id/pepperJackCheeseChiliCheckbox"
-        style="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/optionalChiliText2"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/swissCheeseChiliCheckbox"
-        android:layout_toRightOf="@+id/swissCheeseChiliCheckbox"
-        android:text="Pepper Jack" />
-
     <EditText
         android:id="@+id/chiliEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/swissCheeseChiliCheckbox"
+        android:layout_below="@+id/jalapenoChiliCheckbox"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
