@@ -14,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
@@ -21,7 +22,8 @@ public class MenuActivity extends AppCompatActivity {
     //String Toppings;
     final int MENU_RESULT = 77;
     final String TAG = "MenuActivity";
-    double foodPrice = 0;
+    double foodPrice = 0.0;
+    final DecimalFormat df = new DecimalFormat("####0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +141,33 @@ public class MenuActivity extends AppCompatActivity {
         //endregion
 
         //region CHILI_CLICKLISTENERS
+        chiliBowlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openChiliDialog(chiliBowlButton.getText());
+            }
+        });
 
+        chiliFryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openChiliDialog(chiliFryButton.getText());
+            }
+        });
+
+        chiliDogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openChiliDialog(chiliDogButton.getText());
+            }
+        });
+
+        chiliBurgerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openChiliDialog(chiliBurgerButton.getText());
+            }
+        });
         //endregion
     }
 
@@ -614,10 +642,10 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openChiliDialog(final CharSequence buttonTitle) {
         final ArrayList<String> holds = new ArrayList<String>();
-        //final ArrayList<String> optionalToppings = new ArrayList<String>();
-        View chiliCheckBoxView = View.inflate(this, R.layout.hotdog_checkbox, null);
+        final ArrayList<String> optionalToppings = new ArrayList<String>();
+        View chiliCheckBoxView = View.inflate(this, R.layout.chili_checkbox, null);
 
-
+        //region IF_FOODPRICE
         if (buttonTitle.toString() == getResources().getString(R.string.chili_bowl_name)){
             foodPrice = 3.39;
         }
@@ -633,6 +661,7 @@ public class MenuActivity extends AppCompatActivity {
         else {
             foodPrice = 0.0;
         }
+        //endregion
 
         //defaults
         CheckBox shreddedCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.shreddedCheeseCheckbox);
@@ -640,8 +669,10 @@ public class MenuActivity extends AppCompatActivity {
 
         shreddedCheeseCheckBox.setChecked(true);
         shreddedOnionCheckBox.setChecked(true);
+        setDefaultCheckBoxListener(shreddedCheeseCheckBox, shreddedCheeseCheckBox.getText().toString(), holds);
+        setDefaultCheckBoxListener(shreddedOnionCheckBox, shreddedOnionCheckBox.getText().toString(), holds);
 
-        //optional
+        //region OPTIONAL_CHECKBOXES
         CheckBox jalapenosCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.jalapenoChiliCheckbox);
         CheckBox mushroomCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.mushroomCheckbox);
         CheckBox americanCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.americanCheeseCheckbox);
@@ -649,8 +680,51 @@ public class MenuActivity extends AppCompatActivity {
         CheckBox swissCheeseCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.swissCheeseChiliCheckbox);
         CheckBox pepperJackCheckBox = (CheckBox) chiliCheckBoxView.findViewById(R.id.pepperJackCheeseChiliCheckbox);
 
+        setOptionalCheckBoxListener(jalapenosCheckBox, jalapenosCheckBox.getText().toString(), optionalToppings);
+        setOptionalCheckBoxListener(mushroomCheckBox, mushroomCheckBox.getText().toString(), optionalToppings);
+        setOptionalCheckBoxListener(americanCheeseCheckBox, americanCheeseCheckBox.getText().toString(), optionalToppings);
+        setOptionalCheckBoxListener(baconCheckBox, baconCheckBox.getText().toString(), optionalToppings);
+        setOptionalCheckBoxListener(swissCheeseCheckBox, "Swiss Cheese", optionalToppings);
+            setOptionalCheckBoxListener(pepperJackCheckBox, "Pepper Jack", optionalToppings);
+        //endregion
+
         final EditText chiliEditText = (EditText) chiliCheckBoxView.findViewById(R.id.chiliEditText);
-        //TODO: finish openChiliDialog
+        AlertDialog.Builder chiliDialog = new AlertDialog.Builder(this);
+        chiliDialog.setTitle(buttonTitle + " ($" + foodPrice + ")");
+        chiliDialog.setView(chiliCheckBoxView);
+        chiliDialog.setCancelable(false);
+        chiliDialog.setMessage("Please choose your ingredients:")
+                .setPositiveButton("Order", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (optionalToppings.isEmpty() && holds.isEmpty() && chiliEditText.getText().toString().isEmpty()) {
+                            try {
+                                menuResult(buttonTitle.toString(), "None", "None",
+                                        "None", foodPrice);
+                            }
+                            catch(Exception e){
+                                Log.e(TAG + " Error", e.getMessage(), e);
+                            }
+                        }
+                        else
+                        {
+                            try {
+                                menuResult(buttonTitle.toString(), optionalToppings.toString(), holds.toString(),
+                                        chiliEditText.getText().toString(), foodPrice);
+                            }
+                            catch (Exception e){
+                                Log.e(TAG + " Error", e.getMessage(), e);
+                            }
+                        }
+                    }
+                });
+        chiliDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MenuActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+            }
+        });
+        chiliDialog.show();
     }
 
     void setDefaultCheckBoxListener(CheckBox checkbox, final String ingredient, final ArrayList<String> arrayList){
