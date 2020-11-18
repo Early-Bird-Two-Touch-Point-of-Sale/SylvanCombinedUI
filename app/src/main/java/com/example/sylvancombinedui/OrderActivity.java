@@ -32,8 +32,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     final HashMap<String, Pair<String, Double>> ITEM_MAP
             = new HashMap<>();
 
-
-
     private Button ScanBtn;
     private Button AddBtn;
     private Button OrderBtn;
