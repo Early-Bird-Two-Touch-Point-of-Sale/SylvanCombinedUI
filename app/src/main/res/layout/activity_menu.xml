@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UIActivity">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="143dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -80,7 +83,7 @@
                 android:id="@+id/chickenStripBasketButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chicken Strip Basket"
+                android:text="@string/chicken_strip_basket_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fryerTextView" />
 
@@ -88,7 +91,7 @@
                 android:id="@+id/fishBasketButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fish Basket"
+                android:text="@string/fish_basket_name"
                 app:layout_constraintStart_toEndOf="@+id/chickenStripBasketButton"
                 app:layout_constraintTop_toTopOf="@+id/chickenStripBasketButton" />
 
@@ -96,7 +99,7 @@
                 android:id="@+id/shrimpBasketButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shrimp Basket"
+                android:text="@string/shrimp_basket_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chickenStripBasketButton" />
 
@@ -104,7 +107,7 @@
                 android:id="@+id/clamBasketButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clam Basket"
+                android:text="@string/clam_basket_name"
                 app:layout_constraintStart_toEndOf="@+id/shrimpBasketButton"
                 app:layout_constraintTop_toBottomOf="@+id/chickenStripBasketButton" />
 

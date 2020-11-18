@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     final int MENU_REQUEST = 55;
     final int MENU_RESULT = 77;
     final String TAG = "2";
+    final HashMap<String, Pair<String, Double>> ITEM_MAP
+            = new HashMap<>();
+
+
 
     private Button ScanBtn;
     private Button AddBtn;
@@ -47,10 +52,25 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         createOrderList();
         buildRecyclerView();
         setButtons();
+        buildMap();
 
         //for the Scanner
         ScanBtn = findViewById(R.id.scanButton);
         ScanBtn.setOnClickListener(this);
+    }
+
+    public void buildMap() {
+        ITEM_MAP.put("01212901", Pair.create("Pepsi", 2.09));
+        ITEM_MAP.put("078000000283", Pair.create("7-Up (2-litre)", 2.39));
+        ITEM_MAP.put("078000113457", Pair.create("Sunkissed", 2.39));
+        ITEM_MAP.put("078000092455", Pair.create("Dejablue", 2.00));
+        ITEM_MAP.put("011423941276", Pair.create("Repel: Clothing and Gear", 5.99));
+        ITEM_MAP.put("639277292063", Pair.create("Max Block (30 spf)", 2.99));
+        ITEM_MAP.put("078000052459", Pair.create("Mug Root Beer", 2.39));
+        ITEM_MAP.put("070602489008", Pair.create("Rocky Road S'Mores", 1.25));
+        ITEM_MAP.put("041419420010", Pair.create("Combos Stuffed Snacks", 1.25));
+        ITEM_MAP.put("03405408", Pair.create("KitKat White Chocolate", 1.25));
+        ITEM_MAP.put("03424607", Pair.create("KitKat Bar", 1.25));
     }
 
     public void addItem(int position) {
@@ -117,30 +137,15 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
                 alertDialogBuilder.setTitle("Manual Barcode Entry");
 
-                //set HashMap of possible values
-                final HashMap<String, String> itemMap
-                        = new HashMap<>();
-                itemMap.put("01212901", "Pepsi");
-                itemMap.put("078000000283", "7-Up (2-litre)");
-                itemMap.put("078000113457", "Sunkissed");
-                itemMap.put("078000092455", "Dejablue");
-                itemMap.put("011423941276", "Repel: Clothing and Gear");
-                itemMap.put("639277292063", "Max Block (30 spf)");
-                itemMap.put("078000052459", "Mug Root Beer");
-                itemMap.put("070602489008", "Rocky Road S'Mores");
-                itemMap.put("041419420010", "Combos Stuffed Snacks");
-                itemMap.put("03405408","KitKat White Chocolate");
-                itemMap.put("03424607", "KitKat Bar");
-
                 // set positive button for the manual entry
                 alertDialogBuilder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         String userCode = userAnswer.getText().toString();
                         if (userCode.length() == 14 || userCode.length() == 13 || userCode.length() == 12 || userCode.length() == 8) {
-                            if (itemMap.containsKey(userCode)) {
+                            if (ITEM_MAP.containsKey(userCode)) {
                                 orderList.add(orderList.size(),
-                                        new OrderItem(R.drawable.ic_android, itemMap.get(userCode),
-                                                userCode, "Other", "Price"));
+                                        new OrderItem(R.drawable.ic_android, ITEM_MAP.get(userCode).first,
+                                                userCode, "Other", "$" + ITEM_MAP.get(userCode).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
@@ -213,28 +218,14 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         else {//else it's coming from the Scanner
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-            final HashMap<String, String> itemMap
-                    = new HashMap<>();
-            itemMap.put("01212901", "Pepsi");
-            itemMap.put("078000000283", "7-Up (2-litre)");
-            itemMap.put("078000113457", "Sunkissed");
-            itemMap.put("078000092455", "Dejablue");
-            itemMap.put("011423941276", "Repel: Clothing and Gear");
-            itemMap.put("639277292063", "Max Block (30 spf)");
-            itemMap.put("078000052459", "Mug Root Beer");
-            itemMap.put("070602489008", "Rocky Road S'Mores");
-            itemMap.put("041419420010", "Combos Stuffed Snacks");
-            itemMap.put("03405408", "KitKat White Chocolate");
-            itemMap.put("03424607", "KitKat Bar");
-
             if (result != null) {
                 if (result.getContents() != null) {
                     if (result.getContents().length() == 14 || result.getContents().length() == 13 || result.getContents().length() == 12 ||
                             result.getContents().length() == 8) {
-                        if (itemMap.containsKey(result.getContents())) {
+                        if (ITEM_MAP.containsKey(result.getContents())) {
                             try {
-                                orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, itemMap.get(result.getContents()),
-                                        result.getContents(), "Other", "Price"));
+                                orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, ITEM_MAP.get(result.getContents()).first,
+                                        result.getContents(), "Other", "$" + ITEM_MAP.get(result.getContents()).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                             } catch(Exception e){

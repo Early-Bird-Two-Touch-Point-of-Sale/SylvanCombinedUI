@@ -56,6 +56,13 @@ public class MenuActivity extends AppCompatActivity {
         final Button chiliBurgerButton = findViewById(R.id.chiliBurgerButton);
         //endregion
 
+        //region FRYER_BUTTONS
+        final Button chickenStripBasketButton = findViewById(R.id.chickenStripBasketButton);
+        final Button fishBasketButton = findViewById(R.id.fishBasketButton);
+        final Button shrimpBasketButton = findViewById(R.id.shrimpBasketButton);
+        final Button clamBasketButton = findViewById(R.id.clamBasketButton);
+        //endregion
+
         //region BURGER_CLICKLISTENERS
         hamburgerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -166,6 +173,36 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openChiliDialog(chiliBurgerButton.getText());
+            }
+        });
+        //endregion
+
+        //region FRYER_CLICKLISTENERS
+        chickenStripBasketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MenuActivity.this, chickenStripBasketButton.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        fishBasketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MenuActivity.this, fishBasketButton.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        shrimpBasketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MenuActivity.this, shrimpBasketButton.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        clamBasketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MenuActivity.this, clamBasketButton.getText(), Toast.LENGTH_SHORT).show();
             }
         });
         //endregion

@@ -28,4 +28,8 @@
     <string name = "chili_fry_name">Chili Fry</string>
     <string name = "chili_dog_name">Chili Dog</string>
     <string name = "chili_burger_name">Chili Burger</string>
+    <string name = "chicken_strip_basket_name">Chicken Strip Basket</string>
+    <string name = "fish_basket_name">Fish Basket</string>
+    <string name = "shrimp_basket_name">Shrimp Basket</string>
+    <string name = "clam_basket_name">Clam Basket</string>
 </resources>
