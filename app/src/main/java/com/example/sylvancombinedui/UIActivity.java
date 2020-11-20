@@ -64,8 +64,7 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
                         new HistoryFragment()).commit();
                 break;
             case R.id.nav_inventory:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new InventoryFragment()).commit();
+                startActivity(new Intent(UIActivity.this, InventoryActivity.class));
                 break;
             case R.id.nav_user_profile: //Toast placeholders
                 Toast.makeText(this, "Your User Profile", Toast.LENGTH_SHORT).show();
