@@ -38,8 +38,8 @@ public class InventoryActivity extends AppCompatActivity {
                 String contactTXT = contact.getText().toString();
                 String dobTXT = dob.getText().toString();
 
-                Boolean checkinsertdata = DB.insertuserdata(nameTXT, contactTXT, dobTXT);
-                if(checkinsertdata==true){
+                Boolean checkInsertData = DB.insertuserdata(nameTXT, contactTXT, dobTXT);
+                if(checkInsertData==true){
                     Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(InventoryActivity.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
@@ -54,8 +54,8 @@ public class InventoryActivity extends AppCompatActivity {
                 String contactTXT = contact.getText().toString();
                 String dobTXT = dob.getText().toString();
 
-                Boolean checkupdatedata = DB.updateuserdata(nameTXT, contactTXT, dobTXT);
-                if(checkupdatedata==true){
+                Boolean checkUpdateData = DB.updateuserdata(nameTXT, contactTXT, dobTXT);
+                if(checkUpdateData==true){
                     Toast.makeText(InventoryActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(InventoryActivity.this, "Entry Not Updated", Toast.LENGTH_SHORT).show();
@@ -68,8 +68,8 @@ public class InventoryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nameTXT = name.getText().toString();
 
-                Boolean checkdeletedata = DB.deletedata(nameTXT);
-                if(checkdeletedata==true){
+                Boolean checkDeleteData = DB.deletedata(nameTXT);
+                if(checkDeleteData==true){
                     Toast.makeText(InventoryActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(InventoryActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();

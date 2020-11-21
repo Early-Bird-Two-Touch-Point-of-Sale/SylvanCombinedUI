@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -29,6 +30,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     final int MENU_REQUEST = 55;
     final int MENU_RESULT = 77;
     final String TAG = "2";
+    final String ORDER_KEY = "Order Key";
     final HashMap<String, Pair<String, Double>> ITEM_MAP
             = new HashMap<>();
 
@@ -41,10 +43,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<OrderItem> orderList;
 
+
+    DBHelper DB;
+    SharedPreferences pref;
+    int OrderCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        DB = new DBHelper(this);
+        pref = this.getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        OrderCount = pref.getInt(ORDER_KEY, 0);
 
         //these are self-explanatory
         createOrderList();
@@ -261,6 +271,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(OrderActivity.this, "Ordered", Toast.LENGTH_SHORT).show();
+                OrderCount++;
+
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putInt(ORDER_KEY, OrderCount);
+                edit.commit();
+
+                for (int counter = 0; counter < orderList.size(); counter++) {
+                    DB.insertuserdata(Integer.toString(OrderCount) + "-" + (1 + counter),
+                            orderList.get(counter).getText1(), orderList.get(counter).getText2());
+                }
+
+
                 int size = orderList.size();
                 if (size > 0) {
                     for (int j = 0; j < size; j++) {
