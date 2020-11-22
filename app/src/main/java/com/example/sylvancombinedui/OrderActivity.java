@@ -83,7 +83,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     public void addItem(int position) {
         orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android,
-                "New Item at Position " + position, "Line 2", "Line 3", "Line 4"));
+                "New Item at Position " + position, "Line 2", "Line 3", "Line 4", "Line 5"));
         mAdapter.notifyItemInserted(orderList.size());
     }
 
@@ -153,7 +153,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             if (ITEM_MAP.containsKey(userCode)) {
                                 orderList.add(orderList.size(),
                                         new OrderItem(R.drawable.ic_android, ITEM_MAP.get(userCode).first,
-                                                userCode, "Other", "$" + ITEM_MAP.get(userCode).second.toString()));
+                                                userCode, "", "", "$" + ITEM_MAP.get(userCode).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
@@ -219,7 +219,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 
                 orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
-                        "Toppings: " + optToppings + ", Holds: " + holds, other, foodPrice));
+                        "Toppings: " + optToppings, "Holds: " + holds, "(Note: " + other + ")", foodPrice));
                 mAdapter.notifyItemInserted(orderList.size());
             }
         }
@@ -233,7 +233,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         if (ITEM_MAP.containsKey(result.getContents())) {
                             try {
                                 orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, ITEM_MAP.get(result.getContents()).first,
-                                        result.getContents(), "Other", "$" + ITEM_MAP.get(result.getContents()).second.toString()));
+                                        result.getContents(), "", "","$" + ITEM_MAP.get(result.getContents()).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                             } catch(Exception e){
@@ -260,7 +260,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         orderDialog.setTitle("Your Order");
         orderDialog.setCancelable(false);
         for (int counter = 0; counter < orderList.size(); counter++) {
-            orderMessage.append("Item " + counter + ": " + "\n");
+            orderMessage.append("Item " + (1 + counter) + ": " + "\n");
             orderMessage.append(orderList.get(counter).getText1() + "\n");
             orderMessage.append(orderList.get(counter).getText2() + "\n");
             orderMessage.append(orderList.get(counter).getText3() + "\n");
@@ -278,8 +278,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 edit.commit();
 
                 for (int counter = 0; counter < orderList.size(); counter++) {
-                    DB.insertuserdata(Integer.toString(OrderCount) + "-" + (1 + counter),
-                            orderList.get(counter).getText1(), orderList.get(counter).getText2());
+                    DB.insertuserdata(OrderCount + "-" + (1 + counter),
+                            Integer.toString(OrderCount), orderList.get(counter).getText1());
                 }
 
 

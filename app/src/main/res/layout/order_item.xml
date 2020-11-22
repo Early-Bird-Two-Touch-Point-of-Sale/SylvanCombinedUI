@@ -10,6 +10,19 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp">
 
+        <TextView
+            android:id="@+id/itemHolds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemBarcode"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/itemImage"
+            android:layout_toRightOf="@+id/itemImage"
+            android:text="Holds"
+            android:textSize="15sp" />
+
         <ImageView
             android:id="@+id/itemImage"
             android:layout_width="50dp"
@@ -22,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/itemImage"
             android:layout_toRightOf="@id/itemImage"
-            android:text="Line 1"
+            android:text="ItemName"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -36,31 +49,33 @@
             android:layout_marginLeft="8dp"
             android:layout_toEndOf="@id/itemImage"
             android:layout_toRightOf="@id/itemImage"
-            android:text="Line 2"
+            android:text="Arrays"
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/itemOther"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemBarcode"
+            android:layout_alignTop="@+id/itemPrice"
+            android:layout_marginTop="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_toEndOf="@id/itemImage"
-            android:layout_toRightOf="@id/itemImage"
-            android:text="Line 3"
+            android:layout_toEndOf="@id/itemPrice"
+            android:layout_toRightOf="@id/itemPrice"
+            android:text="Other Notes"
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/itemPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemOther"
+            android:layout_below="@+id/itemHolds"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="0dp"
             android:layout_toEndOf="@id/itemImage"
             android:layout_toRightOf="@id/itemImage"
-            android:text="Line 4"
+            android:text="Price"
             android:textSize="15sp" />
 
         <ImageView
