@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InventoryActivity extends AppCompatActivity {
 
-    EditText name, contact, dob;
+    EditText itemID, orderID, itemName;
     Button insert, update, delete, view;
     DBHelper DB;
 
@@ -21,9 +21,9 @@ public class InventoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
-        name = findViewById(R.id.name);
-        contact = findViewById(R.id.contact);
-        dob = findViewById(R.id.dob);
+        itemID = findViewById(R.id.itemID);
+        orderID = findViewById(R.id.orderID);
+        itemName = findViewById(R.id.itemName);
 
         insert = findViewById(R.id.btnInsert);
         update = findViewById(R.id.btnUpdate);
@@ -34,11 +34,12 @@ public class InventoryActivity extends AppCompatActivity {
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nameTXT = name.getText().toString();
-                String contactTXT = contact.getText().toString();
-                String dobTXT = dob.getText().toString();
+                String itemIDtxt = itemID.getText().toString();
+                String orderIDtxt = orderID.getText().toString();
+                String itemNameTXT = itemName.getText().toString();
 
-                Boolean checkInsertData = DB.insertuserdata(nameTXT, contactTXT, dobTXT);
+                Boolean checkInsertData = DB.insertuserdata(itemIDtxt, orderIDtxt, itemNameTXT,
+                        "N/A", "N/A", "N/A", "N/A");
                 if(checkInsertData==true){
                     Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 } else {
@@ -50,9 +51,9 @@ public class InventoryActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nameTXT = name.getText().toString();
-                String contactTXT = contact.getText().toString();
-                String dobTXT = dob.getText().toString();
+                String nameTXT = itemID.getText().toString();
+                String contactTXT = orderID.getText().toString();
+                String dobTXT = itemName.getText().toString();
 
                 Boolean checkUpdateData = DB.updateuserdata(nameTXT, contactTXT, dobTXT);
                 if(checkUpdateData==true){
@@ -66,7 +67,7 @@ public class InventoryActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nameTXT = name.getText().toString();
+                String nameTXT = itemID.getText().toString();
 
                 Boolean checkDeleteData = DB.deletedata(nameTXT);
                 if(checkDeleteData==true){
@@ -86,9 +87,13 @@ public class InventoryActivity extends AppCompatActivity {
                }
                StringBuffer buffer = new StringBuffer();
                while(res.moveToNext()) {
-                   buffer.append("Name : " +res.getString(0) + "\n");
-                   buffer.append("Contact : " +res.getString(1) + "\n");
-                   buffer.append("Date of Birth : " +res.getString(2) + "\n\n");
+                   buffer.append("Item ID : " +res.getString(0) + "\n");
+                   buffer.append("Order ID : " +res.getString(1) + "\n");
+                   buffer.append("Item Name : " +res.getString(2) + "\n");
+                   buffer.append("Item Toppings : " +res.getString(3) + "\n");
+                   buffer.append("Item Holds : " +res.getString(4) + "\n");
+                   buffer.append("Other : " +res.getString(5) + "\n");
+                   buffer.append("Price : " +res.getString(6) + "\n\n");
                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);

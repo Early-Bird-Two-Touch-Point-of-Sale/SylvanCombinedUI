@@ -153,7 +153,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             if (ITEM_MAP.containsKey(userCode)) {
                                 orderList.add(orderList.size(),
                                         new OrderItem(R.drawable.ic_android, ITEM_MAP.get(userCode).first,
-                                                userCode, "", "", "$" + ITEM_MAP.get(userCode).second.toString()));
+                                                "", "", "Barcode: " + userCode, "$" + ITEM_MAP.get(userCode).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
@@ -233,7 +233,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         if (ITEM_MAP.containsKey(result.getContents())) {
                             try {
                                 orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, ITEM_MAP.get(result.getContents()).first,
-                                        result.getContents(), "", "","$" + ITEM_MAP.get(result.getContents()).second.toString()));
+                                        "", "", "Barcode: " + result.getContents(),"$" + ITEM_MAP.get(result.getContents()).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                             } catch(Exception e){
@@ -264,7 +264,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             orderMessage.append(orderList.get(counter).getText1() + "\n");
             orderMessage.append(orderList.get(counter).getText2() + "\n");
             orderMessage.append(orderList.get(counter).getText3() + "\n");
-            orderMessage.append(orderList.get(counter).getText4() + "\n" + "\n");
+            orderMessage.append(orderList.get(counter).getText4() + "\n");
+            orderMessage.append(orderList.get(counter).getText5() + "\n" + "\n");
         }
         orderDialog.setMessage(orderMessage);
         orderDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -279,7 +280,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
                 for (int counter = 0; counter < orderList.size(); counter++) {
                     DB.insertuserdata(OrderCount + "-" + (1 + counter),
-                            Integer.toString(OrderCount), orderList.get(counter).getText1());
+                            Integer.toString(OrderCount), orderList.get(counter).getText1(),
+                            orderList.get(counter).getText2(), orderList.get(counter).getText3(),
+                            orderList.get(counter).getText4(), orderList.get(counter).getText5());
                 }
 
 

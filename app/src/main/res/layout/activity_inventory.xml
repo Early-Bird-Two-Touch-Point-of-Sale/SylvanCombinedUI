@@ -15,30 +15,30 @@
         android:layout_marginTop="20sp"/>
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/itemID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="Item ID"
         android:textSize="20dp"
         android:layout_below="@+id/texttitle"
         android:inputType="textPersonName"/>
 
     <EditText
-        android:id="@+id/contact"
+        android:id="@+id/orderID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contact"
+        android:hint="Order ID"
         android:textSize="20dp"
-        android:layout_below="@+id/name"
+        android:layout_below="@+id/itemID"
         android:inputType="number"/>
 
     <EditText
-        android:id="@+id/dob"
+        android:id="@+id/itemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date of Birth"
+        android:hint="Item Name"
         android:textSize="20dp"
-        android:layout_below="@+id/contact"
+        android:layout_below="@+id/orderID"
         android:inputType="number"/>
 
     <Button
@@ -48,7 +48,7 @@
         android:textSize="24dp"
         android:layout_marginTop="30dp"
         android:text="Insert New Data"
-        android:layout_below="@id/dob"/>
+        android:layout_below="@id/itemName"/>
 
     <Button
         android:id="@+id/btnUpdate"
