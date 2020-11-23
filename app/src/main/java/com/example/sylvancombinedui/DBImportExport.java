@@ -12,7 +12,7 @@ import java.nio.channels.FileChannel;
 
 public class DBImportExport {
 
-    public class ExportImportDB extends Activity {
+    public static class ExportImportDB extends Activity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             // TODO Auto-generated method stub

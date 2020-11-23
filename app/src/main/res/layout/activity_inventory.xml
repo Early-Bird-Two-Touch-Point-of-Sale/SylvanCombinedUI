@@ -74,4 +74,12 @@
         android:text="View Data"
         android:layout_below="@id/btnDelete"/>
 
+    <Button
+        android:id="@+id/btnExport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Backup the Database"
+        android:layout_below="@id/btnView"/>
+
 </RelativeLayout>

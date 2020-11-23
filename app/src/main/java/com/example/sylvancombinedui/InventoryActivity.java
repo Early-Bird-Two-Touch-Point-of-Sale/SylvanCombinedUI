@@ -10,11 +10,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class InventoryActivity extends AppCompatActivity {
 
     EditText itemID, orderID, itemName;
-    Button insert, update, delete, view;
+    Button insert, update, delete, view, export;
     DBHelper DB;
+    DBImportExport IE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class InventoryActivity extends AppCompatActivity {
         update = findViewById(R.id.btnUpdate);
         delete = findViewById(R.id.btnDelete);
         view = findViewById(R.id.btnView);
+        export = findViewById(R.id.btnExport);
         DB = new DBHelper(this);
 
         insert.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +107,18 @@ public class InventoryActivity extends AppCompatActivity {
                builder.setMessage(buffer.toString());
                builder.show();
 
+            }
+        });
+
+        export.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Date currentTime = Calendar.getInstance().getTime();
+                String CurrentTime = "" + currentTime + "";
+
+                DBImportExport.ExportImportDB checkExportData = new DBImportExport.ExportImportDB();
+                Toast.makeText(InventoryActivity.this,
+                        "Database was successfully backed up on " + CurrentTime + " ", Toast.LENGTH_SHORT).show();
             }
         });
 
