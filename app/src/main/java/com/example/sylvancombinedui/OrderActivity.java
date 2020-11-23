@@ -153,7 +153,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             if (ITEM_MAP.containsKey(userCode)) {
                                 orderList.add(orderList.size(),
                                         new OrderItem(R.drawable.ic_android, ITEM_MAP.get(userCode).first,
-                                                "", "", "Barcode: " + userCode, "$" + ITEM_MAP.get(userCode).second.toString()));
+                                                "N/A", "N/A", "Barcode: " + userCode, "$" + ITEM_MAP.get(userCode).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
@@ -233,7 +233,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         if (ITEM_MAP.containsKey(result.getContents())) {
                             try {
                                 orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, ITEM_MAP.get(result.getContents()).first,
-                                        "", "", "Barcode: " + result.getContents(),"$" + ITEM_MAP.get(result.getContents()).second.toString()));
+                                        "N/A", "N/A", "Barcode: " + result.getContents(),"$" + ITEM_MAP.get(result.getContents()).second.toString()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                             } catch(Exception e){

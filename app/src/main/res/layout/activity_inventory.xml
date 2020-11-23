@@ -39,7 +39,7 @@
         android:hint="Item Name"
         android:textSize="20dp"
         android:layout_below="@+id/orderID"
-        android:inputType="number"/>
+        android:inputType="textPersonName"/>
 
     <Button
         android:id="@+id/btnInsert"
