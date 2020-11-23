@@ -12,6 +12,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Calendar;
+import java.util.Date;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
@@ -21,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table UserDetails(itemID TEXT primary key, orderID TEXT, itemName TEXT, " +
-                "toppings TEXT, holds TEXT, other TEXT, price TEXT)");
+                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date TEXT)");
     }
 
     @Override
@@ -32,6 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Boolean insertuserdata(String itemID, String orderID, String itemName, String toppings,
                                   String holds, String other, String price)
     {
+        Date currentTime = Calendar.getInstance().getTime();
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("itemID", itemID);
@@ -41,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("holds", holds);
         contentValues.put("other", other);
         contentValues.put("price", price);
+        contentValues.put("date", String.valueOf(currentTime));
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){
             return false;

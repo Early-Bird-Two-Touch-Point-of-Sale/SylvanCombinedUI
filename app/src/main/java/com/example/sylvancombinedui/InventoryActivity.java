@@ -98,7 +98,8 @@ public class InventoryActivity extends AppCompatActivity {
                    buffer.append("Item Toppings : " +res.getString(3) + "\n");
                    buffer.append("Item Holds : " +res.getString(4) + "\n");
                    buffer.append("Other : " +res.getString(5) + "\n");
-                   buffer.append("Price : " +res.getString(6) + "\n\n");
+                   buffer.append("Price : " +res.getString(6) + "\n");
+                   buffer.append("Date Added : " +res.getString(7) + "\n\n");
                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
