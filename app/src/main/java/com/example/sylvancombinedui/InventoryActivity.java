@@ -43,7 +43,7 @@ public class InventoryActivity extends AppCompatActivity {
                 String orderIDtxt = orderID.getText().toString();
                 String itemNameTXT = itemName.getText().toString();
 
-                Boolean checkInsertData = DB.insertuserdata(itemIDtxt, orderIDtxt, itemNameTXT,
+                Boolean checkInsertData = DB.insertUserData(itemIDtxt, orderIDtxt, itemNameTXT,
                         "N/A", "N/A", "N/A", "N/A");
                 if(checkInsertData==true){
                     Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
@@ -60,7 +60,7 @@ public class InventoryActivity extends AppCompatActivity {
                 String contactTXT = orderID.getText().toString();
                 String dobTXT = itemName.getText().toString();
 
-                Boolean checkUpdateData = DB.updateuserdata(nameTXT, contactTXT, dobTXT);
+                Boolean checkUpdateData = DB.updateUserData(nameTXT, contactTXT, dobTXT);
                 if(checkUpdateData==true){
                     Toast.makeText(InventoryActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
                 } else {
@@ -74,7 +74,7 @@ public class InventoryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nameTXT = itemID.getText().toString();
 
-                Boolean checkDeleteData = DB.deletedata(nameTXT);
+                Boolean checkDeleteData = DB.deleteData(nameTXT);
                 if(checkDeleteData==true){
                     Toast.makeText(InventoryActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
                 } else {
@@ -86,7 +86,7 @@ public class InventoryActivity extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Cursor res = DB.getdata();
+               Cursor res = DB.getData();
                if(res.getCount() == 0) {
                    Toast.makeText(InventoryActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
                }

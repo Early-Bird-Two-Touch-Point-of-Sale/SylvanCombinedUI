@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Userdetails");
     }
 
-    public Boolean insertuserdata(String itemID, String orderID, String itemName, String toppings,
+    public Boolean insertUserData(String itemID, String orderID, String itemName, String toppings,
                                   String holds, String other, String price)
     {
         Date currentTime = Calendar.getInstance().getTime();
@@ -53,7 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean updateuserdata(String itemID, String orderID, String itemName)
+    public Boolean updateUserData(String itemID, String orderID, String itemName)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -72,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean deletedata(String itemID)
+    public Boolean deleteData(String itemID)
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Userdetails where itemID = ?", new String[] {itemID});
@@ -88,7 +88,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getdata()
+    public Cursor getData()
     {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Userdetails ", null);
