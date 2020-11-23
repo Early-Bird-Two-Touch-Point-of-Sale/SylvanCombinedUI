@@ -95,5 +95,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getOrder(String orderNum)
+    {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Userdetails where orderID = ?", new String[] {orderNum});
+        return cursor;
+    }
+
 
 }
