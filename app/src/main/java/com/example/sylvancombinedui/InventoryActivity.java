@@ -216,6 +216,7 @@ public class InventoryActivity extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(InventoryActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
+                                //showDailyOrder();
                             }
                         }
                     }
@@ -223,6 +224,10 @@ public class InventoryActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+    }
+
+    public void showDailyOrder() {
+
     }
 
     private boolean validate(String username, String password){

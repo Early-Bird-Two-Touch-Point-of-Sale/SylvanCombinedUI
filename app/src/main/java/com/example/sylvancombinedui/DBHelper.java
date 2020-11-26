@@ -103,5 +103,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-
+   /* public Cursor dailyOrder(){
+        Date todayStart = new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date());
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Userdetails where Date >= ?", new Date[] {todayStart});
+        return cursor;
+    }*/
 }
