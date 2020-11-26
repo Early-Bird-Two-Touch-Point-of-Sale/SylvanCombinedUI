@@ -25,6 +25,7 @@
             android:parentActivityName=".UIActivity"></activity>
         <activity android:name=".InventoryActivity"
             android:parentActivityName=".UIActivity"></activity>
+        <!--Placeholder for Bluetooth Activity-->
         <activity android:name=".CaptureAct"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"

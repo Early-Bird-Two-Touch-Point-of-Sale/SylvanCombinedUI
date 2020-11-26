@@ -38,4 +38,17 @@
         android:text="Turn Bluetooth Off"
         android:textSize="24dp"/>
 
+    <FrameLayout
+        android:id="@+id/imageButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="?android:attr/selectableItemBackground" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_bluetooth_disabled" />
+
+    </FrameLayout>
+
 </RelativeLayout>

@@ -2,9 +2,12 @@ package com.example.sylvancombinedui;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,11 +36,6 @@ public class BluetoothActivity extends AppCompatActivity {
         bluetoothONMethod();
         bluetoothOFFMethod();
     }
-
-    //BluetoothActivity hostDBAdapter = new DbAdapter(getApplicationContext());
-    //performerDBAdapter.open();
-    //refer to this stackoverflow article for an interesting idea:
-    // https://stackoverflow.com/questions/7053809/share-sqlite-database-between-2-android-apps#7935032
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -76,6 +74,15 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         });
     }
+
+    //placeholder for clickable bluetooth button
+    //final View imageButton = findViewById(R.id.imageButton);
+    //imageButton.setOnClickListener(new OnClickListener(){
+    //    @Override
+    //    public void onClick(View view) {
+    //        // do whatever we wish!
+    //    }
+    //});
 }
 
 
