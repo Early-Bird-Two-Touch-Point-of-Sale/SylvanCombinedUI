@@ -2,6 +2,7 @@ package com.example.sylvancombinedui;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -16,7 +17,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 public class DBHelper extends SQLiteOpenHelper {
+    private static final int REQUEST_ENABLE_BT = 1;
+
     public DBHelper(Context context) {
         super(context, "Userdata.db", null, 1);
     }
@@ -109,4 +115,5 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = DB.rawQuery("Select * from Userdetails where Date >= ?", new Date[] {todayStart});
         return cursor;
     }*/
+
 }
