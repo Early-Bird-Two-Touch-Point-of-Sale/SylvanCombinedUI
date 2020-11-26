@@ -18,9 +18,12 @@ import java.util.Date;
 public class InventoryActivity extends AppCompatActivity {
 
     EditText itemID, orderID, itemName;
-    Button insert, update, delete, view, export, viewOrder;
+    Button insert, update, delete, view, export, viewOrder, dailyTotal;
     DBHelper DB;
     DBImportExport IE;
+    boolean adminValid = false;
+    String correctAdminUsername = "Admin";
+    String correctAdminPassword = "Password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class InventoryActivity extends AppCompatActivity {
         view = findViewById(R.id.btnView);
         export = findViewById(R.id.btnExport);
         viewOrder = findViewById(R.id.btnViewOrder);
+        dailyTotal = findViewById(R.id.btnDailyTotal);
         DB = new DBHelper(this);
 
         insert.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +187,50 @@ public class InventoryActivity extends AppCompatActivity {
             }
         });
 
+        dailyTotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View adminPassView = View.inflate(InventoryActivity.this, R.layout.admin_password, null);
+                AlertDialog.Builder alert = new AlertDialog.Builder(InventoryActivity.this);
+                final EditText etAdminUsername = (EditText) adminPassView.findViewById(R.id.editTextAdminUsername);
+                final EditText etAdminPassword = (EditText) adminPassView.findViewById(R.id.editTextAdminPassword);
 
+                alert.setTitle("Admin Verification");
+                alert.setMessage("Please Input an Admin Username/Password");
+                alert.setView(adminPassView);
+                alert.setPositiveButton("Order", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final String adminUsername = etAdminUsername.getText().toString();
+                        final String adminPassword = etAdminPassword.getText().toString();
+                        if (adminUsername.isEmpty()){
+                            Toast.makeText(InventoryActivity.this, "Please Enter a Username", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (adminPassword.isEmpty()){
+                            Toast.makeText(InventoryActivity.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            adminValid = validate(adminUsername, adminPassword);
+                            if (!adminValid) {
+                                Toast.makeText(InventoryActivity.this, "Invalid Admin Username/Password", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(InventoryActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+                alert.show();
+            }
+        });
+    }
+
+    private boolean validate(String username, String password){
+        if(username.equals(correctAdminUsername) && password.equals(correctAdminPassword)){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

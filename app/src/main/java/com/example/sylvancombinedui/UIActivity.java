@@ -24,9 +24,6 @@ import com.google.android.material.navigation.NavigationView;
 public class UIActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawer;
-    private String correctAdminUsername = "Admin";
-    private String correctAdminPassword = "Password";
-    boolean adminValid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +67,8 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
                         new EditFragment()).commit();
                 break;
             case R.id.nav_history:
-                historyPassword();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new HistoryFragment()).commit();
                 break;
             case R.id.nav_inventory:
                 startActivity(new Intent(UIActivity.this, InventoryActivity.class));
@@ -97,59 +95,6 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
             drawer.closeDrawer(GravityCompat.START);   //on the left side of the screen
         } else {
             super.onBackPressed();
-        }
-    }
-
-    public void historyPassword() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(UIActivity.this);
-        View adminPassView = View.inflate(this, R.layout.admin_password, null);
-
-        final EditText adminUsernameEdit = (EditText) adminPassView.findViewById(R.id.editTextAdminUsername);
-        final EditText adminPasswordEdit = (EditText) adminPassView.findViewById(R.id.editTextAdminPassword);
-        alert.setTitle("Admin Password Verification");
-        alert.setMessage("Please Input the Admin Username and Password");
-        alert.setView(adminPassView);
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String adminUsername = adminUsernameEdit.getText().toString();
-                String adminPassword = adminPasswordEdit.getText().toString();
-
-                if (adminUsername.isEmpty()){
-                    Toast.makeText(UIActivity.this, "Please Enter a Username", Toast.LENGTH_SHORT).show();
-                }
-                else if (adminPassword.isEmpty()){
-                    Toast.makeText(UIActivity.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    adminValid = adminValidate(adminUsername, adminPassword);
-                    if (!adminValid){
-                        Toast.makeText(UIActivity.this, "Invalid entry", Toast.LENGTH_SHORT).show();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new HomeFragment()).commit(); //sets default fragment
-                    }
-                    else{
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new HistoryFragment()).commit();
-                    }
-                }
-            }
-        });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(UIActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
-            }
-        });
-        alert.show();
-    }
-
-    private boolean adminValidate(String username, String password){
-        if(username.equals(correctAdminUsername) && password.equals(correctAdminPassword)){
-            return true;
-        }
-        else {
-            return false;
         }
     }
 }

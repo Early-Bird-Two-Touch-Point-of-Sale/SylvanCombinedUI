@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table UserDetails(itemID TEXT primary key, orderID TEXT, itemName TEXT, " +
-                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date TEXT)");
+                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date DATE)");
     }
 
     @Override
@@ -44,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("holds", holds);
         contentValues.put("other", other);
         contentValues.put("price", price);
-        contentValues.put("date", String.valueOf(currentTime));
+        contentValues.put("date", new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date()));
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){
             return false;
