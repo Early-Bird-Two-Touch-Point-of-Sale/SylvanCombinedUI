@@ -121,4 +121,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor yearlyOrder(){
+        Date date = new Date();
+        String strDateFormat = "yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+        String todayStart = sdf.format(date) + "-01-01, 12:00 AM, Pacific Standard Time";
+
+        //Date todayStart = new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date());
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Userdetails where Date >= ?", new String[] {todayStart});
+        return cursor;
+    }
+
 }

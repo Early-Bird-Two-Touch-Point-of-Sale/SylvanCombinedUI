@@ -19,7 +19,7 @@ import java.util.Date;
 public class InventoryActivity extends AppCompatActivity {
 
     EditText itemID, orderID, itemName;
-    Button insert, update, delete, view, export, viewOrder, dailyTotal;
+    Button insert, update, delete, view, export, viewOrder, dailyTotal, yearlyTotal;
     DBHelper DB;
     DBImportExport IE;
     boolean adminValid = false;
@@ -42,6 +42,7 @@ public class InventoryActivity extends AppCompatActivity {
         export = findViewById(R.id.btnExport);
         viewOrder = findViewById(R.id.btnViewOrder);
         dailyTotal = findViewById(R.id.btnDailyTotal);
+        yearlyTotal = findViewById(R.id.btnYearlyTotal);
 
         DB = new DBHelper(this);
 
@@ -54,7 +55,7 @@ public class InventoryActivity extends AppCompatActivity {
 
                 Boolean checkInsertData = DB.insertUserData(itemIDtxt, orderIDtxt, itemNameTXT,
                         "N/A", "N/A", "N/A", "N/A");
-                if(checkInsertData==true){
+                if (checkInsertData == true) {
                     Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(InventoryActivity.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
@@ -70,7 +71,7 @@ public class InventoryActivity extends AppCompatActivity {
                 String dobTXT = itemName.getText().toString();
 
                 Boolean checkUpdateData = DB.updateUserData(nameTXT, contactTXT, dobTXT);
-                if(checkUpdateData==true){
+                if (checkUpdateData == true) {
                     Toast.makeText(InventoryActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(InventoryActivity.this, "Entry Not Updated", Toast.LENGTH_SHORT).show();
@@ -84,7 +85,7 @@ public class InventoryActivity extends AppCompatActivity {
                 String nameTXT = itemID.getText().toString();
 
                 Boolean checkDeleteData = DB.deleteData(nameTXT);
-                if(checkDeleteData==true){
+                if (checkDeleteData == true) {
                     Toast.makeText(InventoryActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(InventoryActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
@@ -95,27 +96,27 @@ public class InventoryActivity extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Cursor res = DB.getData();
-               if(res.getCount() == 0) {
-                   Toast.makeText(InventoryActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
-               }
-               StringBuffer buffer = new StringBuffer();
-               while(res.moveToNext()) {
-                   buffer.append("Item ID : " +res.getString(0) + "\n");
-                   buffer.append("Order ID : " +res.getString(1) + "\n");
-                   buffer.append("Item Name : " +res.getString(2) + "\n");
-                   buffer.append("Item Toppings : " +res.getString(3) + "\n");
-                   buffer.append("Item Holds : " +res.getString(4) + "\n");
-                   buffer.append("Other : " +res.getString(5) + "\n");
-                   buffer.append("Price : " +res.getString(6) + "\n");
-                   buffer.append("Date Added : " +res.getString(7) + "\n\n");
-               }
+                Cursor res = DB.getData();
+                if (res.getCount() == 0) {
+                    Toast.makeText(InventoryActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
+                }
+                StringBuffer buffer = new StringBuffer();
+                while (res.moveToNext()) {
+                    buffer.append("Item ID : " + res.getString(0) + "\n");
+                    buffer.append("Order ID : " + res.getString(1) + "\n");
+                    buffer.append("Item Name : " + res.getString(2) + "\n");
+                    buffer.append("Item Toppings : " + res.getString(3) + "\n");
+                    buffer.append("Item Holds : " + res.getString(4) + "\n");
+                    buffer.append("Other : " + res.getString(5) + "\n");
+                    buffer.append("Price : " + res.getString(6) + "\n");
+                    buffer.append("Date Added : " + res.getString(7) + "\n\n");
+                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
-               builder.setCancelable(true);
-               builder.setTitle("User Entries");
-               builder.setMessage(buffer.toString());
-               builder.show();
+                builder.setCancelable(true);
+                builder.setTitle("User Entries");
+                builder.setMessage(buffer.toString());
+                builder.show();
 
             }
         });
@@ -150,21 +151,21 @@ public class InventoryActivity extends AppCompatActivity {
                         String value = input.getText().toString();
                         Cursor res = DB.getOrder(value);
                         StringBuffer buffer = new StringBuffer();
-                        while(res.moveToNext()) {
-                            buffer.append("Item ID : " +res.getString(0) + "\n");
-                            buffer.append("Order ID : " +res.getString(1) + "\n");
-                            buffer.append("Item Name : " +res.getString(2) + "\n");
-                            buffer.append("Item Toppings : " +res.getString(3) + "\n");
-                            buffer.append("Item Holds : " +res.getString(4) + "\n");
-                            buffer.append("Other : " +res.getString(5) + "\n");
-                            buffer.append("Price : " +res.getString(6) + "\n");
-                            buffer.append("Date Added : " +res.getString(7) + "\n\n");
+                        while (res.moveToNext()) {
+                            buffer.append("Item ID : " + res.getString(0) + "\n");
+                            buffer.append("Order ID : " + res.getString(1) + "\n");
+                            buffer.append("Item Name : " + res.getString(2) + "\n");
+                            buffer.append("Item Toppings : " + res.getString(3) + "\n");
+                            buffer.append("Item Holds : " + res.getString(4) + "\n");
+                            buffer.append("Other : " + res.getString(5) + "\n");
+                            buffer.append("Price : " + res.getString(6) + "\n");
+                            buffer.append("Date Added : " + res.getString(7) + "\n\n");
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
                         builder.setCancelable(true);
                         builder.setTitle("Order #" + value);
-                        if(res.getCount() == 0) {
+                        if (res.getCount() == 0) {
                             Toast.makeText(InventoryActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
                             builder.setMessage("No Entry Exists");
                         } else {
@@ -205,18 +206,15 @@ public class InventoryActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         final String adminUsername = etAdminUsername.getText().toString();
                         final String adminPassword = etAdminPassword.getText().toString();
-                        if (adminUsername.isEmpty()){
+                        if (adminUsername.isEmpty()) {
                             Toast.makeText(InventoryActivity.this, "Please Enter a Username", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (adminPassword.isEmpty()){
+                        } else if (adminPassword.isEmpty()) {
                             Toast.makeText(InventoryActivity.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             adminValid = validate(adminUsername, adminPassword);
                             if (!adminValid) {
                                 Toast.makeText(InventoryActivity.this, "Invalid Admin Username/Password", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(InventoryActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
                                 showDailyOrder();
                             }
@@ -226,6 +224,78 @@ public class InventoryActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+
+        yearlyTotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View adminPassView = View.inflate(InventoryActivity.this, R.layout.admin_password, null);
+                AlertDialog.Builder alert = new AlertDialog.Builder(InventoryActivity.this);
+                final EditText etAdminUsername = (EditText) adminPassView.findViewById(R.id.editTextAdminUsername);
+                final EditText etAdminPassword = (EditText) adminPassView.findViewById(R.id.editTextAdminPassword);
+
+                alert.setTitle("Admin Verification");
+                alert.setMessage("Please Input an Admin Username/Password");
+                alert.setView(adminPassView);
+                alert.setPositiveButton("Order", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final String adminUsername = etAdminUsername.getText().toString();
+                        final String adminPassword = etAdminPassword.getText().toString();
+                        if (adminUsername.isEmpty()) {
+                            Toast.makeText(InventoryActivity.this, "Please Enter a Username", Toast.LENGTH_SHORT).show();
+                        } else if (adminPassword.isEmpty()) {
+                            Toast.makeText(InventoryActivity.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
+                        } else {
+                            adminValid = validate(adminUsername, adminPassword);
+                            if (!adminValid) {
+                                Toast.makeText(InventoryActivity.this, "Invalid Admin Username/Password", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(InventoryActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
+                                showYearlyOrder();
+                            }
+                        }
+                    }
+                });
+                alert.show();
+            }
+        });
+    }
+
+    public void showYearlyOrder(){
+        Cursor res = DB.yearlyOrder();
+        StringBuffer buffer = new StringBuffer();
+        while(res.moveToNext()) {
+            buffer.append("Item ID : " +res.getString(0) + "\n");
+            buffer.append("Order ID : " +res.getString(1) + "\n");
+            buffer.append("Item Name : " +res.getString(2) + "\n");
+            buffer.append("Item Toppings : " +res.getString(3) + "\n");
+            buffer.append("Item Holds : " +res.getString(4) + "\n");
+            buffer.append("Other : " +res.getString(5) + "\n");
+            buffer.append("Price : " +res.getString(6) + "\n");
+            buffer.append("Date Added : " +res.getString(7) + "\n\n");
+        }
+
+        Date date = new Date();
+        String strDateFormat = "yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+        //String yearStart = sdf.format(date) + "-01-01, 12:00 AM, Pacific Standard Time";
+        //Toast.makeText(this, yearStart, Toast.LENGTH_SHORT).show();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
+        builder.setCancelable(true);
+        builder.setTitle("Orders for " + sdf.format(date));
+        if(res.getCount() == 0) {
+            Toast.makeText(InventoryActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
+            builder.setMessage("No Entry Exists");
+        } else {
+            builder.setMessage(buffer.toString());
+        }
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //Toast.makeText(InventoryActivity.this, "Done", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
     }
 
     public void showDailyOrder() {
@@ -242,11 +312,12 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Date Added : " +res.getString(7) + "\n\n");
         }
 
+        /*
         Date date = new Date();
         String strDateFormat = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
         String todayStart = sdf.format(date) + ", 12:00 AM, Pacific Standard Time";
-        Toast.makeText(this, todayStart, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, todayStart, Toast.LENGTH_SHORT).show();*/
 
         AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
         builder.setCancelable(true);

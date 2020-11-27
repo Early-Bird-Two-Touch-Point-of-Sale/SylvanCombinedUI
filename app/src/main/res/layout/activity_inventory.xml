@@ -114,4 +114,17 @@
         android:text="View Daily Total"
         android:textSize="24dp"/>
 
+    <Button
+        android:id="@+id/btnYearlyTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnDailyTotal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:textSize="24dp"
+        android:text="View Yearly Total" />
+
 </RelativeLayout>
