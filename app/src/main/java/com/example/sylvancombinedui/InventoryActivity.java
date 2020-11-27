@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -217,7 +218,7 @@ public class InventoryActivity extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(InventoryActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
-                                //showDailyOrder();
+                                showDailyOrder();
                             }
                         }
                     }
@@ -228,7 +229,40 @@ public class InventoryActivity extends AppCompatActivity {
     }
 
     public void showDailyOrder() {
+        Cursor res = DB.dailyOrder();
+        StringBuffer buffer = new StringBuffer();
+        while(res.moveToNext()) {
+            buffer.append("Item ID : " +res.getString(0) + "\n");
+            buffer.append("Order ID : " +res.getString(1) + "\n");
+            buffer.append("Item Name : " +res.getString(2) + "\n");
+            buffer.append("Item Toppings : " +res.getString(3) + "\n");
+            buffer.append("Item Holds : " +res.getString(4) + "\n");
+            buffer.append("Other : " +res.getString(5) + "\n");
+            buffer.append("Price : " +res.getString(6) + "\n");
+            buffer.append("Date Added : " +res.getString(7) + "\n\n");
+        }
 
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+        String todayStart = sdf.format(date) + ", 12:00 AM, Pacific Standard Time";
+        Toast.makeText(this, todayStart, Toast.LENGTH_SHORT).show();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
+        builder.setCancelable(true);
+        builder.setTitle("Today's Orders");
+        if(res.getCount() == 0) {
+            Toast.makeText(InventoryActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
+            builder.setMessage("No Entry Exists");
+        } else {
+            builder.setMessage(buffer.toString());
+        }
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //Toast.makeText(InventoryActivity.this, "Done", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
     }
 
     private boolean validate(String username, String password){

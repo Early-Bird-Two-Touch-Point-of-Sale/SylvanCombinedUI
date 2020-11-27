@@ -109,11 +109,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-   /* public Cursor dailyOrder(){
-        Date todayStart = new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date());
+    public Cursor dailyOrder(){
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+        String todayStart = sdf.format(date) + ", 12:00 AM, Pacific Standard Time";
+
+        //Date todayStart = new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date());
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Userdetails where Date >= ?", new Date[] {todayStart});
+        Cursor cursor = DB.rawQuery("Select * from Userdetails where Date >= ?", new String[] {todayStart});
         return cursor;
-    }*/
+    }
 
 }
