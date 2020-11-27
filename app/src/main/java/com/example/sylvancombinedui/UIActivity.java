@@ -76,9 +76,9 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
             case R.id.nav_user_profile: //Toast placeholders
                 Toast.makeText(this, "Your User Profile", Toast.LENGTH_SHORT).show();
                 break;
-
-                //This is where I was thinking to put the case for bluetooth activity
-
+            case R.id.nav_bluetooth:
+                Toast.makeText(this, "Bluetooth", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(UIActivity.this, MainActivity.class);

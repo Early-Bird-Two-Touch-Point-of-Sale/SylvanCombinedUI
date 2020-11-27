@@ -33,6 +33,10 @@
                 android:icon="@drawable/ic_baseline_user_profile_24"
                 android:title="@string/user_profile_item_title" />
             <item
+                android:id="@+id/nav_bluetooth"
+                android:icon="@drawable/ic_baseline_bluetooth_24"
+                android:title="@string/bluetooth_item_title" />
+            <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_baseline_logout_24"
                 android:title="@string/logout_item_title" />

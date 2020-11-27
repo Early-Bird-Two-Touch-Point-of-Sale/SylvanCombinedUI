@@ -7,6 +7,7 @@
     <string name="inventory_item_title">Inventory</string>
     <string name="user_item_title">User</string>
     <string name="user_profile_item_title">User Profile</string>
+    <string name ="bluetooth_item_title">Bluetooth</string>
     <string name="logout_item_title">Logout</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
