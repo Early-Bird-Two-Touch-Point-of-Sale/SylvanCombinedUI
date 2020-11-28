@@ -32,7 +32,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     final String TAG = "2";
     final String ORDER_KEY = "Order Key";
     final HashMap<String, Pair<String, Double>> ITEM_MAP
-            = new HashMap<>();
+          = new HashMap<>();
+
+    //final HashMap<Pair<String, String>, Pair<Double, String>> ITEM_MAP
+     //       = new HashMap<>();
 
     private Button ScanBtn;
     private Button AddBtn;
@@ -68,7 +71,19 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void buildMap() {
-        ITEM_MAP.put("01212901", Pair.create("Pepsi", 2.09));
+        /*ITEM_MAP.put(Pair.create("01212901", "Pepsi)"), Pair.create(2.09, "Y"));
+        ITEM_MAP.put(Pair.create("078000000283", "7-Up (2-litre)"), Pair.create(2.39, "Y"));
+        ITEM_MAP.put(Pair.create("078000113457", "Sunkissed"), Pair.create(2.39, "Y"));
+        ITEM_MAP.put(Pair.create("078000092455", "Dejablue"), Pair.create(2.00, "Y"));
+        ITEM_MAP.put(Pair.create("011423941276", "Repel: Clothing and Gear"), Pair.create(5.99, "Y"));
+        ITEM_MAP.put(Pair.create("639277292063", "Max Block (30 spf)"), Pair.create(2.99, "Y"));
+        ITEM_MAP.put(Pair.create("078000052459", "Mug Root Beer"), Pair.create(2.39, "Y")); //ask Sylvan about this
+        ITEM_MAP.put(Pair.create("070602489008", "Rocky Road S'Mores"), Pair.create(1.25, "N"));
+        ITEM_MAP.put(Pair.create("041419420010", "Combos Stuffed Snacks"), Pair.create(1.25, "N"));
+        ITEM_MAP.put(Pair.create("03405408", "KitKat White Chocolate"), Pair.create(1.25, "N"));
+        ITEM_MAP.put(Pair.create("03424607", "KitKat Bar"), Pair.create(1.25, "N"));*/
+
+        ITEM_MAP.put("078000000283", Pair.create("Pepsi", 2.09));
         ITEM_MAP.put("078000000283", Pair.create("7-Up (2-litre)", 2.39));
         ITEM_MAP.put("078000113457", Pair.create("Sunkissed", 2.39));
         ITEM_MAP.put("078000092455", Pair.create("Dejablue", 2.00));
@@ -215,6 +230,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 String holds = data.getStringExtra("Holds");
                 String other = data.getStringExtra("EditText");
                 String foodPrice = data.getStringExtra("Price");
+                //String taxable = data.getStringExtra("Taxable");
                 //Toast.makeText(context, foodItem +
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 

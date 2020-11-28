@@ -51,6 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("holds", holds);
         contentValues.put("other", other);
         contentValues.put("price", price);
+        //contentValues.put("taxable", taxable);
         contentValues.put("date", new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date()));
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){

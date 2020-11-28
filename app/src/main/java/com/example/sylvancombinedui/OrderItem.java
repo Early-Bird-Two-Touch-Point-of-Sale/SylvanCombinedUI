@@ -7,6 +7,7 @@ public class OrderItem {
     private String mText3;
     private String mText4;
     private String mText5;
+    //private String mText6;
 
     public OrderItem(int imageResource, String text1, String text2, String text3, String text4,
                      String text5) {
@@ -16,6 +17,7 @@ public class OrderItem {
         mText3 = text3;
         mText4 = text4;
         mText5 = text5;
+        //mText6 = text5;
     }
 
     public int getImageResource() {
@@ -41,4 +43,8 @@ public class OrderItem {
     public String getText5() {
         return mText5;
     }
+
+    /*public String getText6() {
+        return mText6;
+    }*/
 }

@@ -109,7 +109,8 @@ public class InventoryActivity extends AppCompatActivity {
                     buffer.append("Item Holds : " + res.getString(4) + "\n");
                     buffer.append("Other : " + res.getString(5) + "\n");
                     buffer.append("Price : " + res.getString(6) + "\n");
-                    buffer.append("Date Added : " + res.getString(7) + "\n\n");
+                    //buffer.append("Taxable : " +res.getString(7) + "\n");
+                    buffer.append("Date Added : " +res.getString(7) + "\n\n");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
@@ -159,7 +160,8 @@ public class InventoryActivity extends AppCompatActivity {
                             buffer.append("Item Holds : " + res.getString(4) + "\n");
                             buffer.append("Other : " + res.getString(5) + "\n");
                             buffer.append("Price : " + res.getString(6) + "\n");
-                            buffer.append("Date Added : " + res.getString(7) + "\n\n");
+                            //buffer.append("Taxable : " +res.getString(7) + "\n");
+                            buffer.append("Date Added : " +res.getString(7) + "\n\n");
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
@@ -272,6 +274,7 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Item Holds : " +res.getString(4) + "\n");
             buffer.append("Other : " +res.getString(5) + "\n");
             buffer.append("Price : " +res.getString(6) + "\n");
+            //buffer.append("Taxable : " +res.getString(7) + "\n");
             buffer.append("Date Added : " +res.getString(7) + "\n\n");
         }
 
@@ -309,6 +312,7 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Item Holds : " +res.getString(4) + "\n");
             buffer.append("Other : " +res.getString(5) + "\n");
             buffer.append("Price : " +res.getString(6) + "\n");
+            //buffer.append("Taxable : " +res.getString(7) + "\n");
             buffer.append("Date Added : " +res.getString(7) + "\n\n");
         }
 
