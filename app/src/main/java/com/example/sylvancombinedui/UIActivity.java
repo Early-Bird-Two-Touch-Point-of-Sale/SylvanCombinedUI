@@ -77,7 +77,7 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
                 Toast.makeText(this, "Your User Profile", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_bluetooth:
-                Toast.makeText(this, "Bluetooth", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(UIActivity.this, BluetoothActivity.class));
                 break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
