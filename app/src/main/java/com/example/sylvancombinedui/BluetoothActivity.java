@@ -2,6 +2,7 @@ package com.example.sylvancombinedui;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -35,7 +36,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BluetoothActivity extends AppCompatActivity {
 
-    Button BTOn, BTOff, BTShow, BTDiscover, BTSendFile;
+    Button BTOn, BTOff, BTShow, BTDiscover, BTSendFile, BTServerListen;
     ListView BTConnections;
     TextView BTConnection, ScanText;
     IntentFilter scanIntentFilter = new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
@@ -67,7 +68,8 @@ public class BluetoothActivity extends AppCompatActivity {
     int REQUEST_CODE_FOR_ENABLE;
 
     //Reserved for security purposes
-    UUID Bluetooth_UUID = UUID.fromString("f6af5cda-bc4f-44aa-a718-a326bc6623ed");
+    private static final UUID Bluetooth_UUID = UUID.fromString("f6af5cda-bc4f-44aa-a718-a326bc6623ed");
+    private static final String APP_NAME = "EarlyBird2TouchPOS";
 
     SendReceive sendReceive;
 
@@ -91,6 +93,7 @@ public class BluetoothActivity extends AppCompatActivity {
         BTShow = findViewById(R.id.btnBluetoothShow);
         BTDiscover = findViewById(R.id.btnBluetoothDiscover);
         BTSendFile = findViewById(R.id.btnBluetoothSendFile);
+        BTServerListen = findViewById(R.id.btnBluetoothServerListen);
 
         BTConnections = findViewById(R.id.ConnectionListView);
         BTConnection = findViewById(R.id.ConnectionTextView);
@@ -174,6 +177,14 @@ public class BluetoothActivity extends AppCompatActivity {
                 }
             }
         });
+
+        BTServerListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ServerClass serverClass = new ServerClass();
+                serverClass.start();
+            }
+        });
     }
 
     Handler threadHandler = new Handler(new Handler.Callback() {
@@ -219,6 +230,51 @@ public class BluetoothActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+            }
+        }
+    }
+
+    private class ServerClass extends Thread
+    {
+        private BluetoothServerSocket serverSocket;
+
+        public ServerClass(){
+            try {
+                serverSocket = FirstBluetoothAdapter.listenUsingRfcommWithServiceRecord(APP_NAME, Bluetooth_UUID);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void run()
+        {
+            BluetoothSocket socket = null;
+
+            while (socket == null)
+            {
+                try {
+                    Message message = Message.obtain();
+                    message.what = STATE_CONNECTING;
+                    threadHandler.sendMessage(message);
+
+                    socket = serverSocket.accept();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Message message = Message.obtain();
+                    message.what = STATE_CONNECTION_FAILED;
+                    threadHandler.sendMessage(message);
+                }
+
+                if(socket != null)
+                {
+                    Message message = Message.obtain();
+                    message.what = STATE_CONNECTED;
+                    threadHandler.sendMessage(message);
+
+                    // send/receive
+
+                    break;
+                }
             }
         }
     }
