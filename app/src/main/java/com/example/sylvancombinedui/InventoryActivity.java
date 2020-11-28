@@ -54,7 +54,7 @@ public class InventoryActivity extends AppCompatActivity {
                 String itemNameTXT = itemName.getText().toString();
 
                 Boolean checkInsertData = DB.insertUserData(itemIDtxt, orderIDtxt, itemNameTXT,
-                        "N/A", "N/A", "N/A", "N/A", "N/A");
+                        "N/A", "N/A", "N/A", "N/A", "N");
                 if (checkInsertData == true) {
                     Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 } else {
@@ -266,6 +266,7 @@ public class InventoryActivity extends AppCompatActivity {
     public void showYearlyOrder(){
         Cursor res = DB.yearlyOrder();
         StringBuffer buffer = new StringBuffer();
+        Double taxableTotal = 0.0, nontaxTotal = 0.0;
         while(res.moveToNext()) {
             buffer.append("Item ID : " +res.getString(0) + "\n");
             buffer.append("Order ID : " +res.getString(1) + "\n");
@@ -276,7 +277,23 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Price : " +res.getString(6) + "\n");
             buffer.append("Date Added : " +res.getString(7) + "\n");
             buffer.append("Taxable : " +res.getString(8) + "\n\n");
+            //Toast.makeText(this, res.getString(0) + ", " + res.getString(6), Toast.LENGTH_SHORT).show();
+
+            if (res.getString(8) == getResources().getString(R.string.taxable)){
+                String taxPriceString = res.getString(6).replace("$", "");
+                Toast.makeText(this, res.getString(0) + ", " + taxPriceString, Toast.LENGTH_SHORT).show();
+                taxableTotal += Double.parseDouble(taxPriceString);
+            }
+            else if (res.getString(8) == getResources().getString(R.string.non_taxable)){
+                String nontaxPriceString = res.getString(6).replace("$", "");
+                Toast.makeText(this, res.getString(0) + ", " + nontaxPriceString, Toast.LENGTH_SHORT).show();
+                nontaxTotal += Double.parseDouble(nontaxPriceString);
+            }
         }
+
+        buffer.append("Total Taxable Sales: $" + taxableTotal + "\n");
+        buffer.append("Total Nontaxable Sales: $" + nontaxTotal + "\n");
+        buffer.append("Total Sales: $" + (taxableTotal + nontaxTotal));
 
         Date date = new Date();
         String strDateFormat = "yyyy";

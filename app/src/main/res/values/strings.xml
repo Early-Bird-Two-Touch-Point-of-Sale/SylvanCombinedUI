@@ -33,4 +33,6 @@
     <string name = "fish_basket_name">Fish Basket</string>
     <string name = "shrimp_basket_name">Shrimp Basket</string>
     <string name = "clam_basket_name">Clam Basket</string>
+    <string name = "taxable">Y</string>
+    <string name = "non_taxable">N</string>
 </resources>

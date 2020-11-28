@@ -83,17 +83,17 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         ITEM_MAP.put(Pair.create("03405408", "KitKat White Chocolate"), Pair.create(1.25, "N"));
         ITEM_MAP.put(Pair.create("03424607", "KitKat Bar"), Pair.create(1.25, "N"));*/
 
-        ITEM_MAP.put("01212901", new Triplet("Pepsi",2.09, "Y"));
-        ITEM_MAP.put("078000000283", new Triplet("7-Up (2-litre)", 2.39, "Y"));
-        ITEM_MAP.put("078000113457", new Triplet("Sunkissed", 2.39, "Y"));
-        ITEM_MAP.put("078000092455", new Triplet("Dejablue", 2.00, "Y"));
-        ITEM_MAP.put("011423941276", new Triplet("Repel: Clothing and Gear", 5.99, "Y"));
-        ITEM_MAP.put("639277292063", new Triplet("Max Block (30 spf)", 2.99, "Y"));
-        ITEM_MAP.put("078000052459", new Triplet("Mug Root Beer", 2.39, "Y"));
-        ITEM_MAP.put("070602489008", new Triplet("Rocky Road S'Mores", 1.25, "N"));
-        ITEM_MAP.put("041419420010", new Triplet("Combos Stuffed Snacks", 1.25, "N"));
-        ITEM_MAP.put("03405408", new Triplet("KitKat White Chocolate", 1.25, "N"));
-        ITEM_MAP.put("03424607", new Triplet("KitKat Bar", 1.25, "N"));
+        ITEM_MAP.put("01212901", new Triplet("Pepsi",2.09, getResources().getString(R.string.taxable)));
+        ITEM_MAP.put("078000000283", new Triplet("7-Up (2-litre)", 2.39, getResources().getString(R.string.taxable)));
+        ITEM_MAP.put("078000113457", new Triplet("Sunkissed", 2.39, getResources().getString(R.string.taxable)));
+        ITEM_MAP.put("078000092455", new Triplet("Dejablue", 2.00, getResources().getString(R.string.taxable)));
+        ITEM_MAP.put("011423941276", new Triplet("Repel: Clothing and Gear", 5.99, getResources().getString(R.string.taxable)));
+        ITEM_MAP.put("639277292063", new Triplet("Max Block (30 spf)", 2.99, getResources().getString(R.string.taxable)));
+        ITEM_MAP.put("078000052459", new Triplet("Mug Root Beer", 2.39, getResources().getString(R.string.taxable)));
+        ITEM_MAP.put("070602489008", new Triplet("Rocky Road S'Mores", 1.25, getResources().getString(R.string.non_taxable)));
+        ITEM_MAP.put("041419420010", new Triplet("Combos Stuffed Snacks", 1.25, getResources().getString(R.string.non_taxable)));
+        ITEM_MAP.put("03405408", new Triplet("KitKat White Chocolate", 1.25, getResources().getString(R.string.non_taxable)));
+        ITEM_MAP.put("03424607", new Triplet("KitKat Bar", 1.25, getResources().getString(R.string.non_taxable)));
 
         /*ITEM_MAP.put("078000000283", Pair.create("Pepsi", 2.09));
         ITEM_MAP.put("078000000283", Pair.create("7-Up (2-litre)", 2.39));

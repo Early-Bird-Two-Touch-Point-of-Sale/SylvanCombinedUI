@@ -81,7 +81,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.mTextView3.setText(currentItem.getText3());
         holder.mTextView4.setText(currentItem.getText4());
         holder.mTextView5.setText(currentItem.getText5());
-        holder.mTextView5.setText(currentItem.getText6());
+        holder.mTextView6.setText(currentItem.getText6());
     }
 
     @Override
