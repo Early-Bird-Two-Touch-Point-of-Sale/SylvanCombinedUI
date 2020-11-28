@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -279,21 +281,21 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Taxable : " +res.getString(8) + "\n\n");
             //Toast.makeText(this, res.getString(0) + ", " + res.getString(6), Toast.LENGTH_SHORT).show();
 
-            if (res.getString(8) == getResources().getString(R.string.taxable)){
+            if (res.getString(8).equals(getResources().getString(R.string.taxable))){
                 String taxPriceString = res.getString(6).replace("$", "");
                 Toast.makeText(this, res.getString(0) + ", " + taxPriceString, Toast.LENGTH_SHORT).show();
-                taxableTotal += Double.parseDouble(taxPriceString);
+                taxableTotal += round(Double.parseDouble(taxPriceString), 2);
             }
-            else if (res.getString(8) == getResources().getString(R.string.non_taxable)){
+            else if (res.getString(8).equals(getResources().getString(R.string.non_taxable))){
                 String nontaxPriceString = res.getString(6).replace("$", "");
                 Toast.makeText(this, res.getString(0) + ", " + nontaxPriceString, Toast.LENGTH_SHORT).show();
-                nontaxTotal += Double.parseDouble(nontaxPriceString);
+                nontaxTotal += round(Double.parseDouble(nontaxPriceString), 2);
             }
         }
 
-        buffer.append("Total Taxable Sales: $" + taxableTotal + "\n");
-        buffer.append("Total Nontaxable Sales: $" + nontaxTotal + "\n");
-        buffer.append("Total Sales: $" + (taxableTotal + nontaxTotal));
+        buffer.append("Total Taxable Sales: $" + round(taxableTotal, 2) + "\n");
+        buffer.append("Total Nontaxable Sales: $" + round(nontaxTotal, 2) + "\n");
+        buffer.append("Total Sales: $" + (round(taxableTotal, 2) + round(nontaxTotal, 2)));
 
         Date date = new Date();
         String strDateFormat = "yyyy";
@@ -364,5 +366,13 @@ public class InventoryActivity extends AppCompatActivity {
         else {
             return false;
         }
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }
