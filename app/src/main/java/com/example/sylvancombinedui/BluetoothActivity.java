@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -64,6 +65,7 @@ public class BluetoothActivity extends AppCompatActivity {
     };
 
     BluetoothAdapter FirstBluetoothAdapter;
+    BluetoothDevice[] btArray;
     Intent BluetoothEnabledIntent;
     int REQUEST_CODE_FOR_ENABLE;
 
@@ -84,20 +86,11 @@ public class BluetoothActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
 
+        findViewByIDMethod();
+
         FirstBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         BluetoothEnabledIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         REQUEST_CODE_FOR_ENABLE = 1;
-
-        BTOn = findViewById(R.id.btnBluetoothOn);
-        BTOff = findViewById(R.id.btnBluetoothOff);
-        BTShow = findViewById(R.id.btnBluetoothShow);
-        BTDiscover = findViewById(R.id.btnBluetoothDiscover);
-        BTSendFile = findViewById(R.id.btnBluetoothSendFile);
-        BTServerListen = findViewById(R.id.btnBluetoothServerListen);
-
-        BTConnections = findViewById(R.id.ConnectionListView);
-        BTConnection = findViewById(R.id.ConnectionTextView);
-        ScanText = findViewById(R.id.ConnectionDiscoveryView);
 
         bluetoothONMethod();
         bluetoothOFFMethod();
@@ -117,6 +110,21 @@ public class BluetoothActivity extends AppCompatActivity {
                 //Actual database file will go here --- if design works properly
             }
         });
+    }
+
+    private void findViewByIDMethod()
+    {
+        BTOn = findViewById(R.id.btnBluetoothOn);
+        BTOff = findViewById(R.id.btnBluetoothOff);
+        BTShow = findViewById(R.id.btnBluetoothShow);
+        BTDiscover = findViewById(R.id.btnBluetoothDiscover);
+        BTSendFile = findViewById(R.id.btnBluetoothSendFile);
+        BTServerListen = findViewById(R.id.btnBluetoothServerListen);
+
+        BTConnections = findViewById(R.id.ConnectionListView);
+
+        BTConnection = findViewById(R.id.ConnectionTextView);
+        ScanText = findViewById(R.id.ConnectionDiscoveryView);
     }
 
     @Override
@@ -163,12 +171,14 @@ public class BluetoothActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Set<BluetoothDevice> bt = FirstBluetoothAdapter.getBondedDevices();
                 String[] strings = new String[bt.size()];
+                btArray = new BluetoothDevice[bt.size()];
                 int index = 0;
 
                 if(bt.size() > 0)
                 {
                     for (BluetoothDevice device : bt)
                     {
+                        btArray[index] = device;
                         strings[index] = device.getName();
                         index++;
                     }
@@ -183,6 +193,16 @@ public class BluetoothActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ServerClass serverClass = new ServerClass();
                 serverClass.start();
+            }
+        });
+
+        BTConnections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ClientClass clientClass = new ClientClass(btArray[i]);
+                clientClass.start();
+
+                BTConnection.setText("Connecting");
             }
         });
     }
@@ -271,10 +291,47 @@ public class BluetoothActivity extends AppCompatActivity {
                     message.what = STATE_CONNECTED;
                     threadHandler.sendMessage(message);
 
-                    // send/receive
+                    sendReceive = new SendReceive(socket);
+                    sendReceive.start();
 
                     break;
                 }
+            }
+        }
+    }
+
+    private class ClientClass extends Thread
+    {
+        private BluetoothDevice device;
+        private BluetoothSocket socket;
+
+        public ClientClass (BluetoothDevice device1)
+        {
+            device = device1;
+
+            try {
+                socket = device.createRfcommSocketToServiceRecord(Bluetooth_UUID);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void run()
+        {
+            try {
+                socket.connect();
+                Message message = Message.obtain();
+                message.what = STATE_CONNECTED;
+                threadHandler.sendMessage(message);
+
+                sendReceive = new SendReceive(socket);
+                sendReceive.start();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Message message = Message.obtain();
+                message.what = STATE_CONNECTION_FAILED;
+                threadHandler.sendMessage(message);
             }
         }
     }
