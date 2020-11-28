@@ -54,7 +54,7 @@ public class InventoryActivity extends AppCompatActivity {
                 String itemNameTXT = itemName.getText().toString();
 
                 Boolean checkInsertData = DB.insertUserData(itemIDtxt, orderIDtxt, itemNameTXT,
-                        "N/A", "N/A", "N/A", "N/A");
+                        "N/A", "N/A", "N/A", "N/A", "N/A");
                 if (checkInsertData == true) {
                     Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 } else {
@@ -109,8 +109,8 @@ public class InventoryActivity extends AppCompatActivity {
                     buffer.append("Item Holds : " + res.getString(4) + "\n");
                     buffer.append("Other : " + res.getString(5) + "\n");
                     buffer.append("Price : " + res.getString(6) + "\n");
-                    //buffer.append("Taxable : " +res.getString(7) + "\n");
-                    buffer.append("Date Added : " +res.getString(7) + "\n\n");
+                    buffer.append("Date Added : " +res.getString(7) + "\n");
+                    buffer.append("Taxable : " +res.getString(8) + "\n\n");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
@@ -160,8 +160,8 @@ public class InventoryActivity extends AppCompatActivity {
                             buffer.append("Item Holds : " + res.getString(4) + "\n");
                             buffer.append("Other : " + res.getString(5) + "\n");
                             buffer.append("Price : " + res.getString(6) + "\n");
-                            //buffer.append("Taxable : " +res.getString(7) + "\n");
-                            buffer.append("Date Added : " +res.getString(7) + "\n\n");
+                            buffer.append("Date Added : " +res.getString(7) + "\n");
+                            buffer.append("Taxable : " +res.getString(8) + "\n\n");
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
@@ -274,8 +274,8 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Item Holds : " +res.getString(4) + "\n");
             buffer.append("Other : " +res.getString(5) + "\n");
             buffer.append("Price : " +res.getString(6) + "\n");
-            //buffer.append("Taxable : " +res.getString(7) + "\n");
-            buffer.append("Date Added : " +res.getString(7) + "\n\n");
+            buffer.append("Date Added : " +res.getString(7) + "\n");
+            buffer.append("Taxable : " +res.getString(8) + "\n\n");
         }
 
         Date date = new Date();
@@ -312,8 +312,8 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Item Holds : " +res.getString(4) + "\n");
             buffer.append("Other : " +res.getString(5) + "\n");
             buffer.append("Price : " +res.getString(6) + "\n");
-            //buffer.append("Taxable : " +res.getString(7) + "\n");
-            buffer.append("Date Added : " +res.getString(7) + "\n\n");
+            buffer.append("Date Added : " +res.getString(7) + "\n");
+            buffer.append("Taxable : " +res.getString(8) + "\n\n");
         }
 
         /*

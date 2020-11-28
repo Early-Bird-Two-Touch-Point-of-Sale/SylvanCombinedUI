@@ -41,7 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             mTextView3 = itemView.findViewById(R.id.itemBarcode);
             mTextView4 = itemView.findViewById(R.id.itemOther);
             mTextView5 = itemView.findViewById(R.id.itemPrice);
-            //mTextView6 = itemView.findViewById(R.id.itemTaxable);
+            mTextView6 = itemView.findViewById(R.id.itemTaxable);
 
             mDeleteImage = itemView.findViewById(R.id.imageDelete);
 
@@ -81,7 +81,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.mTextView3.setText(currentItem.getText3());
         holder.mTextView4.setText(currentItem.getText4());
         holder.mTextView5.setText(currentItem.getText5());
-        //holder.mTextView5.setText(currentItem.getText6());
+        holder.mTextView5.setText(currentItem.getText6());
     }
 
     @Override

@@ -580,7 +580,7 @@ public class MenuActivity extends AppCompatActivity {
                             //Toast.makeText(MenuActivity.this, "Ordered a " + buttonTitle, Toast.LENGTH_SHORT).show();
                             try {
                                 menuResult(buttonTitle.toString(), "None", "None",
-                                        "None", foodPrice); //"Y"
+                                        "None", foodPrice, "Y"); //"Y"
                             }
                             catch(Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -592,7 +592,7 @@ public class MenuActivity extends AppCompatActivity {
                             //        + "\n" + "Holds: " + holds.toString(), Toast.LENGTH_SHORT).show();
                             try {
                                 menuResult(buttonTitle.toString(), optionalToppings.toString(), holds.toString(),
-                                        burgerOther.getText().toString(), foodPrice); //"Y"
+                                        burgerOther.getText().toString(), foodPrice, "Y"); //"Y"
                             }
                             catch (Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -650,7 +650,7 @@ public class MenuActivity extends AppCompatActivity {
                         if (holds.isEmpty() && hotDogOther.getText().toString().isEmpty()) {
                             try{
                                 menuResult(buttonTitle.toString(), "N/A", "None",
-                                        "None", foodPrice);//"Y"
+                                        "None", foodPrice,"Y");//"Y"
                             }
                             catch (Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -660,7 +660,7 @@ public class MenuActivity extends AppCompatActivity {
                         {
                             try {
                                 menuResult(buttonTitle.toString(), "N/A", holds.toString(),
-                                        hotDogOther.getText().toString(), foodPrice); //"Y"
+                                        hotDogOther.getText().toString(), foodPrice, "Y"); //"Y"
                             }
                             catch (Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -725,7 +725,7 @@ public class MenuActivity extends AppCompatActivity {
                         if (optionalToppings.isEmpty() && holds.isEmpty() && chiliEditText.getText().toString().isEmpty()) {
                             try {
                                 menuResult(buttonTitle.toString(), "None", "None",
-                                        "None", foodPrice); //"Y"
+                                        "None", foodPrice, "Y"); //"Y"
                             }
                             catch(Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -735,7 +735,7 @@ public class MenuActivity extends AppCompatActivity {
                         {
                             try {
                                 menuResult(buttonTitle.toString(), optionalToppings.toString(), holds.toString(),
-                                        chiliEditText.getText().toString(), foodPrice); //"Y"
+                                        chiliEditText.getText().toString(), foodPrice, "Y"); //"Y"
                             }
                             catch (Exception e){
                                 Log.e(TAG + " Error", e.getMessage(), e);
@@ -797,14 +797,14 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void menuResult(String foodTitle, String optToppings, String holds,
-                           String editNotes, Double price){
+                           String editNotes, Double price, String taxable){
         Intent resultIntent = new Intent();
         resultIntent.putExtra("Food Item", foodTitle);
         resultIntent.putExtra("Optional Toppings", optToppings);
         resultIntent.putExtra("Holds", holds);
         resultIntent.putExtra("EditText", editNotes);//);
         resultIntent.putExtra("Price", "$" + price);
-        //resultIntent.putExtra("Taxable", taxable);
+        resultIntent.putExtra("Taxable", taxable);
         setResult(MENU_RESULT, resultIntent);
         finish();
     }

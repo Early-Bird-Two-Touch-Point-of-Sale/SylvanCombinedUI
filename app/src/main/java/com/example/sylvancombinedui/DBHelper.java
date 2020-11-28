@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table UserDetails(itemID TEXT primary key, orderID TEXT, itemName TEXT, " +
-                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date DATE)");
+                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date DATE, taxable TEXT)");
     }
 
     @Override
@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Boolean insertUserData(String itemID, String orderID, String itemName, String toppings,
-                                  String holds, String other, String price)
+                                  String holds, String other, String price, String taxable)
     {
         Date currentTime = Calendar.getInstance().getTime();
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("holds", holds);
         contentValues.put("other", other);
         contentValues.put("price", price);
-        //contentValues.put("taxable", taxable);
+        contentValues.put("taxable", taxable);
         contentValues.put("date", new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date()));
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){

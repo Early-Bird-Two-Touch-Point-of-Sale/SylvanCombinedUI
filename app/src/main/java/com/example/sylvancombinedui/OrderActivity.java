@@ -31,11 +31,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     final int MENU_RESULT = 77;
     final String TAG = "2";
     final String ORDER_KEY = "Order Key";
-    final HashMap<String, Pair<String, Double>> ITEM_MAP
-          = new HashMap<>();
+    //final HashMap<String, Pair<String, Double>> ITEM_MAP
+     //     = new HashMap<>();
 
-    //final HashMap<Pair<String, String>, Pair<Double, String>> ITEM_MAP
-     //       = new HashMap<>();
+    final HashMap<String, Triplet> ITEM_MAP
+            = new HashMap<>();
 
     private Button ScanBtn;
     private Button AddBtn;
@@ -83,7 +83,19 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         ITEM_MAP.put(Pair.create("03405408", "KitKat White Chocolate"), Pair.create(1.25, "N"));
         ITEM_MAP.put(Pair.create("03424607", "KitKat Bar"), Pair.create(1.25, "N"));*/
 
-        ITEM_MAP.put("078000000283", Pair.create("Pepsi", 2.09));
+        ITEM_MAP.put("01212901", new Triplet("Pepsi",2.09, "Y"));
+        ITEM_MAP.put("078000000283", new Triplet("7-Up (2-litre)", 2.39, "Y"));
+        ITEM_MAP.put("078000113457", new Triplet("Sunkissed", 2.39, "Y"));
+        ITEM_MAP.put("078000092455", new Triplet("Dejablue", 2.00, "Y"));
+        ITEM_MAP.put("011423941276", new Triplet("Repel: Clothing and Gear", 5.99, "Y"));
+        ITEM_MAP.put("639277292063", new Triplet("Max Block (30 spf)", 2.99, "Y"));
+        ITEM_MAP.put("078000052459", new Triplet("Mug Root Beer", 2.39, "Y"));
+        ITEM_MAP.put("070602489008", new Triplet("Rocky Road S'Mores", 1.25, "N"));
+        ITEM_MAP.put("041419420010", new Triplet("Combos Stuffed Snacks", 1.25, "N"));
+        ITEM_MAP.put("03405408", new Triplet("KitKat White Chocolate", 1.25, "N"));
+        ITEM_MAP.put("03424607", new Triplet("KitKat Bar", 1.25, "N"));
+
+        /*ITEM_MAP.put("078000000283", Pair.create("Pepsi", 2.09));
         ITEM_MAP.put("078000000283", Pair.create("7-Up (2-litre)", 2.39));
         ITEM_MAP.put("078000113457", Pair.create("Sunkissed", 2.39));
         ITEM_MAP.put("078000092455", Pair.create("Dejablue", 2.00));
@@ -93,12 +105,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         ITEM_MAP.put("070602489008", Pair.create("Rocky Road S'Mores", 1.25));
         ITEM_MAP.put("041419420010", Pair.create("Combos Stuffed Snacks", 1.25));
         ITEM_MAP.put("03405408", Pair.create("KitKat White Chocolate", 1.25));
-        ITEM_MAP.put("03424607", Pair.create("KitKat Bar", 1.25));
+        ITEM_MAP.put("03424607", Pair.create("KitKat Bar", 1.25));*/
     }
 
     public void addItem(int position) {
         orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android,
-                "New Item at Position " + position, "Line 2", "Line 3", "Line 4", "Line 5"));
+                "New Item at Position " + position, "Line 2", "Line 3", "Line 4", "Line 5", "Line 6"));
         mAdapter.notifyItemInserted(orderList.size());
     }
 
@@ -167,8 +179,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         if (userCode.length() == 14 || userCode.length() == 13 || userCode.length() == 12 || userCode.length() == 8) {
                             if (ITEM_MAP.containsKey(userCode)) {
                                 orderList.add(orderList.size(),
-                                        new OrderItem(R.drawable.ic_android, ITEM_MAP.get(userCode).first,
-                                                "N/A", "N/A", "Barcode: " + userCode, "$" + ITEM_MAP.get(userCode).second.toString()));
+                                        new OrderItem(R.drawable.ic_android, ITEM_MAP.get(userCode).first(),
+                                                "N/A", "N/A", "Barcode: " + userCode,
+                                                "$" + ITEM_MAP.get(userCode).second().toString(),
+                                                ITEM_MAP.get(userCode).third()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(context, "Item added", Toast.LENGTH_SHORT).show();
                             }
@@ -230,12 +244,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 String holds = data.getStringExtra("Holds");
                 String other = data.getStringExtra("EditText");
                 String foodPrice = data.getStringExtra("Price");
-                //String taxable = data.getStringExtra("Taxable");
+                String taxable = data.getStringExtra("Taxable");
                 //Toast.makeText(context, foodItem +
                 //        "\n" + optToppings + "\n" + holds, Toast.LENGTH_SHORT).show();
 
                 orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, foodItem,
-                        "Toppings: " + optToppings, "Holds: " + holds, "(Note: " + other + ")", foodPrice));
+                        "Toppings: " + optToppings, "Holds: " + holds, "(Note: " + other + ")", foodPrice, taxable));
                 mAdapter.notifyItemInserted(orderList.size());
             }
         }
@@ -244,12 +258,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
             if (result != null) {
                 if (result.getContents() != null) {
-                    if (result.getContents().length() == 14 || result.getContents().length() == 13 || result.getContents().length() == 12 ||
+                    if (result.getContents().length() == 14 || result.getContents().length() == 13 ||
+                            result.getContents().length() == 12 ||
                             result.getContents().length() == 8) {
                         if (ITEM_MAP.containsKey(result.getContents())) {
                             try {
-                                orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android, ITEM_MAP.get(result.getContents()).first,
-                                        "N/A", "N/A", "Barcode: " + result.getContents(),"$" + ITEM_MAP.get(result.getContents()).second.toString()));
+                                orderList.add(orderList.size(), new OrderItem(R.drawable.ic_android,
+                                        ITEM_MAP.get(result.getContents()).first(),
+                                        "N/A", "N/A", "Barcode: " + result.getContents(),
+                                        "$" + ITEM_MAP.get(result.getContents()).second().toString(),
+                                        ITEM_MAP.get(result.getContents()).third()));
                                 mAdapter.notifyItemInserted(orderList.size());
                                 Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
                             } catch(Exception e){
@@ -281,7 +299,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             orderMessage.append(orderList.get(counter).getText2() + "\n");
             orderMessage.append(orderList.get(counter).getText3() + "\n");
             orderMessage.append(orderList.get(counter).getText4() + "\n");
-            orderMessage.append(orderList.get(counter).getText5() + "\n" + "\n");
+            orderMessage.append(orderList.get(counter).getText5() + "\n");
+            orderMessage.append(orderList.get(counter).getText6() + "\n" + "\n");
         }
         orderDialog.setMessage(orderMessage);
         orderDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -298,7 +317,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     DB.insertUserData(OrderCount + "-" + (1 + counter),
                             Integer.toString(OrderCount), orderList.get(counter).getText1(),
                             orderList.get(counter).getText2(), orderList.get(counter).getText3(),
-                            orderList.get(counter).getText4(), orderList.get(counter).getText5());
+                            orderList.get(counter).getText4(), orderList.get(counter).getText5(),
+                            orderList.get(counter).getText6());
                 }
 
 
