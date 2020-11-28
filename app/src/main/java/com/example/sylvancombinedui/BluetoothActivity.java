@@ -104,6 +104,12 @@ public class BluetoothActivity extends AppCompatActivity {
         AsyncThread asyncThread = new AsyncThread();
         asyncThread.start();
 
+        if(!FirstBluetoothAdapter.isEnabled())
+        {
+            Intent enableIntent = new Intent(FirstBluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableIntent, REQUEST_CODE_FOR_ENABLE);
+        }
+
         BTSendFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
