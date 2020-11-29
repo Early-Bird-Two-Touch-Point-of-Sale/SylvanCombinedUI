@@ -21,7 +21,7 @@ import java.util.Date;
 public class InventoryActivity extends AppCompatActivity {
 
     EditText itemID, orderID, itemName;
-    Button insert, update, delete, view, export, viewOrder, dailyTotal, yearlyTotal;
+    Button insert, update, delete, view, export, viewOrder, dailyTotal, yearlyTotal, renewTable;
     DBHelper DB;
     DBImportExport IE;
     boolean adminValid = false;
@@ -45,6 +45,7 @@ public class InventoryActivity extends AppCompatActivity {
         viewOrder = findViewById(R.id.btnViewOrder);
         dailyTotal = findViewById(R.id.btnDailyTotal);
         yearlyTotal = findViewById(R.id.btnYearlyTotal);
+        renewTable = findViewById(R.id.btnRenewTable);
 
         DB = new DBHelper(this);
 
@@ -112,7 +113,8 @@ public class InventoryActivity extends AppCompatActivity {
                     buffer.append("Other : " + res.getString(5) + "\n");
                     buffer.append("Price : " + res.getString(6) + "\n");
                     buffer.append("Date Added : " +res.getString(7) + "\n");
-                    buffer.append("Taxable : " +res.getString(8) + "\n\n");
+                    buffer.append("Taxable : " +res.getString(8) + "\n");
+                    buffer.append("Processed : " +res.getString(9) + "\n\n");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
@@ -163,7 +165,8 @@ public class InventoryActivity extends AppCompatActivity {
                             buffer.append("Other : " + res.getString(5) + "\n");
                             buffer.append("Price : " + res.getString(6) + "\n");
                             buffer.append("Date Added : " +res.getString(7) + "\n");
-                            buffer.append("Taxable : " +res.getString(8) + "\n\n");
+                            buffer.append("Taxable : " +res.getString(8) + "\n");
+                            buffer.append("Processed : " +res.getString(9) + "\n\n");
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(InventoryActivity.this);
@@ -263,6 +266,41 @@ public class InventoryActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+
+        renewTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View adminPassView = View.inflate(InventoryActivity.this, R.layout.admin_password, null);
+                AlertDialog.Builder alert = new AlertDialog.Builder(InventoryActivity.this);
+                final EditText etAdminUsername = (EditText) adminPassView.findViewById(R.id.editTextAdminUsername);
+                final EditText etAdminPassword = (EditText) adminPassView.findViewById(R.id.editTextAdminPassword);
+
+                alert.setTitle("Admin Verification");
+                alert.setMessage("Please Input an Admin Username/Password");
+                alert.setView(adminPassView);
+                alert.setPositiveButton("Order", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final String adminUsername = etAdminUsername.getText().toString();
+                        final String adminPassword = etAdminPassword.getText().toString();
+                        if (adminUsername.isEmpty()) {
+                            Toast.makeText(InventoryActivity.this, "Please Enter a Username", Toast.LENGTH_SHORT).show();
+                        } else if (adminPassword.isEmpty()) {
+                            Toast.makeText(InventoryActivity.this, "Please Enter a Password", Toast.LENGTH_SHORT).show();
+                        } else {
+                            adminValid = validate(adminUsername, adminPassword);
+                            if (!adminValid) {
+                                Toast.makeText(InventoryActivity.this, "Invalid Admin Username/Password", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(InventoryActivity.this, "Successfully Dropped Old Table", Toast.LENGTH_SHORT).show();
+                                DB.renewTable();
+                            }
+                        }
+                    }
+                });
+                alert.show();
+            }
+        });
     }
 
     public void showYearlyOrder(){
@@ -278,7 +316,8 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Other : " +res.getString(5) + "\n");
             buffer.append("Price : " +res.getString(6) + "\n");
             buffer.append("Date Added : " +res.getString(7) + "\n");
-            buffer.append("Taxable : " +res.getString(8) + "\n\n");
+            buffer.append("Taxable : " +res.getString(8) + "\n");
+            buffer.append("Processed : " +res.getString(9) + "\n\n");
             //Toast.makeText(this, res.getString(0) + ", " + res.getString(6), Toast.LENGTH_SHORT).show();
 
             if (res.getString(8).equals(getResources().getString(R.string.taxable))){
@@ -332,7 +371,8 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Other : " +res.getString(5) + "\n");
             buffer.append("Price : " +res.getString(6) + "\n");
             buffer.append("Date Added : " +res.getString(7) + "\n");
-            buffer.append("Taxable : " +res.getString(8) + "\n\n");
+            buffer.append("Taxable : " +res.getString(8) + "\n");
+            buffer.append("Processed : " +res.getString(9) + "\n\n");
         }
 
         /*

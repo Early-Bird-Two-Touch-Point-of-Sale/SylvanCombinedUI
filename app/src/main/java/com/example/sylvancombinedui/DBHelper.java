@@ -30,12 +30,18 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table UserDetails(itemID TEXT primary key, orderID TEXT, itemName TEXT, " +
-                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date DATE, taxable TEXT)");
+                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date DATE, taxable TEXT, processed TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int i1) {
         DB.execSQL("drop Table if exists Userdetails");
+    }
+
+    public void renewTable() {
+        this.getWritableDatabase().execSQL("drop Table if exists Userdetails");
+        this.getWritableDatabase().execSQL("create Table UserDetails(itemID TEXT primary key, orderID TEXT, itemName TEXT, " +
+                "toppings TEXT, holds TEXT, other TEXT, price TEXT, date DATE, taxable TEXT, processed TEXT)");
     }
 
     public Boolean insertUserData(String itemID, String orderID, String itemName, String toppings,
@@ -52,6 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("other", other);
         contentValues.put("price", price);
         contentValues.put("taxable", taxable);
+        contentValues.put("processed", "N");
         contentValues.put("date", new SimpleDateFormat("yyyy-MM-dd, h:mm a zzzz").format(new Date()));
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){
