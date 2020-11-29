@@ -17,9 +17,9 @@
             android:icon="@drawable/ic_baseline_edit_24"
             android:title="@string/edit_item_title" />
         <item
-            android:id="@+id/nav_history"
+            android:id="@+id/nav_queue"
             android:icon="@drawable/ic_baseline_history_24"
-            android:title="@string/history_item_title" />
+            android:title="@string/queue_item_title" />
         <item
             android:id="@+id/nav_inventory"
             android:icon="@drawable/ic_baseline_inventory_24"
