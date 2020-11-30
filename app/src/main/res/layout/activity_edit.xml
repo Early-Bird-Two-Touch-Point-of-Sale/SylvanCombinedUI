@@ -23,7 +23,7 @@
         android:id="@+id/OpenDialog"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/BTNquit"
+        android:layout_below="@+id/FilePath"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="Select File"
@@ -36,7 +36,7 @@
         android:id="@+id/sendBtooth"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/BTNquit"
+        android:layout_below="@+id/OpenDialog"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="Send"
@@ -44,21 +44,6 @@
         android:layout_margin="5dp"
         android:textColor="#edebff"
         android:background="#113b6a" />
-
-    <Button
-        android:id="@+id/BTNquit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:onClick="exit"
-        android:layout_margin="50dp"
-        android:text="Quit"
-        android:layout_gravity="center_horizontal"
-        android:padding="15dp"
-        android:background="#bc2745"
-        android:textColor="#29faf5" />
 
     <!--placeholder for color formatting
     nice shade of blue
