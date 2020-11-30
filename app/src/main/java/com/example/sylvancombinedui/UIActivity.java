@@ -56,8 +56,9 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(new Intent(UIActivity.this, OrderActivity.class));
                 break;
             case R.id.nav_edit:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new EditActivity()).commit();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                //        new EditActivity()).commit();
+                startActivity(new Intent(UIActivity.this, EditActivity.class));
                 break;
             case R.id.nav_queue:
                 startActivity(new Intent(UIActivity.this, OrderQueue.class));

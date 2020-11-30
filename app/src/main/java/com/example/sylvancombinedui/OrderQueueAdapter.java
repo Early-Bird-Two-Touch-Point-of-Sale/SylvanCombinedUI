@@ -3,6 +3,7 @@ package com.example.sylvancombinedui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ public class OrderQueueAdapter extends RecyclerView.Adapter<OrderQueueAdapter.Or
 
     public interface OnItemClickListener{
         void onItemClick(int position);
+        void onProcessClick(int position);
+        void onDeleteClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -24,15 +27,47 @@ public class OrderQueueAdapter extends RecyclerView.Adapter<OrderQueueAdapter.Or
 
     public static class OrderQueueViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
+        public ImageView mProcessIcon;
+        public ImageView mDeleteIcon;
 
         public OrderQueueViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.orderTitle);
+            mProcessIcon = itemView.findViewById(R.id.processIcon);
+            mDeleteIcon = itemView.findViewById(R.id.deleteIcon);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (listener != null){
-                        
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
+            mProcessIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onProcessClick(position);
+                        }
+                    }
+                }
+            });
+
+            mDeleteIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onDeleteClick(position);
+                        }
                     }
                 }
             });

@@ -28,6 +28,8 @@
             android:parentActivityName=".UIActivity"></activity>
         <activity android:name=".OrderQueue"
             android:parentActivityName=".UIActivity"></activity>
+        <activity android:name=".EditActivity"
+            android:parentActivityName=".UIActivity"></activity>
         <activity android:name=".CaptureAct"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"

@@ -1,6 +1,7 @@
 package com.example.sylvancombinedui;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class OrderQueue extends AppCompatActivity{
     private ArrayList<OrderQueueItem> mOrderQueueList;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private OrderQueueAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -30,7 +31,9 @@ public class OrderQueue extends AppCompatActivity{
 
     public void createOrderQueueList(){
         mOrderQueueList = new ArrayList<>();
-        mOrderQueueList.add(new OrderQueueItem("Order Example"));
+        mOrderQueueList.add(new OrderQueueItem("Order #1"));
+        mOrderQueueList.add(new OrderQueueItem("Order #2"));
+        mOrderQueueList.add(new OrderQueueItem("Order #3"));
     }
 
     public void buildRecyclerView(){
@@ -41,5 +44,27 @@ public class OrderQueue extends AppCompatActivity{
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new OrderQueueAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String itemMessage = mOrderQueueList.get(position).getOrderTitle();
+                Toast.makeText(OrderQueue.this, itemMessage, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onProcessClick(int position) {
+                String itemMessage = mOrderQueueList.get(position).getOrderTitle();
+                Toast.makeText(OrderQueue.this, itemMessage + " has been Processed", Toast.LENGTH_SHORT).show();
+                delItem(position);
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                String itemMessage = mOrderQueueList.get(position).getOrderTitle();
+                Toast.makeText(OrderQueue.this, itemMessage + " has been Cancelled", Toast.LENGTH_SHORT).show();
+                delItem(position);
+            }
+        });
     }
 }
