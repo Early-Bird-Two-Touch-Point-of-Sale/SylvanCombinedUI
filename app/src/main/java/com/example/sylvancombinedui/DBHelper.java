@@ -117,6 +117,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getDistinctOrderID(){
+        String orderID = "orderID";
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select distinct ?, processed from Userdetails order by ?", new String[] {orderID});
+        return cursor;
+    }
+
     public Cursor dailyOrder(){
         Date date = new Date();
         String strDateFormat = "yyyy-MM-dd";

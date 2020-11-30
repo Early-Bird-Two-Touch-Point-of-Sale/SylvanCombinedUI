@@ -35,14 +35,13 @@ public class OrderQueue extends AppCompatActivity{
     }
 
     public void createOrderQueueList(){
-        Cursor res = DB.getData();
+        Cursor res = DB.getDistinctOrderID();
         mOrderQueueList = new ArrayList<>();
-
         while(res.moveToNext()) {
-            if (res.getString(9).equals("N")){
-                if (!mOrderQueueList.contains(new OrderQueueItem("Order #" + res.getString(1)))) {
+            if (res.getString(1).equals("N")){
+                //if (!mOrderQueueList.contains(new OrderQueueItem("Order #" + res.getString(1)))) {
                     mOrderQueueList.add(new OrderQueueItem("Order #" + res.getString(1)));
-                }
+                //}
             }
         }
 
