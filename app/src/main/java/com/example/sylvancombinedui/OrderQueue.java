@@ -1,5 +1,6 @@
 package com.example.sylvancombinedui;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -14,11 +15,13 @@ public class OrderQueue extends AppCompatActivity{
     private RecyclerView mRecyclerView;
     private OrderQueueAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderqueue);
+        DB = new DBHelper(this);
 
         createOrderQueueList();
         buildRecyclerView();
@@ -30,6 +33,7 @@ public class OrderQueue extends AppCompatActivity{
     }
 
     public void createOrderQueueList(){
+        Cursor cursor = DB.getData();
         mOrderQueueList = new ArrayList<>();
         mOrderQueueList.add(new OrderQueueItem("Order #1"));
         mOrderQueueList.add(new OrderQueueItem("Order #2"));
