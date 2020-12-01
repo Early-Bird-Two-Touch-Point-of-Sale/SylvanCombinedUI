@@ -61,9 +61,6 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
             case R.id.nav_inventory:
                 startActivity(new Intent(UIActivity.this, InventoryActivity.class));
                 break;
-            case R.id.nav_user_profile: //Toast placeholders
-                Toast.makeText(this, "Your User Profile", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.nav_bluetooth:
                 startActivity(new Intent(UIActivity.this, BluetoothActivity.class));
                 break;
@@ -96,3 +93,6 @@ public class UIActivity extends AppCompatActivity implements NavigationView.OnNa
         //        new BluetoothActivity()).commit();
         //startActivity(new Intent(UIActivity.this, BluetoothActivity.class));
        // break;
+//case R.id.nav_user_profile: //Toast placeholders
+        //Toast.makeText(this, "Your User Profile", Toast.LENGTH_SHORT).show();
+        //break;
