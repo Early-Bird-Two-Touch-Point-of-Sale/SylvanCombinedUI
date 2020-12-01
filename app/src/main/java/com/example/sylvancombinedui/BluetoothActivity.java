@@ -176,7 +176,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
                 for (ResolveInfo info : list) {
                     packageName = info.activityInfo.packageName;
-                    if (packageName.equals("com.android.bluetooth")) {
+                    if (packageName.equals("com.example.sylvancombinedui")) {
                         className = info.activityInfo.name;
                         found = true;
                         break;
