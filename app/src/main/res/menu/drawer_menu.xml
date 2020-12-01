@@ -13,10 +13,6 @@
             android:icon="@drawable/ic_baseline_restaurant_menu_24"
             android:title="@string/create_item_title" />
         <item
-            android:id="@+id/nav_edit"
-            android:icon="@drawable/ic_baseline_edit_24"
-            android:title="@string/edit_item_title" />
-        <item
             android:id="@+id/nav_queue"
             android:icon="@drawable/ic_baseline_history_24"
             android:title="@string/queue_item_title" />
@@ -44,3 +40,9 @@
     </item>
 
 </menu>
+
+
+<!--item
+android:id="@+id/nav_edit"
+android:icon="@drawable/ic_baseline_edit_24"
+android:title="@string/edit_item_title" -->

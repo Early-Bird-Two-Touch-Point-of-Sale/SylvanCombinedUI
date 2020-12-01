@@ -1,136 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".UIActivity">
+    android:orientation="vertical"
+    tools:context=".UIActivity"
+    android:gravity="center">
 
-    <Button
-        android:id="@+id/btnBluetoothOn"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Turn Bluetooth On"
-        android:textSize="24dp"/>
+        android:id="@+id/FilePath"
+        android:layout_gravity="center_horizontal"
+        android:textSize="12dp"
+        android:layout_marginBottom="20dp"
+        android:theme="@android:style/Animation.Translucent"
+        android:padding="15dp"
+        android:layout_margin="5dp" />
 
     <Button
-        android:id="@+id/btnBluetoothOff"
-        android:layout_width="match_parent"
+        android:id="@+id/OpenDialog"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnBluetoothOn"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/FilePath"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Turn Bluetooth Off"
-        android:textSize="24dp"/>
+        android:text="Select File"
+        android:padding="15dp"
+        android:layout_margin="5dp"
+        android:textColor="#edebff"
+        android:background="#0bba1c" />
 
     <Button
-        android:id="@+id/btnBluetoothShow"
-        android:layout_width="match_parent"
+        android:id="@+id/sendBtooth"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnBluetoothOff"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/OpenDialog"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Show Paired Devices"
-        android:textSize="24dp"/>
+        android:text="Send"
+        android:padding="15dp"
+        android:layout_margin="5dp"
+        android:textColor="#edebff"
+        android:background="#113b6a" />
 
-    <Button
-        android:id="@+id/btnBluetoothDiscover"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnBluetoothShow"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Discover Devices"
-        android:textSize="24dp"/>
+    <!--placeholder for color formatting
+    nice shade of blue
+    android:background="#002145"
+    dim grayish
+    android:background="#DCDCDC"-->
 
-    <Button
-        android:id="@+id/btnBluetoothServerListen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnBluetoothDiscover"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Listen Serverside"
-        android:textSize="24dp"/>
-
-    <Button
-        android:id="@+id/btnBluetoothSendFile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnBluetoothServerListen"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Transfer Database File"
-        android:textSize="24dp"/>
-
-       <!-- android:id="@+id/imageButton"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:foreground="?android:attr/selectableItemBackground" -->
-
-        <!--<ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_bluetooth_disabled" />-->
-        <TextView
-            android:id="@+id/ConnectionDiscoveryView"
-            android:layout_below="@+id/btnBluetoothSendFile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <ListView
-            android:id="@+id/ConnectionListView"
-            android:layout_below="@+id/ConnectionDiscoveryView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-
-    <TextView
-        android:id="@+id/ConnectionTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-</RelativeLayout>
+</LinearLayout>
