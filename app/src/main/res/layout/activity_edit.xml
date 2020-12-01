@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:gravity="center"
-    android:background="#DCDCDC">
+    android:gravity="center">
 
     <EditText
         android:layout_width="match_parent"
@@ -15,7 +14,6 @@
         android:textSize="12dp"
         android:layout_marginBottom="20dp"
         android:theme="@android:style/Animation.Translucent"
-        android:textColor="#2fffff"
         android:padding="15dp"
         android:layout_margin="5dp" />
 
@@ -47,6 +45,8 @@
 
     <!--placeholder for color formatting
     nice shade of blue
-    android:background="#002145"-->
+    android:background="#002145"
+    dim grayish
+    android:background="#DCDCDC"-->
 
 </LinearLayout>

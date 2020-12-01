@@ -106,30 +106,30 @@
         android:text="Transfer Database File"
         android:textSize="24dp"/>
 
-    <FrameLayout
-        android:id="@+id/imageButton"
+       <!-- android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="?android:attr/selectableItemBackground" >
+        android:foreground="?android:attr/selectableItemBackground" -->
 
         <!--<ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_bluetooth_disabled" />-->
-    </FrameLayout>
+        <TextView
+            android:id="@+id/ConnectionDiscoveryView"
+            android:layout_below="@+id/btnBluetoothSendFile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <ListView
-        android:id="@+id/ConnectionListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <ListView
+            android:id="@+id/ConnectionListView"
+            android:layout_below="@+id/ConnectionDiscoveryView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
     <TextView
         android:id="@+id/ConnectionTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <TextView
-        android:id="@+id/ConnectionDiscoveryView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
