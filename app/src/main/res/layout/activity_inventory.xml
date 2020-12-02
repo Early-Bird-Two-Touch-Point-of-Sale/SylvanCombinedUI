@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".UIActivity">
 
     <TextView
@@ -23,8 +24,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/restaurantOrange"
         android:text="View Database"
+        android:textColor="@color/restaurantYellow"
         android:textSize="24dp" />
 
     <Button
@@ -32,8 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnView"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/restaurantOrange"
         android:text="Backup the Database"
+        android:textColor="@color/restaurantYellow"
         android:textSize="24dp" />
 
     <Button
@@ -45,9 +50,11 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/restaurantOrange"
         android:text="View an Order"
-        android:textSize="24dp"/>
+        android:textColor="@color/restaurantYellow"
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/btnDailyTotal"
@@ -60,11 +67,13 @@
         android:layout_alignParentRight="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
+        android:background="@color/restaurantOrange"
         android:text="View Daily Total"
-        android:textSize="24dp"/>
+        android:textColor="@color/restaurantYellow"
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/btnYearlyTotal"
@@ -75,9 +84,11 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:textSize="24dp"
-        android:text="View Yearly Total" />
+        android:layout_marginTop="20dp"
+        android:background="@color/restaurantOrange"
+        android:text="View Yearly Total"
+        android:textColor="@color/restaurantYellow"
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/btnRenewTable"
@@ -88,8 +99,10 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/restaurantOrange"
         android:text="Renew Database Table"
+        android:textColor="@color/restaurantYellow"
         android:textSize="24dp" />
 
     <!--
