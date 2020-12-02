@@ -20,8 +20,7 @@ import java.util.Date;
 
 public class InventoryActivity extends AppCompatActivity {
 
-    EditText itemID, orderID, itemName;
-    Button insert, update, delete, view, export, viewOrder, dailyTotal, yearlyTotal, renewTable;
+    Button view, export, viewOrder, dailyTotal, yearlyTotal, renewTable;
     DBHelper DB;
     DBImportExport IE;
     boolean adminValid = false;
@@ -33,13 +32,6 @@ public class InventoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
-        //itemID = findViewById(R.id.itemID);
-        //orderID = findViewById(R.id.orderID);
-        //itemName = findViewById(R.id.itemName);
-
-        //insert = findViewById(R.id.btnInsert);
-        //update = findViewById(R.id.btnUpdate);
-        //delete = findViewById(R.id.btnDelete);
         view = findViewById(R.id.btnView);
         export = findViewById(R.id.btnExport);
         viewOrder = findViewById(R.id.btnViewOrder);
@@ -48,54 +40,6 @@ public class InventoryActivity extends AppCompatActivity {
         renewTable = findViewById(R.id.btnRenewTable);
 
         DB = new DBHelper(this);
-
-        /*insert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String itemIDtxt = itemID.getText().toString();
-                String orderIDtxt = orderID.getText().toString();
-                String itemNameTXT = itemName.getText().toString();
-
-                Boolean checkInsertData = DB.insertUserData(itemIDtxt, orderIDtxt, itemNameTXT,
-                        "N/A", "N/A", "N/A", "N/A", "N");
-                if (checkInsertData == true) {
-                    Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(InventoryActivity.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-         */
-
-        /*update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nameTXT = itemID.getText().toString();
-                String contactTXT = orderID.getText().toString();
-                String dobTXT = itemName.getText().toString();
-
-                Boolean checkUpdateData = DB.updateUserData(nameTXT, contactTXT, dobTXT);
-                if (checkUpdateData == true) {
-                    Toast.makeText(InventoryActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(InventoryActivity.this, "Entry Not Updated", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
-
-        /*delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nameTXT = itemID.getText().toString();
-
-                Boolean checkDeleteData = DB.deleteData(nameTXT);
-                if (checkDeleteData == true) {
-                    Toast.makeText(InventoryActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(InventoryActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -417,3 +361,69 @@ public class InventoryActivity extends AppCompatActivity {
         return bd.doubleValue();
     }
 }
+
+//Code purgatory for test functions that were used for testing
+
+/*
+//Definitions of EditText and Buttons for testing database
+EditText itemID, orderID, itemName;
+Button insert, update, delete;
+ */
+
+/*
+// Buttons and Text Entries for testing insert, update, delete functions
+itemID = findViewById(R.id.itemID);
+orderID = findViewById(R.id.orderID);
+itemName = findViewById(R.id.itemName);
+
+insert = findViewById(R.id.btnInsert);
+update = findViewById(R.id.btnUpdate);
+delete = findViewById(R.id.btnDelete);
+*/
+/*insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemIDtxt = itemID.getText().toString();
+                String orderIDtxt = orderID.getText().toString();
+                String itemNameTXT = itemName.getText().toString();
+
+                Boolean checkInsertData = DB.insertUserData(itemIDtxt, orderIDtxt, itemNameTXT,
+                        "N/A", "N/A", "N/A", "N/A", "N");
+                if (checkInsertData == true) {
+                    Toast.makeText(InventoryActivity.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(InventoryActivity.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+         */
+
+        /*update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameTXT = itemID.getText().toString();
+                String contactTXT = orderID.getText().toString();
+                String dobTXT = itemName.getText().toString();
+
+                Boolean checkUpdateData = DB.updateUserData(nameTXT, contactTXT, dobTXT);
+                if (checkUpdateData == true) {
+                    Toast.makeText(InventoryActivity.this, "Entry Updated", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(InventoryActivity.this, "Entry Not Updated", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });*/
+
+        /*delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameTXT = itemID.getText().toString();
+
+                Boolean checkDeleteData = DB.deleteData(nameTXT);
+                if (checkDeleteData == true) {
+                    Toast.makeText(InventoryActivity.this, "Entry Deleted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(InventoryActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });*/
