@@ -33,13 +33,13 @@ public class InventoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
-        itemID = findViewById(R.id.itemID);
-        orderID = findViewById(R.id.orderID);
-        itemName = findViewById(R.id.itemName);
+        //itemID = findViewById(R.id.itemID);
+        //orderID = findViewById(R.id.orderID);
+        //itemName = findViewById(R.id.itemName);
 
-        insert = findViewById(R.id.btnInsert);
-        update = findViewById(R.id.btnUpdate);
-        delete = findViewById(R.id.btnDelete);
+        //insert = findViewById(R.id.btnInsert);
+        //update = findViewById(R.id.btnUpdate);
+        //delete = findViewById(R.id.btnDelete);
         view = findViewById(R.id.btnView);
         export = findViewById(R.id.btnExport);
         viewOrder = findViewById(R.id.btnViewOrder);
@@ -49,7 +49,7 @@ public class InventoryActivity extends AppCompatActivity {
 
         DB = new DBHelper(this);
 
-        insert.setOnClickListener(new View.OnClickListener() {
+        /*insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String itemIDtxt = itemID.getText().toString();
@@ -65,8 +65,9 @@ public class InventoryActivity extends AppCompatActivity {
                 }
             }
         });
+         */
 
-        update.setOnClickListener(new View.OnClickListener() {
+        /*update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nameTXT = itemID.getText().toString();
@@ -80,9 +81,9 @@ public class InventoryActivity extends AppCompatActivity {
                     Toast.makeText(InventoryActivity.this, "Entry Not Updated", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
-        delete.setOnClickListener(new View.OnClickListener() {
+        /*delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nameTXT = itemID.getText().toString();
@@ -94,7 +95,7 @@ public class InventoryActivity extends AppCompatActivity {
                     Toast.makeText(InventoryActivity.this, "Entry Not Deleted", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
