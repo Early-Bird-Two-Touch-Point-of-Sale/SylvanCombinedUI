@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pastelYellow"
     tools:context=".UIActivity">
 
     <Button
@@ -43,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="675dp"
         android:padding="4dp"
+        android:background="@color/pastelYellow"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
