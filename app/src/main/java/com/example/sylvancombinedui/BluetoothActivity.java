@@ -1,6 +1,5 @@
 package com.example.sylvancombinedui;
 
-import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,28 +8,19 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BluetoothActivity extends AppCompatActivity {
-    Button BTNOpenDialog, BTNUp, BTNSend;
-    TextView TXTFolder;
+    Button BTNSend;
     EditText dataPath;
-    static final int CUSTOM_DIALOG_ID = 0;
-    ListView dialog_ListView;
-    File root, fileroot, curFolder;
-    private List<String> fileList = new ArrayList<String>();
+    File root, curFolder;
     private static final int DISCOVER_DURATION = 300;
     private static final int REQUEST_BLU = 1;
     BluetoothAdapter SecondBTAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -39,19 +29,22 @@ public class BluetoothActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
-        dataPath = (EditText)findViewById(R.id.FilePath);
-        BTNOpenDialog = (Button)findViewById(R.id.OpenDialog);
-        BTNSend = (Button)findViewById(R.id.sendBtooth);
-        BTNOpenDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dataPath.setText("");
-                showDialog(CUSTOM_DIALOG_ID);
-            }
-        });
+        dataPath = findViewById(R.id.FilePath);
+        BTNSend = findViewById(R.id.sendBtooth);
+        //Comment out this code to hardcode the send function to dataPath.setText("/data/data/com.example.sylvancombinedui/databases/Userdata.db)
+        // This will initialize the setText data but will
+        //
+        //dataPath.setText("/data/data/com.example.sylvancombinedui/databases/Userdata.db)
 
+        //Comment this code if you intend to hardcode the database --> dataPath.setText("");
+        //
+        //
+        dataPath.setText("");
+
+        //Find the root and then begin the search from there
         root = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
         curFolder = root;
+        //When users presses send have it call the sendViaBluetooth function
         BTNSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,84 +53,9 @@ public class BluetoothActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        Dialog dialog = null;
-        switch (id) {
-            case CUSTOM_DIALOG_ID:
-                dialog = new Dialog(BluetoothActivity.this);
-                dialog.setContentView(R.layout.dialog_layout);
-                dialog.setTitle("File Selector");
-                dialog.setCancelable(true);
-                dialog.setCanceledOnTouchOutside(true);
-                TXTFolder = (TextView) dialog.findViewById(R.id.folder);
-                BTNUp = (Button) dialog.findViewById(R.id.up);
-                BTNUp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ListDir(curFolder.getParentFile());
-                    }
-                });
-                dialog_ListView = (ListView) dialog.findViewById(R.id.dialoglist);
-                dialog_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        File selected = new File(fileList.get(position));
-                        if (selected.isDirectory()) {
-                            ListDir(selected);
-                        } else if (selected.isFile()) {
-                            getselectedFile(selected);
-                        } else {
-                            dismissDialog(CUSTOM_DIALOG_ID);
-                        }
-                    }
-                });
-                break;
-        }
-        return dialog;
-    }
-
-    @Override
-    protected void onPrepareDialog(int id, Dialog dialog) {
-        super.onPrepareDialog(id, dialog);
-        switch (id) {
-            case CUSTOM_DIALOG_ID:
-                ListDir(curFolder);
-                break;
-        }
-    }
-
-    public void getselectedFile(File f){
-        dataPath.setText(f.getAbsolutePath());
-        fileList.clear();
-        dismissDialog(CUSTOM_DIALOG_ID);
-    }
-
-    public void ListDir(File f) {
-        if (f.equals(root)) {
-            BTNUp.setEnabled(false);
-        } else {
-            BTNUp.setEnabled(true);
-        }
-        curFolder = f;
-        TXTFolder.setText(f.getAbsolutePath());
-        dataPath.setText(f.getAbsolutePath());
-        File[] files = f.listFiles();
-        fileList.clear();
-
-        for (File file : files) {
-            fileList.add(file.getPath());
-        }
-        ArrayAdapter<String> directoryList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fileList);
-        dialog_ListView.setAdapter(directoryList);
-    }
-
-    public void exit(View V) {
-        SecondBTAdapter.disable();
-        Toast.makeText(this, "Bluetooth is now disabled", Toast.LENGTH_LONG).show();
-        finish();
-    }
-
+    //The holy grail function - can be called for when the datapath is not null
+    //If hard-coded will never be null and can be called in other functions to give
+    //automatic updates
     public void sendViaBluetooth() {
         if(!dataPath.equals(null)){
             if(SecondBTAdapter == null) {
@@ -150,6 +68,9 @@ public class BluetoothActivity extends AppCompatActivity {
         }
     }
 
+
+    //In order to work have to set Intent with BluetoothAdapter that makes the device at least discoverable
+    //Then start the activity
     public void enableBluetooth() {
         Intent discoveryIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoveryIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, DISCOVER_DURATION);
@@ -159,16 +80,22 @@ public class BluetoothActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //If discovered and request is received, send the file
         if (resultCode == DISCOVER_DURATION && requestCode == REQUEST_BLU) {
             Intent i = new Intent();
             i.setAction(Intent.ACTION_SEND);
+            //Set the filetype in the intent
             i.setType("*/*");
+            //Pull text data into a string for parsing
             File file = new File(dataPath.getText().toString());
 
             i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
 
+            //Handles data like packages for delivery so queries are handled properly
             PackageManager pm = getPackageManager();
+            //Pass queries into a list
             List<ResolveInfo> list = pm.queryIntentActivities(i, 0);
+            //Set null values so that buffer can parse correctly
             if (list.size() > 0) {
                 String packageName = null;
                 String className = null;
@@ -176,7 +103,8 @@ public class BluetoothActivity extends AppCompatActivity {
 
                 for (ResolveInfo info : list) {
                     packageName = info.activityInfo.packageName;
-                    if (packageName.equals("com.example.sylvancombinedui")) {
+                    //Utilize the android bluetooth library for sending files
+                    if (packageName.equals("com.android.bluetooth")) {
                         className = info.activityInfo.name;
                         found = true;
                         break;
@@ -195,7 +123,11 @@ public class BluetoothActivity extends AppCompatActivity {
     }
 }
 
-
+//Code purgatory for old code that was used for testing or is broken
+//
+//
+//
+//
 
 /*public class BluetoothActivity extends AppCompatActivity {
 
@@ -562,5 +494,38 @@ public class BluetoothActivity extends AppCompatActivity {
     //    }
     //});
 //}
+
+   /* //Get the text data for displaying
+    public void getselectedFile(File f){
+        dataPath.setText(f.getAbsolutePath());
+        fileList.clear();
+    }
+
+    public void ListDir(File f) {
+        if (f.equals(root)) {
+            BTNUp.setEnabled(false);
+        } else {
+            BTNUp.setEnabled(true);
+        }
+        curFolder = f;
+        TXTFolder.setText(f.getAbsolutePath());
+        dataPath.setText(f.getAbsolutePath());
+        //Pass the data values to an array
+        File[] files = f.listFiles();
+        fileList.clear();
+
+        for (File file : files) {
+            fileList.add(file.getPath());
+        }
+        ArrayAdapter<String> directoryList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fileList);
+        dialog_ListView.setAdapter(directoryList);
+    }
+
+    //On exit disable the bluetooth functionality and prompt user
+    public void exit(View V) {
+        SecondBTAdapter.disable();
+        Toast.makeText(this, "Bluetooth is now disabled", Toast.LENGTH_LONG).show();
+        finish();
+    }*/
 
 
