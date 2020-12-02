@@ -153,7 +153,7 @@ public class InventoryActivity extends AppCompatActivity {
                 alert.setTitle("Admin Verification");
                 alert.setMessage("Please Input an Admin Username/Password");
                 alert.setView(adminPassView);
-                alert.setPositiveButton("Order", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         final String adminUsername = etAdminUsername.getText().toString();
@@ -307,6 +307,7 @@ public class InventoryActivity extends AppCompatActivity {
     public void showDailyOrder() {
         Cursor res = DB.dailyOrder();
         StringBuffer buffer = new StringBuffer();
+        Double taxableTotal = 0.0, nontaxTotal = 0.0;
         while(res.moveToNext()) {
             buffer.append("Item ID : " +res.getString(0) + "\n");
             buffer.append("Order ID : " +res.getString(1) + "\n");
@@ -318,7 +319,22 @@ public class InventoryActivity extends AppCompatActivity {
             buffer.append("Date Added : " +res.getString(7) + "\n");
             buffer.append("Taxable : " +res.getString(8) + "\n");
             buffer.append("Processed : " +res.getString(9) + "\n\n");
+
+            if (res.getString(8).equals(getResources().getString(R.string.taxable))){
+                String taxPriceString = res.getString(6).replace("$", "");
+                //Toast.makeText(this, res.getString(0) + ", " + taxPriceString, Toast.LENGTH_SHORT).show();
+                taxableTotal += round(Double.parseDouble(taxPriceString), 2);
+            }
+            else if (res.getString(8).equals(getResources().getString(R.string.non_taxable))){
+                String nontaxPriceString = res.getString(6).replace("$", "");
+                //Toast.makeText(this, res.getString(0) + ", " + nontaxPriceString, Toast.LENGTH_SHORT).show();
+                nontaxTotal += round(Double.parseDouble(nontaxPriceString), 2);
+            }
         }
+
+        buffer.append("Total Taxable Sales: $" + round(taxableTotal, 2) + "\n");
+        buffer.append("Total Nontaxable Sales: $" + round(nontaxTotal, 2) + "\n");
+        buffer.append("Total Sales: $" + (round(taxableTotal, 2) + round(nontaxTotal, 2)));
 
         /*
         Date date = new Date();
