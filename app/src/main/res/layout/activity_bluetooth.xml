@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/pastelYellow"
     tools:context=".UIActivity"
     android:gravity="center">
 
@@ -27,8 +28,8 @@
         android:text="Send"
         android:padding="15dp"
         android:layout_margin="5dp"
-        android:textColor="#edebff"
-        android:background="#113b6a" />
+        android:textColor="@color/restaurantYellow"
+        android:background="@color/restaurantOrange" />
 
     <!--placeholder for color formatting
     nice shade of blue
