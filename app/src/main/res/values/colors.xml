@@ -5,4 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="restaurantYellow">#FFFF00</color>
     <color name="restaurantOrange">#E64C00</color>
+    <color name="offWhite">#f8f8ff</color>
+    <color name="pastelYellow">#FDFD96</color>
+    <color name="oldButtonBackground">#0bba1c</color>
+    <color name="oldButtonText">#edebff</color>
 </resources>
